@@ -7,10 +7,28 @@ version = "1.0-SNAPSHOT"
 
 repositories {
     mavenCentral()
+    jcenter()
+    maven(url = "https://jitpack.io")
 }
 
 dependencies {
     implementation(kotlin("stdlib-jdk8"))
+
+    implementation(ktorServerCore())
+    implementation(ktorJackson())
+
+    implementation(jacksonDataFormatXml())
+
+    implementation(jacksonEnumerated())
+    implementation(jacksonTextual())
+    implementation(jacksonNumerical())
+    implementation(jacksonPolymorphic())
+    jacksonImmutableAst()
+
+    implementation(konform())
+    implementation(exposed())
+    implementation(hikariCp())
+    guava()
 }
 
 tasks {
