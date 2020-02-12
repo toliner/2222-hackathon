@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/2222-hackathon.iml" filepath="$PROJECT_DIR$/2222-hackathon.iml" />
+      <module fileurl="file://$PROJECT_DIR$/web-front/web-front.iml" filepath="$PROJECT_DIR$/web-front/web-front.iml" />
     </modules>
   </component>
 </project>
