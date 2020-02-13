@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme: Theme) =>
                 height: 400,
                 top: 200,
                 position: 'relative',
-                backgroundColor: 'rgba(208, 208, 208, 1)',
+                backgroundColor: 'rgba(58, 58, 58, 1)',
             },
             item: {
                 textAlign: 'center',
