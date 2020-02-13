@@ -34,4 +34,4 @@ jobs:
         uses: actions/upload-artifact@v1.0.0
         with:
           name: test-result
-          path: build/reports/tests
+          path: backend/build/reports/tests
