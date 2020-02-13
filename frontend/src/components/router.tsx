@@ -4,7 +4,6 @@ import {Home} from "./pages/home";
 import {UserPage} from "./pages/user-page";
 import {Team} from "./pages/team";
 import {Tournament} from "./pages/tournament";
-import {LoginPageModal} from "./partials/login-page-modal";
 
 export const Router: React.SFC = () => {
     return (

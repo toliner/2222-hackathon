@@ -1,23 +1,28 @@
 import React from "react";
 import {createStyles, makeStyles, Theme} from "@material-ui/core/styles";
-import {Grid, Box} from "@material-ui/core";
+import {Grid} from "@material-ui/core";
 import {LoginPageModal} from "../partials/login-page-modal";
+import {ListCard} from "../partials/list-card";
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
-            root: {
-                flexGrow: 1,
-            },
-            paper: {
-                textAlign: 'center',
-                background: 'rgba(226, 226, 226, 1)',
-                height: '100vh',
-            },
-            bg: {
-                background: 'rgba(75, 75, 75, 1)',
-            }
+        root: {
+            flexGrow: 1,
+        },
+        paper: {
+            textAlign: 'center',
+            background: '#F3F3F3',
+            height: '100vh',
+            top: 68,
+            position: 'relative',
+        },
+        bg: {
+            background: '#4B4B4B',
+        },
+        bottom:{
+            marginBottom: 25,
         }
-    )
+    })
 )
 
 export const Home: React.FC = () => {
@@ -28,7 +33,11 @@ export const Home: React.FC = () => {
             <Grid container spacing={3}>
                 <Grid item xs={3} className={classes.bg}/>
                 <Grid item xs={6} className={classes.paper}>
-                    <Box>List</Box>
+                    <div className={classes.bottom}><ListCard/></div>
+                    <div className={classes.bottom}><ListCard/></div>
+                    <div className={classes.bottom}><ListCard/></div>
+                    <div className={classes.bottom}><ListCard/></div>
+                    <div className={classes.bottom}><ListCard/></div>
                 </Grid>
                 <Grid item xs={3} className={classes.bg}/>
             </Grid>
