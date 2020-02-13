@@ -16,6 +16,88 @@ paths:
       description: ""
       tags:
         - user
+      requestBody:
+        description: ユーザーを作成するための情報
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: string
+                name:
+                  type: string
+                mail:
+                  type: string
+                  format: email
       responses:
         '200':
-          description: 成功
+          description: 成功。メール認証を行う。
+
+  /user/varification:
+    get:
+      summary: 新規登録ユーザーのe-mail認証
+      description: ""
+      tags:
+        - user
+      parameters:
+        - name: token
+          in: query
+          description: "サーバーで生成され、メールで送信されたトークン"
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        200:
+          description: 成功。
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  uuid:
+                    type: string
+                    format: uuid
+                  id:
+                    type: string
+                  name:
+                    type: string
+                  access_token:
+                    type: string
+        400:
+          description:  トークンが不正
+
+  /user/login/oauth/{service}:
+    get:
+      summary: OAuthによる連携ログイン
+      operationId: login-oauth
+      tags:
+        - user
+      parameters:
+        - name: service
+          in: path
+          description: 連携対象のサービス
+          required: true
+          schema:
+            type: string
+      responses:
+        400:
+          description: serviceが不正であった場合
+
+  /user/login/email:
+    get:
+      summary: メールアドレスからのマジックリングによるログイン
+      operationId: login-email
+      tags:
+        - user
+      parameters:
+        - name: id
+          in: query
+          description: ログインするユーザーのID
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: メールの送信に成功
