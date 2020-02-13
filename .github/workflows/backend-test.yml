@@ -29,6 +29,7 @@ jobs:
         with:
           arguments: test
           build-root-directory: backend
+          wrapper-directory: backend
 
       - name: Upload artifact
         uses: actions/upload-artifact@v1.0.0
