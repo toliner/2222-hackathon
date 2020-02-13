@@ -23,10 +23,12 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 8
+
       - name: run test
         uses: eskatos/gradle-command-action@v1
         with:
           arguments: test
+          build-root-directory: backend
 
       - name: Upload artifact
         uses: actions/upload-artifact@v1.0.0
