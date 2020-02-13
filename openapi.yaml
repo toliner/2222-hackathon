@@ -1,0 +1,21 @@
+openapi: 3.0.1
+info:
+  title: 2222 API
+  description: API description in Markdown.
+  version: 1.0.0
+servers:
+  - url: 'https://api.example.com'
+tags:
+  - name: user
+    description: ユーザー関係
+
+paths:
+  /user/register:
+    post:
+      summary: 新規ユーザーの作成.
+      description: ""
+      tags:
+        - user
+      responses:
+        '200':
+          description: 成功
