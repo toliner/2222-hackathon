@@ -101,3 +101,37 @@ paths:
       responses:
         200:
           description: メールの送信に成功
+
+  /users/{id}:
+    get:
+      summary: ユーザー情報の取得
+      operationId: get-user-info
+      tags:
+        - user
+      parameters:
+        - name: id
+          in: path
+          description: 取得するユーザーのID
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: ユーザーが存在する
+        404:
+          description: ユーザーが存在しない
+
+components:
+  schemas:
+    UserProfile:
+      type: object
+      properties:
+        uuid:
+          type: string
+          format: uuid
+        id:
+          type: string
+        name:
+          type: string
+        bio:
+          type: string
