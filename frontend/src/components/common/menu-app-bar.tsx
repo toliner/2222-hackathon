@@ -9,6 +9,7 @@ import MenuIcon from "@material-ui/icons/Menu";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
+import { RouteComponentProps } from "react-router";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -27,7 +28,7 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-export const MenuAppBar = () => {
+export const MenuAppBar: React.FC<RouteComponentProps> = props => {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
@@ -36,6 +37,12 @@ export const MenuAppBar = () => {
     setAnchorEl(event.currentTarget);
 
   const handleClose = () => setAnchorEl(null);
+
+  const handleToUserPage = () => {
+    props.history.push({
+      pathname: "/user"
+    });
+  };
 
   return (
     <div className={classes.root}>
@@ -77,8 +84,14 @@ export const MenuAppBar = () => {
               open={open}
               onClose={handleClose}
             >
-              <MenuItem onClick={handleClose}>Setting</MenuItem>
-              <MenuItem onClick={handleClose}>Logout</MenuItem>
+              <MenuItem onClick={() => handleToUserPage()}>Setting</MenuItem>
+              <MenuItem
+                onClick={() => {
+                  console.log("logout!");
+                }}
+              >
+                Logout
+              </MenuItem>
             </Menu>
           </div>
         </Toolbar>

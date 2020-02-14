@@ -33,7 +33,7 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-export const UserPage: React.FC = () => {
+export const User: React.FC = () => {
   const classes = useStyles();
 
   return (
