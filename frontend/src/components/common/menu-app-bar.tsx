@@ -9,7 +9,7 @@ import MenuIcon from "@material-ui/icons/Menu";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
-import { RouteComponentProps } from "react-router";
+//import { withRouter } from 'react-router';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-export const MenuAppBar: React.FC<RouteComponentProps> = props => {
+export const MenuAppBar: React.FC = () => {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
@@ -38,11 +38,9 @@ export const MenuAppBar: React.FC<RouteComponentProps> = props => {
 
   const handleClose = () => setAnchorEl(null);
 
-  const handleToUserPage = () => {
-    props.history.push({
-      pathname: "/user"
-    });
-  };
+  /*const handleToUserPage = () => {
+    props.history.push("/user");
+  };*/
 
   return (
     <div className={classes.root}>
@@ -84,7 +82,9 @@ export const MenuAppBar: React.FC<RouteComponentProps> = props => {
               open={open}
               onClose={handleClose}
             >
-              <MenuItem onClick={() => handleToUserPage()}>Setting</MenuItem>
+              <MenuItem /*onClick={() => handleToUserPage()}*/>
+                Setting
+              </MenuItem>
               <MenuItem
                 onClick={() => {
                   console.log("logout!");
