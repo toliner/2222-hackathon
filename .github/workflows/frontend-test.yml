@@ -3,7 +3,7 @@ on: [pull_request, push]
 
 jobs:
   test:
-    run-on: ubuntu-latest
+    runs-on: ubuntu-latest
 
     strategy:
       matrix:
