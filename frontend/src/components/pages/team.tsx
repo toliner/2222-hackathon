@@ -1,7 +1,6 @@
 import React from "react";
 import {createStyles, makeStyles, Theme} from "@material-ui/core/styles";
 import {Grid} from "@material-ui/core";
-import {LoginPageModal} from "../partials/login-page-modal";
 import {TeamListCard} from "../partials/team-list-card";
 
 const useStyles = makeStyles((theme: Theme) =>
