@@ -46,6 +46,7 @@ dependencies {
     implementation("org.mariadb.jdbc:mariadb-java-client:2.5.4")
     implementation(hikariCp())
     guava()
+    implementation("com.sendgrid:sendgrid-java:4.4.4")
 
     testImplementation("com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0")
     testImplementation(kotlin("test-junit"))
