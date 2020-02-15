@@ -1,0 +1,19 @@
+# Shutdown URL for debug
+GET http://localhost:8080/debug/application/ktor/shutdown
+
+###
+#Register User
+POST http://localhost:8080/api/user/register
+Content-Type: application/json
+
+{
+  "name": "toliner",
+  "mail": "test+2222@toliner.dev"
+}
+
+###
+
+# Verify User
+GET http://localhost:8080/api/user/verification?token=40614616-c3b2-44f3-9891-3a76cb1e8853
+
+###
