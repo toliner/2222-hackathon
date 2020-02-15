@@ -68,5 +68,5 @@ jobs:
           ssh -i id_deploy root@${{ secrets.DEPLOY_TARGET_ADDRESS }} tmux new-session -d "serve -s deploy/frontend"
 
       - name: Start Backend Server
-          run:
-            ssh -i id_deploy root@${{ secrets.DEPLOY_TARGET_ADDRESS }} tmux new-session -d "deploy/backend/bin/backend"
+        run:
+          ssh -i id_deploy root@${{ secrets.DEPLOY_TARGET_ADDRESS }} tmux new-session -d "deploy/backend/bin/backend"
