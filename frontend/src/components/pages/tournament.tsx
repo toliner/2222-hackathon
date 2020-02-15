@@ -3,6 +3,7 @@ import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import { Grid } from "@material-ui/core";
 import { TeamListCard } from "../partials/team-list-card";
 import { TournamentListCard } from "../partials/tournament-list-card";
+import Typography from "@material-ui/core/Typography";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -20,11 +21,14 @@ const useStyles = makeStyles((theme: Theme) =>
       background: "#4B4B4B"
     },
     bottom: {
-      marginBottom: 25,
+      marginBottom: 10,
       display: "flex"
     },
     space: {
       margin: 10
+    },
+    left: {
+      marginLeft: 10
     }
   })
 );
@@ -37,31 +41,39 @@ export const Tournament: React.FC = () => {
       <Grid container spacing={3}>
         <Grid item xs={3} className={classes.bg} />
         <Grid item xs={6} className={classes.paper}>
+          <Grid item xs={12} className={classes.space}>
+            <Typography variant="h5" align="left">
+              開催中の大会
+            </Typography>
+          </Grid>
+          <Grid item xs={12} className={classes.space}>
+            <TournamentListCard tournamentType="now" />
+          </Grid>
+          <Grid item xs={12} className={classes.left}>
+            <Typography variant="subtitle1" align="left" color="textSecondary">
+              開催前
+            </Typography>
+          </Grid>
           <div className={classes.bottom}>
-            <Grid item xs={12} className={classes.space}>
-              <TournamentListCard />
+            <Grid item xs={4} className={classes.space}>
+              <TournamentListCard tournamentType="yet" />
+            </Grid>
+            <Grid item xs={4} className={classes.space}>
+              <TournamentListCard tournamentType="yet" />
+            </Grid>
+            <Grid item xs={4} className={classes.space}>
+              <TournamentListCard tournamentType="yet" />
             </Grid>
           </div>
           <div className={classes.bottom}>
             <Grid item xs={4} className={classes.space}>
-              <TournamentListCard />
+              <TournamentListCard tournamentType="yet" />
             </Grid>
             <Grid item xs={4} className={classes.space}>
-              <TournamentListCard />
+              <TournamentListCard tournamentType="yet" />
             </Grid>
             <Grid item xs={4} className={classes.space}>
-              <TournamentListCard />
-            </Grid>
-          </div>
-          <div className={classes.bottom}>
-            <Grid item xs={4} className={classes.space}>
-              <TournamentListCard />
-            </Grid>
-            <Grid item xs={4} className={classes.space}>
-              <TournamentListCard />
-            </Grid>
-            <Grid item xs={4} className={classes.space}>
-              <TournamentListCard />
+              <TournamentListCard tournamentType="yet" />
             </Grid>
           </div>
         </Grid>

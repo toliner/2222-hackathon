@@ -13,8 +13,7 @@ const useStyles = makeStyles((theme: Theme) =>
     root: {
       flexGrow: 1,
       background: "#E1E1E1",
-      textAlign: "left",
-      height: 220
+      textAlign: "left"
     },
     media: {
       height: 140
@@ -29,15 +28,30 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-export const TournamentListCard: React.FC = () => {
+type tournamentProps = {
+  tournamentType: string;
+};
+
+export const TournamentListCard: React.FC<tournamentProps> = ({
+  tournamentType
+}) => {
   const classes = useStyles();
 
   return (
     <Card className={classes.root}>
       <CardContent>
-        <Typography variant="h6">開催中の大会</Typography>
-        <Typography variant="subtitle2">2020/02/22 10:00 ~ </Typography>
+        <Typography variant="h6">大会名</Typography>
+        <Typography variant="subtitle2" color="textSecondary">
+          2020/02/22 10:00 ~{" "}
+        </Typography>
         <CardMedia className={classes.media} image="icon" />
+        <Typography className={classes.btn}>
+          {tournamentType === "yet" && (
+            <Button variant="contained" color="primary">
+              加入する
+            </Button>
+          )}
+        </Typography>
       </CardContent>
     </Card>
   );
