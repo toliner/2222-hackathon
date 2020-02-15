@@ -11,10 +11,6 @@ jobs:
       # Frontend
       - uses: actions/checkout@v1
 
-      - name: Install Serve
-        working-directory: ./frontend
-        run: npm install --global serve
-
       - name: Build Frontend
         working-directory: ./frontend
         run: |
@@ -64,7 +60,7 @@ jobs:
 
       - name: Start Frontend Server
         run:
-          ssh -i id_deploy root@${{ secrets.DEPLOY_TARGET_ADDRESS }} tmux new-session -d "serve -s deploy/frontend"
+          ssh -i id_deploy root@${{ secrets.DEPLOY_TARGET_ADDRESS }} tmux new-session -d "npm run serve deploy/frontend"
 
       - name: Start Backend Server
         run:
