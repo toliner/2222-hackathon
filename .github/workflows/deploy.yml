@@ -11,18 +11,15 @@ jobs:
       # Frontend
       - uses: actions/checkout@v1
 
-      - name: Install Yarn
-        run: npm install yarn
-
       - name: Install Serve
         working-directory: ./frontend
-        run: yarn yarn global add serve
+        run: npm install --global serve
 
       - name: Build Frontend
         working-directory: ./frontend
         run: |
-          yarn yarn
-          yarn yarn build
+          npm install
+          npm run build
 
       - name: Copy frontend output to deploy directory
         run: |
