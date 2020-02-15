@@ -1,0 +1,26 @@
+name: Deploy Application
+on:
+  push:
+    branches: master
+
+jobs:
+  deploy:
+    steps:
+    - uses: actions/checkout@v1
+    - name: Install Yarn
+      run: npm install --global yarn
+    - name: Install Serve
+      run: yarn global add serve
+    - name: Build FrontEnd
+      working-directory: ./frontend
+      run: |
+        yarn
+        yarn build
+    - name: Copy to Directory for Hosting
+      run: |
+        mkdir frontend
+        cp -r ./frontend/build ./frontend
+    - name: Start FrontEnd Server
+      run:
+        serve -s ./frontend
+
