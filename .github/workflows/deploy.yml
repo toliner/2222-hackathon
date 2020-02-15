@@ -51,7 +51,7 @@ jobs:
 
       - name: "Deploy to server"
         run: |
-          echo ${{ secrets.DEPLOY_SSH_KEY }} >> id_deploy
+          echo "${{ secrets.DEPLOY_SSH_KEY }}" >> id_deploy
           scp -i id_deploy -r deploy root@${{ secrets.DEPLOY_TARGET_ADDRESS }}:/root
 
       - name: Kill all process of server
