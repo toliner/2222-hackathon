@@ -1,0 +1,121 @@
+openapi: 3.0.1
+info:
+  title: 2222 API
+  description: API description in Markdown.
+  version: 1.0.0
+servers:
+  - url: 'https://api.example.com'
+tags:
+  - name: user
+    description: ユーザー関係
+
+paths:
+  /user/register:
+    post:
+      summary: 新規ユーザーの作成.
+      description: ""
+      tags:
+        - user
+      requestBody:
+        description: ユーザーを作成するための情報
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                mail:
+                  type: string
+                  format: email
+      responses:
+        '200':
+          description: 成功。メール認証を行う。
+
+  /user/varification:
+    get:
+      summary: 新規登録ユーザーのe-mail認証
+      description: ""
+      tags:
+        - user
+      parameters:
+        - name: token
+          in: query
+          description: "サーバーで生成され、メールで送信されたトークン"
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        200:
+          description: 成功。
+        400:
+          description:  トークンが不正
+
+  /user/login/oauth/{service}:
+    get:
+      summary: OAuthによる連携ログイン
+      operationId: login-oauth
+      tags:
+        - user
+      parameters:
+        - name: service
+          in: path
+          description: 連携対象のサービス
+          required: true
+          schema:
+            type: string
+      responses:
+        400:
+          description: serviceが不正であった場合
+
+  /user/login/email:
+    get:
+      summary: メールアドレスからのマジックリングによるログイン
+      operationId: login-email
+      tags:
+        - user
+      parameters:
+        - name: id
+          in: query
+          description: ログインするユーザーのID
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: メールの送信に成功
+
+  /users/{id}:
+    get:
+      summary: ユーザー情報の取得
+      operationId: get-user-info
+      tags:
+        - user
+      parameters:
+        - name: id
+          in: path
+          description: 取得するユーザーのID
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: ユーザーが存在する
+        404:
+          description: ユーザーが存在しない
+
+components:
+  schemas:
+    UserProfile:
+      type: object
+      properties:
+        uuid:
+          type: string
+          format: uuid
+        id:
+          type: string
+        name:
+          type: string
+        bio:
+          type: string
