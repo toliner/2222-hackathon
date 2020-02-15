@@ -1,0 +1,10 @@
+#Register User
+POST http://localhost:8080/api/user/register
+Content-Type: application/json
+
+{
+  "name": "toliner",
+  "mail": "test+2222@toliner.dev"
+}
+
+###
