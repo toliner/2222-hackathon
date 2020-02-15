@@ -40,6 +40,10 @@ dependencies {
 
     implementation(konform())
     implementation(exposed())
+    implementation("org.jetbrains.exposed:exposed-dao:$exposed_version")
+    implementation("org.jetbrains.exposed:exposed-jdbc:$exposed_version")
+    implementation("org.jetbrains.exposed:exposed-java-time:$exposed_version")
+    implementation("org.mariadb.jdbc:mariadb-java-client:2.5.4")
     implementation(hikariCp())
     guava()
 

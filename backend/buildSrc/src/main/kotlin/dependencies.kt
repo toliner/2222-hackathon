@@ -48,7 +48,7 @@ fun DependencyHandlerScope.jacksonImmutableAst(): Dependency =
 fun konform() = "io.github.justincase-jp.konform:konform:f58265b"
 
 // Database
-fun exposed() = "org.jetbrains.exposed:exposed:0.14.1"
+fun exposed() = "org.jetbrains.exposed:exposed-core:$exposed_version"
 
 fun hikariCp() = "com.zaxxer:HikariCP:3.3.0"
 

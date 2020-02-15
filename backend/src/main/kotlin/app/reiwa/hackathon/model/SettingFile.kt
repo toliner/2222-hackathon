@@ -8,5 +8,11 @@ data class SettingFile(
         @SerialName("sendgrid-api-key")
         val sendGridApiKey: String,
         @SerialName("shutdown-url")
-        val shutdownUrl: String? = null
+        val shutdownUrl: String? = null,
+        @SerialName("db-url")
+        val dbUrl: String,
+        @SerialName("db-user")
+        val dbUser: String,
+        @SerialName("db-password")
+        val dbPassword: String
 )
