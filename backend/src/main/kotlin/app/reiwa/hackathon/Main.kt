@@ -1,6 +1,7 @@
 package app.reiwa.hackathon
 
 import app.reiwa.hackathon.model.SettingFile
+import app.reiwa.hackathon.model.UserLoginSession
 import app.reiwa.hackathon.model.db.UserEmailVerifications
 import app.reiwa.hackathon.model.db.Users
 import app.reiwa.hackathon.route.userRoute
@@ -17,6 +18,10 @@ import io.ktor.routing.Routing
 import io.ktor.routing.route
 import io.ktor.serialization.serialization
 import io.ktor.server.engine.ShutDownUrl
+import io.ktor.sessions.Sessions
+import io.ktor.sessions.directorySessionStorage
+import io.ktor.sessions.header
+import io.ktor.sessions.sessions
 import io.ktor.util.KtorExperimentalAPI
 import kotlinx.serialization.UnstableDefault
 import kotlinx.serialization.json.Json
@@ -24,6 +29,8 @@ import org.jetbrains.exposed.sql.Database
 import org.jetbrains.exposed.sql.SchemaUtils
 import org.jetbrains.exposed.sql.transactions.transaction
 import org.slf4j.event.Level
+import java.io.File
+import java.util.*
 
 @UseExperimental(UnstableDefault::class)
 val globalSetting: SettingFile = Json.parse(SettingFile.serializer(), ClassLoader.getSystemResource("settings.json").readText())
@@ -31,7 +38,7 @@ val globalSetting: SettingFile = Json.parse(SettingFile.serializer(), ClassLoade
 val ContentType.Application.Utf8Json: ContentType
     get() = Json.withParameter("charset", "urf-8")
 
-@UseExperimental(KtorExperimentalAPI::class)
+@UseExperimental(KtorExperimentalAPI::class, UnstableDefault::class)
 fun Application.mainModule() {
 
     setupDb()
@@ -51,9 +58,21 @@ fun Application.mainModule() {
             call.respondText(ContentType.Application.Utf8Json, status = HttpStatusCode.BadRequest) { """{"error":"wrong request body"}""" }
         }
     }
+    install(Sessions) {
+        header<UserLoginSession>("X-2222AccessToken", directorySessionStorage(File(".sessions"))) {
+            identity { Base64.getUrlEncoder().encodeToString(UUID.randomUUID().toString().toByteArray()) }
+        }
+    }
     if (globalSetting.shutdownUrl != null) {
         install(ShutDownUrl.ApplicationCallFeature) {
             shutDownUrl = globalSetting.shutdownUrl
+            exitCodeSupplier = {
+                transaction {
+                    SchemaUtils.drop(Users, UserEmailVerifications)
+                }
+                sessions.clear("X-2222AccessToken")
+                0
+            }
         }
     }
     install(Routing) {

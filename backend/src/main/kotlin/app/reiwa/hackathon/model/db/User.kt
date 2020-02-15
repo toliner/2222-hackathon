@@ -1,5 +1,10 @@
+@file:UseSerializers(UUIDSerializer::class)
 package app.reiwa.hackathon.model.db
 
+import app.reiwa.hackathon.UUIDSerializer
+import kotlinx.serialization.ContextualSerialization
+import kotlinx.serialization.Serializable
+import kotlinx.serialization.UseSerializers
 import org.jetbrains.exposed.dao.UUIDEntity
 import org.jetbrains.exposed.dao.UUIDEntityClass
 import org.jetbrains.exposed.dao.id.EntityID
@@ -19,7 +24,17 @@ class User(id: EntityID<UUID>) : UUIDEntity(id) {
     var name by Users.name
     var mail by Users.mail
     var verified by Users.verified
+
+    fun asData(): UserData = UserData(id.value, name, mail)
 }
+
+@Serializable
+data class UserData(
+    @ContextualSerialization
+    val id: UUID,
+    val name: String,
+    val mail: String
+)
 
 object UserEmailVerifications : UUIDTable() {
     val user = reference("user", Users)

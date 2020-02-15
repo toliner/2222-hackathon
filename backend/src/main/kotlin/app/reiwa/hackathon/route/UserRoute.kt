@@ -1,18 +1,25 @@
 package app.reiwa.hackathon.route
 
 import app.reiwa.hackathon.model.RegisterUserRequest
+import app.reiwa.hackathon.model.UserLoginSession
 import app.reiwa.hackathon.model.db.EmailVerificationType
 import app.reiwa.hackathon.model.db.User
 import app.reiwa.hackathon.model.db.UserEmailVerification
 import app.reiwa.hackathon.model.db.Users
 import app.reiwa.hackathon.sendMail
 import com.sendgrid.helpers.mail.objects.Content
+import io.ktor.application.ApplicationCall
 import io.ktor.http.HttpStatusCode
 import io.ktor.request.receive
 import io.ktor.response.respond
 import io.ktor.routing.Route
+import io.ktor.routing.get
 import io.ktor.routing.post
 import io.ktor.routing.route
+import io.ktor.sessions.get
+import io.ktor.sessions.sessions
+import io.ktor.sessions.set
+import io.ktor.util.pipeline.PipelineContext
 import org.jetbrains.exposed.sql.transactions.transaction
 import java.time.LocalDateTime
 import java.time.ZoneOffset
@@ -56,4 +63,37 @@ private fun Route.registerUser() {
             context.respond(HttpStatusCode.OK)
         }
     }
+
+    get("/verification") {
+        val token = context.parameters["token"]
+        if (token == null) {
+            context.respondError("token is required")
+            return@get
+        }
+        val entity = transaction { UserEmailVerification.findById(UUID.fromString(token)) }
+        if (entity == null || entity.expiredAt < LocalDateTime.now(ZoneOffset.UTC)) {
+            context.respondError("wrong or expired token")
+            return@get
+        }
+        transaction {
+            entity.user.verified = true
+            entity.delete()
+        }
+        context.sessions.set(
+            UserLoginSession(
+                transaction { entity.user.id.value },
+                UUID.fromString(token),
+                LocalDateTime.now(ZoneOffset.UTC).plusDays(1)
+            ))
+        context.respond(HttpStatusCode.OK)
+    }
+}
+
+suspend fun ApplicationCall.respondError(message: String) {
+    respond(HttpStatusCode.BadRequest, """{"error":"$message"}""")
+}
+
+fun PipelineContext<Unit, ApplicationCall>.updateLoginSession() {
+    val session = context.sessions.get<UserLoginSession>() ?: throw IllegalStateException("No session")
+    context.sessions.set(session.copy(expiredAt = LocalDateTime.now(ZoneOffset.UTC).plusDays(1)))
 }
