@@ -15,6 +15,7 @@ jobs:
         run: npm install yarn
 
       - name: Install Serve
+        working-directory: ./frontend
         run: yarn yarn global add serve
 
       - name: Build Frontend
