@@ -52,6 +52,7 @@ jobs:
       - name: "Deploy to server"
         run: |
           echo "${{ secrets.DEPLOY_SSH_KEY }}" >> id_deploy
+          chmod 600 id_deploy
           mkdir ~/.ssh
           echo "Host deploy-server
               HostName ${{ secrets.DEPLOY_TARGET_ADDRESS }}
