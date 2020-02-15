@@ -61,7 +61,7 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-export const User: React.FC = () => {
+export const CreateTournament: React.FC = () => {
   const classes = useStyles();
 
   return (
