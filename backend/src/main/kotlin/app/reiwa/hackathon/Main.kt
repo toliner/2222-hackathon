@@ -33,7 +33,8 @@ import java.io.File
 import java.util.*
 
 @UseExperimental(UnstableDefault::class)
-val globalSetting: SettingFile = Json.parse(SettingFile.serializer(), ClassLoader.getSystemResource("settings.json").readText())
+lateinit var globalSetting: SettingFile
+    private set
 
 val ContentType.Application.Utf8Json: ContentType
     get() = Json.withParameter("charset", "urf-8")
@@ -42,6 +43,9 @@ val ContentType.Application.Utf8Json: ContentType
 fun Application.mainModule() {
 
     setupDb()
+
+    val configPath = environment.config.property("app.reiwa.configfile").getString()
+    globalSetting = Json.parse(SettingFile.serializer(), File(configPath).readText())
 
     install(DefaultHeaders)
     install(CallLogging) {
@@ -65,7 +69,7 @@ fun Application.mainModule() {
     }
     if (globalSetting.shutdownUrl != null) {
         install(ShutDownUrl.ApplicationCallFeature) {
-            shutDownUrl = globalSetting.shutdownUrl
+            shutDownUrl = globalSetting.shutdownUrl!!
             exitCodeSupplier = {
                 transaction {
                     SchemaUtils.drop(Users, UserEmailVerifications)
