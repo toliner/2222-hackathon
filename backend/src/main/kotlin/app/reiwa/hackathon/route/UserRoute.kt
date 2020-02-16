@@ -1,5 +1,6 @@
 package app.reiwa.hackathon.route
 
+import app.reiwa.hackathon.model.LoginUserRequest
 import app.reiwa.hackathon.model.RegisterUserRequest
 import app.reiwa.hackathon.model.UserLoginSession
 import app.reiwa.hackathon.model.db.EmailVerificationType
@@ -32,7 +33,7 @@ fun Route.userRoute() {
 }
 
 private fun Route.registerUser() {
-    post("register") {
+    post("/register") {
         val req = context.receive<RegisterUserRequest>()
         // TODO: email validation
         val token: UUID? = transaction {
@@ -58,6 +59,28 @@ private fun Route.registerUser() {
                 appendln("${req.name}様")
                 appendln("受信したメールアドレスでアカウント登録することを承認する場合、以下のリンクにアクセスしてください。")
                 appendln("もし心当たりがない場合はこのメールをそっ閉じしてゴミ箱に入れてください。不正利用の可能性があります。")
+                appendln("http://2222.reiwa.app/api/user/verification?token=$token")
+            }))
+            context.respond(HttpStatusCode.OK)
+        }
+    }
+
+    post("/login") {
+        val req = context.receive<LoginUserRequest>()
+        val user = transaction { User.find { Users.mail eq req.mail }.singleOrNull() }
+        if (user != null) {
+            val token = transaction {
+                UserEmailVerification.new {
+                    this.user = user
+                    type = EmailVerificationType.LOGIN
+                    expiredAt = LocalDateTime.now(ZoneOffset.UTC).plusHours(1L)
+                }.id.value
+            }
+            sendMail("info@2222.reiwa.app", req.mail, "[2222] ユーザーログイン", Content("text/plain", buildString {
+                appendln("${user.name}様")
+                appendln("アカウントへのログイン要求が行われました。ログインを行う場合は以下のリンクにアクセスしてください。")
+                appendln("もし心当たりがない場合はこのメールをそっ閉じしてゴミ箱に入れてください。不正ログインの可能性があります。")
+                appendln("リンクを踏まなければログインが行われることはありません")
                 appendln("http://2222.reiwa.app/api/user/verification?token=$token")
             }))
             context.respond(HttpStatusCode.OK)
