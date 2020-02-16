@@ -65,7 +65,7 @@ jobs:
 
       - name: Kill all process of server
         run:
-          ssh deploy-server 'tmux kill-session -a; tmux start-server'
+          ssh deploy-server 'tmux kill-server; tmux start-server'
 
       - name: Start Frontend Server
         run:
