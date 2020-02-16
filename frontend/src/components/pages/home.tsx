@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme: Theme) =>
 export const Home = () => {
   const classes = useStyles();
 
-  // とりあえずローカルステート、本番はrenderさせたくないので別のところでやる
+  // とりあえずローカルステート、本番は return () のところをrenderさせたくないので別のところでやる
   // 後でreduxで書き換え
   const [isLogin, setIsLogin] = useState(false);
 
