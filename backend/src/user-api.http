@@ -3,7 +3,7 @@ GET http://localhost:8080/debug/application/ktor/shutdown
 
 ###
 #Register User
-POST http://localhost:8080/api/user/register
+POST http://api.2222.reiwa.app/api/user/register
 Content-Type: application/json
 
 {
