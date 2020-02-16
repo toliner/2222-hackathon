@@ -4,11 +4,17 @@ import { Button, TextField } from "@material-ui/core";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
+    root: {
+      width: "100vw",
+      height: "100vh",
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center"
+    },
     paper: {
       margin: "auto",
-      maxWidth: 366,
-      height: 229,
-      top: 200,
+      height: 168,
+      width: 366,
       position: "relative",
       backgroundColor: "rgba(58, 58, 58, 1)",
       textAlign: "center"
@@ -23,7 +29,7 @@ const useStyles = makeStyles((theme: Theme) =>
       position: "relative",
       top: "100%",
       margin: "auto",
-      marginTop: 35
+      marginTop: 32
     },
     form: {
       position: "relative"
@@ -41,7 +47,7 @@ const useStyles = makeStyles((theme: Theme) =>
       width: 304,
       height: 32,
       margin: "auto",
-      marginTop: 35
+      marginTop: 32
     }
   })
 );
@@ -54,24 +60,20 @@ export const Login = () => {
   }
 
   return (
-    <div className={classes.paper}>
-      <form noValidate className={classes.form}>
-        <TextField
-          defaultValue="mail"
-          InputProps={{
-            className: classes.input
-          }}
-        />
-        <TextField
-          defaultValue="password"
-          InputProps={{
-            className: classes.input
-          }}
-        />
-        <Button className={classes.btn}>
-          <p className={classes.login} onClick={login}>ログイン</p>
-        </Button>
-      </form>
+    <div className={classes.root}>
+      <div className={classes.paper}>
+        <form noValidate className={classes.form}>
+          <TextField
+            defaultValue="mail"
+            InputProps={{
+              className: classes.input
+            }}
+          />
+          <Button className={classes.btn}>
+            <p className={classes.login} onClick={login}>ログイン</p>
+          </Button>
+        </form>
+      </div>
     </div>
   );
 };
