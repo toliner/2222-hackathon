@@ -60,11 +60,11 @@ const useStyles = makeStyles((theme: Theme) =>
 const navListTop = [
   {
     name: " + TOURNAMENT",
-    path: "/create_tournament"
+    path: "/create-tournament"
   },
   {
     name: " + TEAM",
-    path: "/create_team"
+    path: "/create-team"
   }
 ];
 
