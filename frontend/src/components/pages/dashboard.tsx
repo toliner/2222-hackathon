@@ -7,16 +7,22 @@ import { ListCard } from "../partials/list-card";
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
-      flexGrow: 1
+      margin: 0,
+      padding: 0,
+      width: "100vw",
+      minHeight: "100vh",
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center"
     },
     paper: {
       textAlign: "center",
       background: "#F3F3F3",
       height: "100vh",
-      top: 68,
-      position: "relative"
+      position: "relative",
+      marginTop: 80
     },
-    bg: {
+    timeLineBg: {
       background: "#4B4B4B"
     },
     bottom: {
@@ -35,7 +41,7 @@ export const Dashboard: React.FC = () => {
   return (
     <div className={classes.root}>
       <Grid container spacing={3}>
-        <Grid item xs={3} className={classes.bg} />
+        <Grid item xs={3} className={classes.timeLineBg} />
         <Grid item xs={6} className={classes.paper}>
           <div className={classes.bottom}>
             <ListCard />
@@ -53,7 +59,7 @@ export const Dashboard: React.FC = () => {
             <ListCard />
           </div>
         </Grid>
-        <Grid item xs={3} className={classes.bg} />
+        <Grid item xs={3} className={classes.timeLineBg} />
       </Grid>
     { !isLogin && <LoginModal /> }
     </div>
