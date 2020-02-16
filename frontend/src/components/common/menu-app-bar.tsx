@@ -8,12 +8,12 @@ import MenuIcon from "@material-ui/icons/Menu";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
-//import { withRouter } from 'react-router';
 import Drawer from "@material-ui/core/Drawer";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
+import { BrowserRouter as Router, Link } from "react-router-dom";
 
 const drawerWidth = 240;
 
@@ -50,9 +50,38 @@ const useStyles = makeStyles((theme: Theme) =>
     closeBtn: {
       float: "right",
       color: "#FFFFFF"
+    },
+    link: {
+      color: "#FFFFFF"
     }
   })
 );
+
+const navListTop = [
+  {
+    name: " + TOURNAMENT",
+    path: "/create_tournament"
+  },
+  {
+    name: " + TEAM",
+    path: "/create_team"
+  }
+];
+
+const navListBottom = [
+  {
+    name: " # DASHBOARD",
+    path: "/dashboard"
+  },
+  {
+    name: " # TEAM",
+    path: "/team"
+  },
+  {
+    name: "# TOURNAMENT",
+    path: "/tournament"
+  }
+];
 
 export const MenuAppBar: React.FC = () => {
   const classes = useStyles();
@@ -65,10 +94,6 @@ export const MenuAppBar: React.FC = () => {
   const handleClose = () => setAnchorEl(null);
   const handleDrawerOpen = () => setDrawerOpen(true);
   const handleDrawerClose = () => setDrawerOpen(false);
-
-  /*const handleToUserPage = () => {
-    props.history.push("/user");
-  };*/
 
   return (
     <div className={classes.root}>
@@ -111,16 +136,18 @@ export const MenuAppBar: React.FC = () => {
               open={open}
               onClose={handleClose}
             >
-              <MenuItem /*onClick={() => handleToUserPage()}*/>
-                Setting
-              </MenuItem>
-              <MenuItem
-                onClick={() => {
-                  console.log("logout!");
-                }}
-              >
-                Logout
-              </MenuItem>
+              <Router>
+                <Link to="/user">
+                  <MenuItem>Setting</MenuItem>
+                </Link>
+                <MenuItem
+                  onClick={() => {
+                    console.log("logout!");
+                  }}
+                >
+                  Logout
+                </MenuItem>
+              </Router>
             </Menu>
           </div>
         </Toolbar>
@@ -142,23 +169,29 @@ export const MenuAppBar: React.FC = () => {
         <Typography variant="subtitle2" className={classes.subtitle}>
           create
         </Typography>
-        <List>
-          {[" + TOURNAMENT", " + TEAM"].map(text => (
-            <ListItem button key={text} className={classes.drawerItem}>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
-        <Typography variant="subtitle2" className={classes.subtitle}>
-          channel
-        </Typography>
-        <List>
-          {[" # DASHBOARD", " # TEAM", "# TOURNAMENT"].map(text => (
-            <ListItem button key={text} className={classes.drawerItem}>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
+        <Router>
+          <List>
+            {navListTop.map((text, index) => (
+              <ListItem button key={index} className={classes.drawerItem}>
+                <Link to={text.path} className={classes.link}>
+                  <ListItemText primary={text.name} />
+                </Link>
+              </ListItem>
+            ))}
+          </List>
+          <Typography variant="subtitle2" className={classes.subtitle}>
+            channel
+          </Typography>
+          <List>
+            {navListBottom.map((text, index) => (
+              <ListItem button key={index} className={classes.drawerItem}>
+                <Link to={text.path} className={classes.link}>
+                  <ListItemText primary={text.name} />
+                </Link>
+              </ListItem>
+            ))}
+          </List>
+        </Router>
       </Drawer>
     </div>
   );
