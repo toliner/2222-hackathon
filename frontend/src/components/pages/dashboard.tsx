@@ -7,13 +7,7 @@ import { ListCard } from "../partials/list-card";
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
-      margin: 0,
-      padding: 0,
-      width: "100vw",
-      minHeight: "100vh",
-      display: "flex",
-      justifyContent: "center",
-      alignItems: "center"
+      flexGrow: 1
     },
     paper: {
       textAlign: "center",

@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme: Theme) =>
       textAlign: "center",
       background: "#F3F3F3",
       height: "100%",
-      top: 68,
+      marginTop: 80,
       position: "relative"
     },
     bg: {
