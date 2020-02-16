@@ -1,4 +1,4 @@
-package app.reiwa.hackathon
+package app.reiwa.hackathon.serializers
 
 import kotlinx.serialization.*
 import kotlinx.serialization.internal.StringDescriptor

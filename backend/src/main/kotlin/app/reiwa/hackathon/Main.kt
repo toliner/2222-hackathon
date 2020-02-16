@@ -12,6 +12,7 @@ import io.ktor.application.call
 import io.ktor.application.install
 import io.ktor.features.*
 import io.ktor.http.ContentType
+import io.ktor.http.HttpMethod
 import io.ktor.http.HttpStatusCode
 import io.ktor.response.respondText
 import io.ktor.routing.Routing
@@ -54,6 +55,13 @@ fun Application.mainModule() {
     install(ContentNegotiation) {
         serialization()
     }
+    install(CORS) {
+        method(HttpMethod.Options)
+        host("2222.reiwa.app", schemes = listOf("http", "https"))
+        allowCredentials = true
+        allowNonSimpleContentTypes = true
+        exposeHeader("*")
+    }
     install(StatusPages) {
         status(HttpStatusCode.NotFound) {
             call.respondText("404", status = HttpStatusCode.NotFound)
@@ -65,6 +73,7 @@ fun Application.mainModule() {
     install(Sessions) {
         header<UserLoginSession>("X-2222AccessToken", directorySessionStorage(File(".sessions"))) {
             identity { Base64.getUrlEncoder().encodeToString(UUID.randomUUID().toString().toByteArray()) }
+            serializer = SessionSerializerKotlinx(UserLoginSession::class)
         }
     }
     if (globalSetting.shutdownUrl != null) {
