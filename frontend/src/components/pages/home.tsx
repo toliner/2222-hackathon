@@ -6,22 +6,23 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       background: "#4B4B4B",
+      margin: 0,
+      padding: 0,
       height: "100vh",
-        margin: -10,
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      overflow: "hidden"
     },
     paper: {
       textAlign: "center",
-      background: "#4B4B4B",
-      height: "100%",
-      top: "50%",
-      position: "relative"
+      background: "#4B4B4B"
     },
     bottom: {
       marginBottom: 25,
       display: "flex"
     },
     btn: {
-      top: 300,
       textAlign: "center",
       backgroundColor: "#FFFFFF",
       borderRadius: 30,
