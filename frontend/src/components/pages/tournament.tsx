@@ -1,7 +1,6 @@
 import React from "react";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import { Grid } from "@material-ui/core";
-import { TeamListCard } from "../partials/team-list-card";
 import { TournamentListCard } from "../partials/tournament-list-card";
 import Typography from "@material-ui/core/Typography";
 
