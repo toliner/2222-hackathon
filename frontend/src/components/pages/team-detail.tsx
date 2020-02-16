@@ -49,9 +49,6 @@ const useStyles = makeStyles((theme: Theme) =>
     form: {
       display: "grid"
     },
-    btn: {
-      textAlign: "center"
-    },
     btnColor: {
       backgroundColor: "#48BB35",
       color: "#FFFFFF"
@@ -59,7 +56,7 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-export const CreateTeam: React.FC = () => {
+export const TeamDetail: React.FC = () => {
   const classes = useStyles();
 
   return (
@@ -71,35 +68,31 @@ export const CreateTeam: React.FC = () => {
           </Grid>
           <Grid item xs={12} sm container>
             <Grid item xs container direction="column">
-              <Grid item xs>
-                <form noValidate className={classes.form}>
-                  <TextField
-                    defaultValue="TeamName"
-                    InputProps={{
-                      className: classes.input
-                    }}
-                  />
-                  <TextField
-                    defaultValue="TeamUserName"
-                    InputProps={{
-                      className: classes.input
-                    }}
-                  />
-                  <TextField
-                    defaultValue="TeamProfile"
-                    multiline
-                    rows="6"
-                    InputProps={{
-                      className: classes.input
-                    }}
-                  />
-                </form>
-              </Grid>
-              <Typography className={classes.btn}>
-                <Button variant="contained" className={classes.btnColor}>
-                  作成
-                </Button>
-              </Typography>
+              <form noValidate className={classes.form}>
+                <TextField
+                  defaultValue="TeamName"
+                  InputProps={{
+                    className: classes.input,
+                    readOnly: true
+                  }}
+                />
+                <TextField
+                  defaultValue="TeamUserName"
+                  InputProps={{
+                    className: classes.input,
+                    readOnly: true
+                  }}
+                />
+                <TextField
+                  defaultValue="TeamProfile"
+                  multiline
+                  rows="6"
+                  InputProps={{
+                    className: classes.input,
+                    readOnly: true
+                  }}
+                />
+              </form>
             </Grid>
           </Grid>
         </Grid>
