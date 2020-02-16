@@ -95,7 +95,29 @@ export const MenuAppBar: React.FC = () => {
   const handleDrawerOpen = () => setDrawerOpen(true);
   const handleDrawerClose = () => setDrawerOpen(false);
 
-  const LinkLists = () => {
+  const PopupMenu: React.FC = () => {
+    const history = useHistory();
+    const linkToUser = (path: string) => {
+      history.push(path);
+      window.location.reload();
+    };
+    return (
+      <div>
+        <div onClick={() => linkToUser("/user")}>
+          <MenuItem>Setting</MenuItem>
+        </div>
+        <MenuItem
+          onClick={() => {
+            console.log("logout!");
+          }}
+        >
+          Logout
+        </MenuItem>
+      </div>
+    );
+  };
+
+  const LinkLists: React.FC = () => {
     const history = useHistory();
     const linkToPath = (path: string) => {
       history.push(path);
@@ -179,16 +201,7 @@ export const MenuAppBar: React.FC = () => {
               onClose={handleClose}
             >
               <Router>
-                <Link to="/user">
-                  <MenuItem>Setting</MenuItem>
-                </Link>
-                <MenuItem
-                  onClick={() => {
-                    console.log("logout!");
-                  }}
-                >
-                  Logout
-                </MenuItem>
+                <PopupMenu />
               </Router>
             </Menu>
           </div>
