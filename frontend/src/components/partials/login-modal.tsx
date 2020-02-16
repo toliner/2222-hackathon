@@ -53,7 +53,7 @@ export const LoginModal = () => {
         <Fade in={open}>
           <div className={classes.paper}>
             <Button className={classes.btn}>
-              <p className={classes.login}>Discordでログイン</p>
+              <p className={classes.login}>メールでログイン</p>
             </Button>
           </div>
         </Fade>
