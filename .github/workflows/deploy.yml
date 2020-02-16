@@ -66,6 +66,7 @@ jobs:
       - name: Kill all process of server
         run:
           ssh deploy-server "killall java; killall node"
+        continue-on-error: true
 
       - name: Start Frontend Server
         run:
