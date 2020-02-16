@@ -55,7 +55,7 @@ export const Dashboard: React.FC = () => {
         </Grid>
         <Grid item xs={3} className={classes.timeLineBg} />
       </Grid>
-    { !isLogin && <LoginModal /> }
+      {!isLogin && <LoginModal />}
     </div>
   );
 };

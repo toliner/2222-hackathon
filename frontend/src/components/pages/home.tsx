@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     link: {
       textDecoration: "none",
-      color: "#5D5D5D",
+      color: "#5D5D5D"
     }
   })
 );
@@ -46,18 +46,22 @@ export const Home = () => {
   // ログインしていたら dashboard へ
   useEffect(() => {
     if (isLogin) {
-      window.location.href = "dashboard"
+      window.location.href = "dashboard";
     }
-  })
+  });
 
   return (
     <div className={classes.root}>
       <Grid container spacing={3}>
-        <Grid item xs={6} className={classes.paper}>フレーズ</Grid>
+        <Grid item xs={6} className={classes.paper}>
+          フレーズ
+        </Grid>
         <Grid item xs={6} className={classes.paper}>
           <Typography>
             <Button variant="contained" className={classes.btn}>
-              <a href="./login" className={classes.link}>新規登録</a>
+              <a href="./login" className={classes.link}>
+                新規登録
+              </a>
             </Button>
           </Typography>
         </Grid>

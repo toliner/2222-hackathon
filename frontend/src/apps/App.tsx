@@ -3,7 +3,7 @@ import { Router } from "../components/router";
 import { MenuAppBar } from "../components/common/menu-app-bar";
 import { BrowserRouter, useLocation } from "react-router-dom";
 
-import "./App.css"
+import "./App.css";
 
 const App = () => {
   // 認証済みかどうかのロジック
@@ -19,7 +19,7 @@ const App = () => {
     } else {
       return <MenuAppBar />;
     }
-  }
+  };
   return (
     <BrowserRouter>
       <MenuBar />

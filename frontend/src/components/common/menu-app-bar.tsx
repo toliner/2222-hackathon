@@ -97,22 +97,20 @@ export const MenuAppBar: React.FC = () => {
 
   const PopupMenu: React.FC = () => {
     const history = useHistory();
-    const linkToUser = (path: string) => {
+    const linkTo = (path: string) => {
       history.push(path);
       window.location.reload();
     };
+    const logout = () => {
+      // 状態更新してログアウト扱いにする
+
+      // ログインページ送り
+      linkTo("/login");
+    };
     return (
       <div>
-        <div onClick={() => linkToUser("/user")}>
-          <MenuItem>Setting</MenuItem>
-        </div>
-        <MenuItem
-          onClick={() => {
-            console.log("logout!");
-          }}
-        >
-          Logout
-        </MenuItem>
+        <MenuItem onClick={() => linkTo("/user")}>Setting</MenuItem>
+        <MenuItem onClick={logout}>Logout</MenuItem>
       </div>
     );
   };
