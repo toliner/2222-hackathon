@@ -49,6 +49,10 @@ const useStyles = makeStyles((theme: Theme) =>
 export const Login = () => {
   const classes = useStyles();
 
+  const login = () => {
+    window.location.href = "dashboard";
+  }
+
   return (
     <div className={classes.paper}>
       <form noValidate className={classes.form}>
@@ -65,7 +69,7 @@ export const Login = () => {
           }}
         />
         <Button className={classes.btn}>
-          <p className={classes.login}>ログイン</p>
+          <p className={classes.login} onClick={login}>ログイン</p>
         </Button>
       </form>
     </div>
