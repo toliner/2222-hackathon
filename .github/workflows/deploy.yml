@@ -73,4 +73,4 @@ jobs:
 
       - name: Start Backend Server
         run:
-          ssh deploy-server tmux new-session -d "deploy/backend/bin/backend"
+          ssh deploy-server tmux new-session -d "cd deploy && backend/bin/backend"

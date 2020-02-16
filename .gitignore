@@ -157,3 +157,4 @@ fabric.properties
 .idea/caches/build_file_checksums.ser
 
 /backend/src/main/resources/settings.json
+/backend/settings.json
