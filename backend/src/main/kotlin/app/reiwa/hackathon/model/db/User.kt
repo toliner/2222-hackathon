@@ -1,7 +1,7 @@
 @file:UseSerializers(UUIDSerializer::class)
 package app.reiwa.hackathon.model.db
 
-import app.reiwa.hackathon.UUIDSerializer
+import app.reiwa.hackathon.serializers.UUIDSerializer
 import kotlinx.serialization.ContextualSerialization
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.UseSerializers

@@ -14,6 +14,6 @@ Content-Type: application/json
 ###
 
 # Verify User
-GET http://localhost:8080/api/user/verification?token=40614616-c3b2-44f3-9891-3a76cb1e8853
+GET http://api.2222.reiwa.app/api/user/verification?token=410cf04e-535a-4b56-b07d-32943294c696
 
 ###

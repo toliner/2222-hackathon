@@ -65,6 +65,7 @@ fun Application.mainModule() {
     install(Sessions) {
         header<UserLoginSession>("X-2222AccessToken", directorySessionStorage(File(".sessions"))) {
             identity { Base64.getUrlEncoder().encodeToString(UUID.randomUUID().toString().toByteArray()) }
+            serializer = SessionSerializerKotlinx(UserLoginSession::class)
         }
     }
     if (globalSetting.shutdownUrl != null) {
