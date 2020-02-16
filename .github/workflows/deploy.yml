@@ -1,0 +1,76 @@
+name: Deploy Application
+on:
+  push:
+    branches: master
+
+jobs:
+  deploy:
+    runs-on: [ubuntu-latest]
+    steps:
+
+      # Frontend
+      - uses: actions/checkout@v1
+
+      - name: Build Frontend
+        working-directory: ./frontend
+        run: |
+          npm install
+          npm run build
+
+      - name: Copy frontend output to deploy directory
+        run: |
+          mkdir deploy
+          mkdir deploy/frontend
+          cp -r ./frontend/build/* deploy/frontend
+
+      # Backend
+      - name: "Cache ~/.gradle/caches"
+        uses: actions/cache@v1
+        with:
+          path: "~/.gradle/caches"
+          key: gradle-${{ hashFiles('**/build.gradle.kts') }}
+          restore-keys: gradle-
+
+      - name: "Setup Java"
+        uses: actions/setup-java@v1
+        with:
+          java-version: 8
+
+      - name: "Build Backend"
+        uses: eskatos/gradle-command-action@v1
+        with:
+          arguments: installDist
+          build-root-directory: backend
+          wrapper-directory: backend
+
+      - name: "Copy backend output to deploy directory"
+        run: |
+          mkdir deploy/backend
+          cp -r backend/build/install/backend/* deploy/backend
+          chmod a+x deploy/backend/bin/backend
+
+      - name: "Deploy to server"
+        run: |
+          echo "${{ secrets.DEPLOY_SSH_KEY }}" >> id_deploy
+          chmod 600 id_deploy
+          mkdir ~/.ssh
+          echo "Host deploy-server
+              HostName ${{ secrets.DEPLOY_TARGET_ADDRESS }}
+              User root
+              Port 22
+              IdentityFile id_deploy
+              StrictHostKeyChecking no" >> ~/.ssh/config
+
+          scp -r deploy deploy-server:/root
+
+      - name: Kill all process of server
+        run:
+          ssh deploy-server tmux kill-session -a && tmux start-server
+
+      - name: Start Frontend Server
+        run:
+          ssh deploy-server tmux new-session -d "serve -s deploy/frontend"
+
+      - name: Start Backend Server
+        run:
+          ssh deploy-server tmux new-session -d "deploy/backend/bin/backend"
