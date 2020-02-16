@@ -79,7 +79,8 @@ private fun Route.registerUser() {
             sendMail("info@2222.reiwa.app", req.mail, "[2222] ユーザーログイン", Content("text/plain", buildString {
                 appendln("${user.name}様")
                 appendln("アカウントへのログイン要求が行われました。ログインを行う場合は以下のリンクにアクセスしてください。")
-                appendln("もし心当たりがない場合はこのメールをそっ閉じしてゴミ箱に入れてください。不正利用の可能性があります。")
+                appendln("もし心当たりがない場合はこのメールをそっ閉じしてゴミ箱に入れてください。不正ログインの可能性があります。")
+                appendln("リンクを踏まなければログインが行われることはありません")
                 appendln("http://2222.reiwa.app/api/user/verification?token=$token")
             }))
             context.respond(HttpStatusCode.OK)
