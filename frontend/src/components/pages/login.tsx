@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
 import { Button, TextField } from "@material-ui/core";
+import axios from "../common/axios-setup";
+
+const login_url = process.env.REACT_APP_LOGIN_URL;
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -61,10 +64,17 @@ export const Login = () => {
   }
 
   const loginWithMail = () => {
-    if (mail !== "") {
-      // なんかしらpostする処理
-
-      window.location.href = "dashboard";
+    if (mail !== "" && login_url !== undefined) {
+      axios.post(login_url, {
+        mail: mail
+      })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((e) => {
+        throw e;
+      })
+      // window.location.href = "dashboard";
     }
   }
 
