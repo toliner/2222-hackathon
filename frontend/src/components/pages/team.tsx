@@ -6,20 +6,25 @@ import { TeamListCard } from "../partials/team-list-card";
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
-      flexGrow: 1
+      margin: 0,
+      padding: 0,
+      width: "100vw",
+      minHeight: "100vh",
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center"
     },
     paper: {
       textAlign: "center",
       background: "#F3F3F3",
       height: "100%",
-      top: 68,
+      marginTop: 80,
       position: "relative"
     },
     bg: {
       background: "#4B4B4B"
     },
     bottom: {
-      marginBottom: 25,
       display: "flex"
     },
     space: {
