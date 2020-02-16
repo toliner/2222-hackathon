@@ -101,7 +101,7 @@ export const MenuAppBar: React.FC = () => {
     const linkToPath = (path: string) => {
       history.push(path);
       window.location.reload();
-    }
+    };
     return (
       <div>
         <Typography variant="subtitle2" className={classes.subtitle}>
@@ -110,7 +110,10 @@ export const MenuAppBar: React.FC = () => {
         <List>
           {navListTop.map((text, index) => (
             <ListItem button key={index} className={classes.drawerItem}>
-              <div onClick={() => linkToPath(text.path)} className={classes.link}>
+              <div
+                onClick={() => linkToPath(text.path)}
+                className={classes.link}
+              >
                 <ListItemText primary={text.name} />
               </div>
             </ListItem>
@@ -122,7 +125,10 @@ export const MenuAppBar: React.FC = () => {
         <List>
           {navListBottom.map((text, index) => (
             <ListItem button key={index} className={classes.drawerItem}>
-              <div onClick={() => linkToPath(text.path)} className={classes.link}>
+              <div
+                onClick={() => linkToPath(text.path)}
+                className={classes.link}
+              >
                 <ListItemText primary={text.name} />
               </div>
             </ListItem>
@@ -130,7 +136,7 @@ export const MenuAppBar: React.FC = () => {
         </List>
       </div>
     );
-  }
+  };
 
   return (
     <div className={classes.root}>
