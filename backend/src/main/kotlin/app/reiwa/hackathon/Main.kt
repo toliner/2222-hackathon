@@ -42,10 +42,10 @@ val ContentType.Application.Utf8Json: ContentType
 @UseExperimental(KtorExperimentalAPI::class, UnstableDefault::class)
 fun Application.mainModule() {
 
-    setupDb()
-
     val configPath = environment.config.property("app.reiwa.configfile").getString()
     globalSetting = Json.parse(SettingFile.serializer(), File(configPath).readText())
+
+    setupDb()
 
     install(DefaultHeaders)
     install(CallLogging) {
