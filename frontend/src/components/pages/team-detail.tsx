@@ -1,63 +1,104 @@
 import React from "react";
-import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
-import Modal from "@material-ui/core/Modal";
-import Fade from "@material-ui/core/Fade";
-import { Button } from "@material-ui/core";
+import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
+import {
+  Avatar,
+  Button,
+  Grid,
+  Paper,
+  TextField,
+  Typography
+} from "@material-ui/core";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
-    modal: {
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center"
+    root: {
+      flexGrow: 1,
+      backgroundColor: "rgba(226, 226, 226, 1)",
+      width: "100vw",
+      height: "100vh"
     },
     paper: {
-      backgroundColor: "#FFFFFF",
-      width: 366,
-      height: 216
-    },
-    btn: {
-      backgroundColor: "#5E5E5E",
-      "&:hover": {
-        backgroundColor: "#5E5E5E"
-      },
-      width: 242,
-      height: 60,
-      position: "relative",
-      top: "36%",
+      padding: theme.spacing(2),
       margin: "auto",
-      display: "flex"
-    },
-    login: {
-      color: "#FFFFFF",
+      maxWidth: 366,
+      top: 200,
       position: "relative",
-      top: "30%"
+      backgroundColor: "rgba(58, 58, 58, 1)",
+      textAlign: "center"
+    },
+    item: {
+      textAlign: "center",
+      width: "100%",
+      height: "100px"
+    },
+    img: {
+      margin: "auto",
+      display: "block",
+      width: 60,
+      height: 60
+    },
+    input: {
+      backgroundColor: "white",
+      "&:hover": {
+        backgroundColor: "white"
+      },
+      width: "100%",
+      marginBottom: 20,
+      padding: 0
+    },
+    form: {
+      display: "grid"
+    },
+    btnColor: {
+      backgroundColor: "#48BB35",
+      color: "#FFFFFF"
     }
   })
 );
 
-export const TeamDetail = () => {
+export const TeamDetail: React.FC = () => {
   const classes = useStyles();
-  const [open, setOpen] = React.useState(true);
-
-  const handleClose = () => setOpen(false);
 
   return (
-    <div>
-      <Modal
-        className={classes.modal}
-        open={open}
-        onClose={handleClose}
-        closeAfterTransition
-      >
-        <Fade in={open}>
-          <div className={classes.paper}>
-            <Button className={classes.btn}>
-              <p className={classes.login}>Discordでログイン</p>
-            </Button>
-          </div>
-        </Fade>
-      </Modal>
+    <div className={classes.root}>
+      <Paper className={classes.paper}>
+        <Grid container spacing={2}>
+          <Grid item className={classes.item}>
+            <Avatar className={classes.img} />
+          </Grid>
+          <Grid item xs={12} sm container>
+            <Grid item xs container direction="column">
+              <Grid item xs>
+                <form noValidate className={classes.form}>
+                  <TextField
+                    defaultValue="TeamName"
+                    InputProps={{
+                      className: classes.input,
+                      readOnly: true
+                    }}
+                  />
+                  <TextField
+                    defaultValue="TeamUserName"
+                    InputProps={{
+                      className: classes.input,
+                      readOnly: true
+                    }}
+                  />
+                  <TextField
+                    defaultValue="TeamProfile"
+                    multiline
+                    rows="6"
+                    InputProps={{
+                      className: classes.input,
+                      readOnly: true
+                    }}
+                  />
+                </form>
+              </Grid>
+            </Grid>
+          </Grid>
+        </Grid>
+      </Paper>
     </div>
   );
 };

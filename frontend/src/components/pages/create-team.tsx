@@ -86,7 +86,7 @@ export const CreateTeam: React.FC = () => {
                     }}
                   />
                   <TextField
-                    defaultValue="Profile"
+                    defaultValue="TeamProfile"
                     multiline
                     rows="6"
                     InputProps={{
