@@ -5,11 +5,11 @@ import { User } from "./pages/user";
 import { Team } from "./pages/team";
 import { Tournament } from "./pages/tournament";
 import { CreateTournament } from "./pages/create-tournament";
-import { CreateTeam } from "./pages/create-team";
 import { TournamentDetail } from "./pages/tournament-detail";
 import { Login } from "./pages/login";
 import { TeamDetail } from "./pages/team-detail";
 import { SignInPage } from "./pages/sign-in-page";
+import { CreateTeam } from "./pages/create-team";
 
 export const Router: React.SFC = () => {
   return (

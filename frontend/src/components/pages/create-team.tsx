@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme: Theme) =>
     paper: {
       padding: theme.spacing(2),
       margin: "auto",
-      maxWidth: 400,
+      maxWidth: 366,
       top: 200,
       position: "relative",
       backgroundColor: "rgba(58, 58, 58, 1)",
@@ -43,15 +43,14 @@ const useStyles = makeStyles((theme: Theme) =>
         backgroundColor: "white"
       },
       width: "100%",
-      marginBottom: 10,
+      marginBottom: 20,
       padding: 0
     },
     form: {
       display: "grid"
     },
     btn: {
-      textAlign: "center",
-      marginTop: 20
+      textAlign: "center"
     },
     btnColor: {
       backgroundColor: "#48BB35",
@@ -75,36 +74,21 @@ export const CreateTeam: React.FC = () => {
               <Grid item xs>
                 <form noValidate className={classes.form}>
                   <TextField
-                    label="UserID"
-                    defaultValue="UserID"
+                    defaultValue="TeamName"
                     InputProps={{
                       className: classes.input
                     }}
                   />
                   <TextField
-                    label="UserName"
-                    defaultValue="UserName"
+                    defaultValue="TeamUserName"
                     InputProps={{
                       className: classes.input
                     }}
                   />
                   <TextField
-                    label="UserProfile"
-                    defaultValue="UserProfile"
-                    InputProps={{
-                      className: classes.input
-                    }}
-                  />
-                  <TextField
-                    label="UserTeam"
-                    defaultValue="UserTeam"
-                    InputProps={{
-                      className: classes.input
-                    }}
-                  />
-                  <TextField
-                    label="Profile"
                     defaultValue="Profile"
+                    multiline
+                    rows="6"
                     InputProps={{
                       className: classes.input
                     }}
@@ -113,7 +97,7 @@ export const CreateTeam: React.FC = () => {
               </Grid>
               <Typography className={classes.btn}>
                 <Button variant="contained" className={classes.btnColor}>
-                  更新
+                  作成
                 </Button>
               </Typography>
             </Grid>
