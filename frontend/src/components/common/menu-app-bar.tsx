@@ -8,14 +8,12 @@ import MenuIcon from "@material-ui/icons/Menu";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
-//import { withRouter } from 'react-router';
 import Drawer from "@material-ui/core/Drawer";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
-import AddIcon from "@material-ui/icons/Add";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
+import { BrowserRouter as Router, Link, useHistory } from "react-router-dom";
 
 const drawerWidth = 240;
 
@@ -52,9 +50,38 @@ const useStyles = makeStyles((theme: Theme) =>
     closeBtn: {
       float: "right",
       color: "#FFFFFF"
+    },
+    link: {
+      color: "#FFFFFF"
     }
   })
 );
+
+const navListTop = [
+  {
+    name: " + TOURNAMENT",
+    path: "/create-tournament"
+  },
+  {
+    name: " + TEAM",
+    path: "/create-team"
+  }
+];
+
+const navListBottom = [
+  {
+    name: " # DASHBOARD",
+    path: "/dashboard"
+  },
+  {
+    name: " # TEAM",
+    path: "/team"
+  },
+  {
+    name: "# TOURNAMENT",
+    path: "/tournament"
+  }
+];
 
 export const MenuAppBar: React.FC = () => {
   const classes = useStyles();
@@ -68,9 +95,69 @@ export const MenuAppBar: React.FC = () => {
   const handleDrawerOpen = () => setDrawerOpen(true);
   const handleDrawerClose = () => setDrawerOpen(false);
 
-  /*const handleToUserPage = () => {
-    props.history.push("/user");
-  };*/
+  const PopupMenu: React.FC = () => {
+    const history = useHistory();
+    const linkToUser = (path: string) => {
+      history.push(path);
+      window.location.reload();
+    };
+    return (
+      <div>
+        <div onClick={() => linkToUser("/user")}>
+          <MenuItem>Setting</MenuItem>
+        </div>
+        <MenuItem
+          onClick={() => {
+            console.log("logout!");
+          }}
+        >
+          Logout
+        </MenuItem>
+      </div>
+    );
+  };
+
+  const LinkLists: React.FC = () => {
+    const history = useHistory();
+    const linkToPath = (path: string) => {
+      history.push(path);
+      window.location.reload();
+    };
+    return (
+      <div>
+        <Typography variant="subtitle2" className={classes.subtitle}>
+          create
+        </Typography>
+        <List>
+          {navListTop.map((text, index) => (
+            <ListItem button key={index} className={classes.drawerItem}>
+              <div
+                onClick={() => linkToPath(text.path)}
+                className={classes.link}
+              >
+                <ListItemText primary={text.name} />
+              </div>
+            </ListItem>
+          ))}
+        </List>
+        <Typography variant="subtitle2" className={classes.subtitle}>
+          channel
+        </Typography>
+        <List>
+          {navListBottom.map((text, index) => (
+            <ListItem button key={index} className={classes.drawerItem}>
+              <div
+                onClick={() => linkToPath(text.path)}
+                className={classes.link}
+              >
+                <ListItemText primary={text.name} />
+              </div>
+            </ListItem>
+          ))}
+        </List>
+      </div>
+    );
+  };
 
   return (
     <div className={classes.root}>
@@ -113,16 +200,9 @@ export const MenuAppBar: React.FC = () => {
               open={open}
               onClose={handleClose}
             >
-              <MenuItem /*onClick={() => handleToUserPage()}*/>
-                Setting
-              </MenuItem>
-              <MenuItem
-                onClick={() => {
-                  console.log("logout!");
-                }}
-              >
-                Logout
-              </MenuItem>
+              <Router>
+                <PopupMenu />
+              </Router>
             </Menu>
           </div>
         </Toolbar>
@@ -141,26 +221,9 @@ export const MenuAppBar: React.FC = () => {
             <ChevronLeftIcon />
           </IconButton>
         </div>
-        <Typography variant="subtitle2" className={classes.subtitle}>
-          create
-        </Typography>
-        <List>
-          {[" + TOURNAMENT", " + TEAM"].map(text => (
-            <ListItem button key={text} className={classes.drawerItem}>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
-        <Typography variant="subtitle2" className={classes.subtitle}>
-          channel
-        </Typography>
-        <List>
-          {[" # DASHBOARD", " # TEAM", "# TOURNAMENT"].map(text => (
-            <ListItem button key={text} className={classes.drawerItem}>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
+        <Router>
+          <LinkLists />
+        </Router>
       </Drawer>
     </div>
   );
