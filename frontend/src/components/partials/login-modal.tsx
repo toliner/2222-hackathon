@@ -36,7 +36,7 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-export const LoginPageModal = () => {
+export const LoginModal = () => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
 

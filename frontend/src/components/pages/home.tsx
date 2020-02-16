@@ -1,7 +1,7 @@
 import React from "react";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import { Grid } from "@material-ui/core";
-import { LoginPageModal } from "../partials/login-page-modal";
+import { LoginModal } from "../partials/login-modal";
 import { ListCard } from "../partials/list-card";
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -51,7 +51,7 @@ export const Home: React.FC = () => {
         </Grid>
         <Grid item xs={3} className={classes.bg} />
       </Grid>
-      <LoginPageModal />
+      <LoginModal />
     </div>
   );
 };
