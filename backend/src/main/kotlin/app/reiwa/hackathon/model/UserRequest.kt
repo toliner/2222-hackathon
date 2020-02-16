@@ -4,6 +4,11 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class RegisterUserRequest(
-        val name: String,
-        val mail: String
+    val name: String,
+    val mail: String
+)
+
+@Serializable
+data class LoginUserRequest(
+    val mail: String
 )
