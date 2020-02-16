@@ -1,57 +1,66 @@
-import React from "react";
-import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
-import { Grid } from "@material-ui/core";
-import { LoginModal } from "../partials/login-modal";
-import { ListCard } from "../partials/list-card";
+import React, { useState, useEffect } from "react";
+import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
+import { Button, Grid, Typography } from "@material-ui/core";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
-      flexGrow: 1
+      background: "#4B4B4B",
+      height: "100vh",
+        margin: -10,
     },
     paper: {
       textAlign: "center",
-      background: "#F3F3F3",
-      height: "100vh",
-      top: 68,
+      background: "#4B4B4B",
+      height: "100%",
+      top: "50%",
       position: "relative"
     },
-    bg: {
-      background: "#4B4B4B"
-    },
     bottom: {
-      marginBottom: 25
+      marginBottom: 25,
+      display: "flex"
+    },
+    btn: {
+      top: 300,
+      textAlign: "center",
+      backgroundColor: "#FFFFFF",
+      borderRadius: 30,
+      width: 238,
+      height: 64
+    },
+    link: {
+      textDecoration: "none",
+      color: "#5D5D5D",
     }
   })
 );
 
-export const Home: React.FC = () => {
+export const Home = () => {
   const classes = useStyles();
+
+  // とりあえずローカルステート、本番はrenderさせたくないので別のところでやる
+  // 後でreduxで書き換え
+  const [isLogin, setIsLogin] = useState(false);
+
+  // ログインしていたら dashboard へ
+  useEffect(() => {
+    if (isLogin) {
+      window.location.href = "dashboard"
+    }
+  })
 
   return (
     <div className={classes.root}>
       <Grid container spacing={3}>
-        <Grid item xs={3} className={classes.bg} />
+        <Grid item xs={6} className={classes.paper}>フレーズ</Grid>
         <Grid item xs={6} className={classes.paper}>
-          <div className={classes.bottom}>
-            <ListCard />
-          </div>
-          <div className={classes.bottom}>
-            <ListCard />
-          </div>
-          <div className={classes.bottom}>
-            <ListCard />
-          </div>
-          <div className={classes.bottom}>
-            <ListCard />
-          </div>
-          <div className={classes.bottom}>
-            <ListCard />
-          </div>
+          <Typography>
+            <Button variant="contained" className={classes.btn}>
+              <a href="./login" className={classes.link}>新規登録</a>
+            </Button>
+          </Typography>
         </Grid>
-        <Grid item xs={3} className={classes.bg} />
       </Grid>
-      <LoginModal />
     </div>
   );
 };

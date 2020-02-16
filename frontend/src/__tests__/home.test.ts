@@ -1,4 +1,4 @@
-import { home } from "../components/pages/home";
+import { Dashboard } from "../components/pages/dashboard";
 
 describe("test of test", () => {
   it("test", () => {
