@@ -1,63 +1,52 @@
 import React from "react";
 import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
-import Modal from "@material-ui/core/Modal";
-import Fade from "@material-ui/core/Fade";
-import { Button } from "@material-ui/core";
+import { Button, Grid, Typography } from "@material-ui/core";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
-    modal: {
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center"
+    root: {
+      background: "#4B4B4B",
+      height: "100vh",
+        margin: -10,
     },
     paper: {
-      backgroundColor: "#FFFFFF",
-      width: 366,
-      height: 216
+      textAlign: "center",
+      background: "#4B4B4B",
+      height: "100%",
+      top: "50%",
+      position: "relative"
     },
-    btn: {
-      backgroundColor: "#5E5E5E",
-      "&:hover": {
-        backgroundColor: "#5E5E5E"
-      },
-      width: 242,
-      height: 60,
-      position: "relative",
-      top: "36%",
-      margin: "auto",
+    bottom: {
+      marginBottom: 25,
       display: "flex"
     },
-    login: {
-      color: "#FFFFFF",
-      position: "relative",
-      top: "30%"
+    btn: {
+      top: 300,
+      textAlign: "center",
+      backgroundColor: "#FFFFFF",
+      color: "#5D5D5D",
+      borderRadius: 30,
+      width: 238,
+      height: 64
     }
   })
 );
 
 export const SignInPage = () => {
   const classes = useStyles();
-  const [open, setOpen] = React.useState(true);
-
-  const handleClose = () => setOpen(false);
 
   return (
-    <div>
-      <Modal
-        className={classes.modal}
-        open={open}
-        onClose={handleClose}
-        closeAfterTransition
-      >
-        <Fade in={open}>
-          <div className={classes.paper}>
-            <Button className={classes.btn}>
-              <p className={classes.login}>Discordでログイン</p>
+    <div className={classes.root}>
+      <Grid container spacing={3}>
+        <Grid item xs={6} className={classes.paper}>フレーズ</Grid>
+        <Grid item xs={6} className={classes.paper}>
+          <Typography>
+            <Button variant="contained" className={classes.btn}>
+              新規登録
             </Button>
-          </div>
-        </Fade>
-      </Modal>
+          </Typography>
+        </Grid>
+      </Grid>
     </div>
   );
 };

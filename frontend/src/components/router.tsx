@@ -15,7 +15,7 @@ export const Router: React.SFC = () => {
   return (
     <BrowserRouter>
       <Switch>
-        <Route exact path="/signIn" component={SignInPage} />
+        <Route exact path="/sign-in" component={SignInPage} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/dashboard" component={Home} />
         <Route exact path="/user" component={User} />

@@ -68,33 +68,31 @@ export const TeamDetail: React.FC = () => {
           </Grid>
           <Grid item xs={12} sm container>
             <Grid item xs container direction="column">
-              <Grid item xs>
-                <form noValidate className={classes.form}>
-                  <TextField
-                    defaultValue="TeamName"
-                    InputProps={{
-                      className: classes.input,
-                      readOnly: true
-                    }}
-                  />
-                  <TextField
-                    defaultValue="TeamUserName"
-                    InputProps={{
-                      className: classes.input,
-                      readOnly: true
-                    }}
-                  />
-                  <TextField
-                    defaultValue="TeamProfile"
-                    multiline
-                    rows="6"
-                    InputProps={{
-                      className: classes.input,
-                      readOnly: true
-                    }}
-                  />
-                </form>
-              </Grid>
+              <form noValidate className={classes.form}>
+                <TextField
+                  defaultValue="TeamName"
+                  InputProps={{
+                    className: classes.input,
+                    readOnly: true
+                  }}
+                />
+                <TextField
+                  defaultValue="TeamUserName"
+                  InputProps={{
+                    className: classes.input,
+                    readOnly: true
+                  }}
+                />
+                <TextField
+                  defaultValue="TeamProfile"
+                  multiline
+                  rows="6"
+                  InputProps={{
+                    className: classes.input,
+                    readOnly: true
+                  }}
+                />
+              </form>
             </Grid>
           </Grid>
         </Grid>
