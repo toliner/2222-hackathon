@@ -68,7 +68,7 @@ export const Login = () => {
       axios.post(login_url, {
         mail: mail
       })
-      .then((res) => {
+      .then((res:any) => {
         console.log(res);
       })
       .catch((e) => {
