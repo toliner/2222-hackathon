@@ -16,6 +16,7 @@ import io.ktor.http.HttpMethod
 import io.ktor.http.HttpStatusCode
 import io.ktor.response.respondText
 import io.ktor.routing.Routing
+import io.ktor.routing.get
 import io.ktor.routing.route
 import io.ktor.serialization.serialization
 import io.ktor.server.engine.ShutDownUrl
@@ -89,6 +90,9 @@ fun Application.mainModule() {
         }
     }
     install(Routing) {
+        get("/") {
+            context.respondText(ContentType.Application.Utf8Json) { """{"message": "api server is available now !"}""" }
+        }
         route("/api") {
             userRoute()
         }
