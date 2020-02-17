@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
 import { Button, Grid, Typography } from "@material-ui/core";
+import logo from "../../static/logo.png";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -32,6 +33,16 @@ const useStyles = makeStyles((theme: Theme) =>
     link: {
       textDecoration: "none",
       color: "#5D5D5D"
+    },
+    imageClip: {
+      width: "40vw",
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      overflow: "hidden"
+    },
+    image: {
+      width: 520
     }
   })
 );
@@ -57,6 +68,9 @@ export const Home = () => {
           フレーズ
         </Grid>
         <Grid item xs={6} className={classes.paper}>
+          <div className={classes.imageClip}>
+            <img src={logo} alt="logo" className={classes.image} />
+          </div>
           <Typography>
             <Button variant="contained" className={classes.btn}>
               <a href="./login" className={classes.link}>
