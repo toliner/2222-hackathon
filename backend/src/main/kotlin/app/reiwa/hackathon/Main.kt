@@ -58,7 +58,7 @@ fun Application.mainModule() {
     }
     install(CORS) {
         method(HttpMethod.Options)
-        host("2222.reiwa.app", schemes = listOf("http", "https"))
+        anyHost()
         allowCredentials = true
         allowNonSimpleContentTypes = true
         exposeHeader("*")
