@@ -14,6 +14,7 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import { BrowserRouter as Router, Link, useHistory } from "react-router-dom";
+import logo from "../../static/logo.png";
 
 const drawerWidth = 240;
 
@@ -29,7 +30,9 @@ const useStyles = makeStyles((theme: Theme) =>
       marginRight: theme.spacing(2)
     },
     title: {
-      flexGrow: 1
+      flexGrow: 1,
+      display: "flex",
+      alignItems: "center"
     },
     subtitle: {
       color: "#979797",
@@ -53,6 +56,9 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     link: {
       color: "#FFFFFF"
+    },
+    logoImg: {
+      width: 200
     }
   })
 );
@@ -97,22 +103,20 @@ export const MenuAppBar: React.FC = () => {
 
   const PopupMenu: React.FC = () => {
     const history = useHistory();
-    const linkToUser = (path: string) => {
+    const linkTo = (path: string) => {
       history.push(path);
       window.location.reload();
     };
+    const logout = () => {
+      // 状態更新してログアウト扱いにする
+
+      // ログインページ送り
+      linkTo("/login");
+    };
     return (
       <div>
-        <div onClick={() => linkToUser("/user")}>
-          <MenuItem>Setting</MenuItem>
-        </div>
-        <MenuItem
-          onClick={() => {
-            console.log("logout!");
-          }}
-        >
-          Logout
-        </MenuItem>
+        <MenuItem onClick={() => linkTo("/user")}>Setting</MenuItem>
+        <MenuItem onClick={logout}>Logout</MenuItem>
       </div>
     );
   };
@@ -173,7 +177,7 @@ export const MenuAppBar: React.FC = () => {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" className={classes.title}>
-            e-Sports
+            <img src={logo} alt="logo" className={classes.logoImg} />
           </Typography>
           <div>
             <IconButton
