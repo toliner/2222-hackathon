@@ -7,13 +7,16 @@ import { TournamentListCard } from "../partials/tournament-list-card";
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
-      flexGrow: 1
+      width: "100vw",
+      height: "100vh",
+      display: "flex",
+      justifyContent: "center",
+      alignContent: "center"
     },
     paper: {
       textAlign: "center",
       background: "#F3F3F3",
-      height: "100%",
-      top: 68,
+      marignTop: 128,
       position: "relative"
     },
     bg: {
@@ -28,9 +31,6 @@ const useStyles = makeStyles((theme: Theme) =>
       height: 24,
       padding: 0,
       fontSize: 10,
-    },
-    left: {
-      marginLeft: 10
     },
     tournament: {
       width: 752,
