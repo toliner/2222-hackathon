@@ -14,6 +14,7 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import { BrowserRouter as Router, Link, useHistory } from "react-router-dom";
+import logo from "../../static/logo.png";
 
 const drawerWidth = 240;
 
@@ -29,7 +30,9 @@ const useStyles = makeStyles((theme: Theme) =>
       marginRight: theme.spacing(2)
     },
     title: {
-      flexGrow: 1
+      flexGrow: 1,
+      display: "flex",
+      alignItems: "center"
     },
     subtitle: {
       color: "#979797",
@@ -53,6 +56,9 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     link: {
       color: "#FFFFFF"
+    },
+    logoImg: {
+      width: 200
     }
   })
 );
@@ -171,7 +177,7 @@ export const MenuAppBar: React.FC = () => {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" className={classes.title}>
-            e-Sports
+            <img src={logo} alt="logo" className={classes.logoImg} />
           </Typography>
           <div>
             <IconButton
