@@ -65,12 +65,8 @@ jobs:
 
       - name: Kill all process of server
         run:
-          ssh deploy-server "killall java; killall node"
+          ssh deploy-server "killall java"
         continue-on-error: true
-
-      - name: Start Frontend Server
-        run:
-          ssh deploy-server "nohup serve -s deploy/frontend &"
 
       - name: Start Backend Server
         run:
