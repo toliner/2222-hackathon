@@ -1,18 +1,19 @@
 package app.reiwa.hackathon.route
 
+import app.reiwa.hackathon.Utf8Json
 import app.reiwa.hackathon.model.LoginUserRequest
 import app.reiwa.hackathon.model.RegisterUserRequest
 import app.reiwa.hackathon.model.UserLoginSession
-import app.reiwa.hackathon.model.db.EmailVerificationType
-import app.reiwa.hackathon.model.db.User
-import app.reiwa.hackathon.model.db.UserEmailVerification
-import app.reiwa.hackathon.model.db.Users
+import app.reiwa.hackathon.model.UserProfileData
+import app.reiwa.hackathon.model.db.*
 import app.reiwa.hackathon.sendMail
 import com.sendgrid.helpers.mail.objects.Content
 import io.ktor.application.ApplicationCall
+import io.ktor.http.ContentType
 import io.ktor.http.HttpStatusCode
 import io.ktor.request.receive
 import io.ktor.response.respond
+import io.ktor.response.respondText
 import io.ktor.routing.Route
 import io.ktor.routing.get
 import io.ktor.routing.post
@@ -21,6 +22,8 @@ import io.ktor.sessions.get
 import io.ktor.sessions.sessions
 import io.ktor.sessions.set
 import io.ktor.util.pipeline.PipelineContext
+import kotlinx.serialization.UnstableDefault
+import kotlinx.serialization.json.Json
 import org.jetbrains.exposed.sql.transactions.transaction
 import java.time.LocalDateTime
 import java.time.ZoneOffset
@@ -32,6 +35,7 @@ fun Route.userRoute() {
     }
 }
 
+@UseExperimental(UnstableDefault::class)
 private fun Route.registerUser() {
     post("/register") {
         val req = context.receive<RegisterUserRequest>()
@@ -49,6 +53,9 @@ private fun Route.registerUser() {
                 this.user = user
                 type = EmailVerificationType.REGISTER
                 expiredAt = LocalDateTime.now(ZoneOffset.UTC).plusHours(1L)
+            }
+            UserProfile.new {
+                this.user = user
             }
             verification.id.value
         }
@@ -98,17 +105,33 @@ private fun Route.registerUser() {
             context.respondError("wrong or expired token")
             return@get
         }
-        transaction {
+        val user = transaction {
             entity.user.verified = true
             entity.delete()
+            entity.user.asData()
         }
         context.sessions.set(
             UserLoginSession(
-                transaction { entity.user.id.value },
+                transaction { user.id },
                 UUID.fromString(token),
                 LocalDateTime.now(ZoneOffset.UTC).plusDays(1)
             ))
-        context.respond(HttpStatusCode.OK)
+        context.respondText(
+            ContentType.Application.Utf8Json,
+            HttpStatusCode.OK
+        ) {
+            """ { "id": "${user.id}" }"""
+        }
+    }
+
+    route("/profile") {
+        get {
+            val session = getAndUpdateLoginSession() ?: return@get
+            val profile = transaction { UserProfile.find { UserProfiles.user eq session.id }.single().asData() }
+            context.respondJson {
+                Json.stringify(UserProfileData.serializer(), profile)
+            }
+        }
     }
 }
 
@@ -116,7 +139,21 @@ suspend fun ApplicationCall.respondError(message: String) {
     respond(HttpStatusCode.BadRequest, """{"error":"$message"}""")
 }
 
-fun PipelineContext<Unit, ApplicationCall>.updateLoginSession() {
+/**
+ * @return Headerから得られたSession情報。存在しなければnull。
+ */
+suspend fun PipelineContext<Unit, ApplicationCall>.getAndUpdateLoginSession(): UserLoginSession? {
     val session = context.sessions.get<UserLoginSession>() ?: throw IllegalStateException("No session")
-    context.sessions.set(session.copy(expiredAt = LocalDateTime.now(ZoneOffset.UTC).plusDays(1)))
+    val now = LocalDateTime.now(ZoneOffset.UTC)
+    if (session.expiredAt < now) {
+        context.respondError("header ${context.sessions.findName(UserLoginSession::class)} is not set or valid")
+        return null
+    }
+    val newSession = session.copy(expiredAt = now.plusDays(1))
+    context.sessions.set(newSession)
+    return newSession
+}
+
+suspend fun ApplicationCall.respondJson(statusCode: HttpStatusCode = HttpStatusCode.OK, text: suspend () -> String) {
+    respondText(ContentType.Application.Utf8Json, statusCode, text)
 }
