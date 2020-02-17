@@ -12,3 +12,8 @@ data class RegisterUserRequest(
 data class LoginUserRequest(
     val mail: String
 )
+
+@Serializable
+data class UpdateUserProfileRequest(
+    val bio: String
+)

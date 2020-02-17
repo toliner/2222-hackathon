@@ -1,10 +1,7 @@
 package app.reiwa.hackathon.route
 
 import app.reiwa.hackathon.Utf8Json
-import app.reiwa.hackathon.model.LoginUserRequest
-import app.reiwa.hackathon.model.RegisterUserRequest
-import app.reiwa.hackathon.model.UserLoginSession
-import app.reiwa.hackathon.model.UserProfileData
+import app.reiwa.hackathon.model.*
 import app.reiwa.hackathon.model.db.*
 import app.reiwa.hackathon.sendMail
 import com.sendgrid.helpers.mail.objects.Content
@@ -132,8 +129,25 @@ private fun Route.registerUser() {
                 Json.stringify(UserProfileData.serializer(), profile)
             }
         }
+        post {
+            val req = context.receive<UpdateUserProfileRequest>()
+            val session = getAndUpdateLoginSession() ?: return@post
+            val newProfile = transaction {
+                val profile = UserProfile.find { UserProfiles.user eq session.id }.single()
+                // update profile
+                profile.apply {
+                    bio = req.bio
+                }
+                commit()
+                profile.asData()
+            }
+            context.respondJson {
+                Json.stringify(UserProfileData.serializer(), newProfile)
+            }
+        }
     }
 }
+
 
 suspend fun ApplicationCall.respondError(message: String) {
     respond(HttpStatusCode.BadRequest, """{"error":"$message"}""")
