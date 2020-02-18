@@ -171,7 +171,9 @@ private fun Route.userProfile() {
 
 
 suspend fun ApplicationCall.respondError(message: String) {
-    respond(HttpStatusCode.BadRequest, """{"error":"$message"}""")
+    respondJson(HttpStatusCode.BadRequest) {
+        """{"error":"$message"}"""
+    }
 }
 
 /**
