@@ -90,6 +90,8 @@ private fun Route.registerAndLogin() {
                 appendln("http://2222.reiwa.app/api/user/verification?token=$token")
             }))
             context.respond(HttpStatusCode.OK)
+        } else {
+            context.respondError("Invalid mail address")
         }
     }
 
