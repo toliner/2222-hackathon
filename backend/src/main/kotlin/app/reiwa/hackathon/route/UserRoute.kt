@@ -1,3 +1,5 @@
+@file:UseExperimental(UnstableDefault::class)
+
 package app.reiwa.hackathon.route
 
 import app.reiwa.hackathon.Utf8Json
@@ -28,12 +30,12 @@ import java.util.*
 
 fun Route.userRoute() {
     route("/user") {
-        registerUser()
+        registerAndLogin()
+        userProfile()
     }
 }
 
-@UseExperimental(UnstableDefault::class)
-private fun Route.registerUser() {
+private fun Route.registerAndLogin() {
     post("/register") {
         val req = context.receive<RegisterUserRequest>()
         // TODO: email validation
@@ -120,7 +122,9 @@ private fun Route.registerUser() {
             """ { "id": "${user.id}" }"""
         }
     }
+}
 
+private fun Route.userProfile() {
     route("/profile") {
         get {
             val session = getAndUpdateLoginSession() ?: return@get
@@ -143,6 +147,19 @@ private fun Route.registerUser() {
             }
             context.respondJson {
                 Json.stringify(UserProfileData.serializer(), newProfile)
+            }
+        }
+        get("/{useId}") {
+            val userId = UUID.fromString(context.parameters["userId"])
+            val profile = transaction {
+                UserProfile.find { UserProfiles.user eq userId }.singleOrNull()?.asData()
+            }
+            if (profile == null) {
+                context.respondError("No such user")
+                return@get
+            }
+            context.respondJson {
+                Json.stringify(UserProfileData.serializer(), profile)
             }
         }
     }
