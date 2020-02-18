@@ -10,7 +10,7 @@ import { Login } from "./pages/login";
 import { TeamDetail } from "./pages/team-detail";
 import { CreateTeam } from "./pages/create-team";
 import { Home } from "./pages/home";
-import { MenuAppBar } from "./common/menu-app-bar";
+import { Confirm } from "./pages/confirm";
 
 export const Router: React.SFC = () => {
   return (
@@ -19,6 +19,7 @@ export const Router: React.SFC = () => {
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/login" component={Login} />
+          <Route exact path="/confirm" component={Confirm} />
           <Route exact path="/dashboard" component={Dashboard} />
           <Route exact path="/user" component={User} />
           <Route exact path="/tournament" component={Tournament} />

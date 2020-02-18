@@ -73,7 +73,7 @@ export const Login = () => {
       };
 
       console.log(`${api_url}/user/login`);
-      await fetch(`/user/login`,
+      await fetch(`${api_url}/user/login`,
         {
           mode: "cors",
           method: "POST",
@@ -86,6 +86,7 @@ export const Login = () => {
       )
       .then((res: any) => {
         console.log({res});
+        if (res.status === 200) window.location.href = "confirm";
       })
       .catch(console.error);
     }

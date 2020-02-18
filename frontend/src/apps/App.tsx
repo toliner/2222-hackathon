@@ -14,7 +14,7 @@ const App = () => {
   const MenuBar = () => {
     const location = useLocation();
     const path = location.pathname;
-    if (path === "/" || path === "/login") {
+    if (path === "/" || path === "/login" || path === "/confirm") {
       return null;
     } else {
       return <MenuAppBar />;
