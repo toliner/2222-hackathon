@@ -65,12 +65,9 @@ jobs:
 
       - name: Kill all process of server
         run:
-          ssh deploy-server 'tmux kill-session -a; tmux start-server'
-
-      - name: Start Frontend Server
-        run:
-          ssh deploy-server tmux new-session -d "serve -s deploy/frontend"
+          ssh deploy-server "killall java"
+        continue-on-error: true
 
       - name: Start Backend Server
         run:
-          ssh deploy-server tmux new-session -d 'tmux new-session -d "cd deploy; backend/bin/backend"'
+          ssh deploy-server "nohup sh -c 'cd deploy; backend/bin/backend &'"
