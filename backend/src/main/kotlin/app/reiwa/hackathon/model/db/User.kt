@@ -1,6 +1,7 @@
 @file:UseSerializers(UUIDSerializer::class)
 package app.reiwa.hackathon.model.db
 
+import app.reiwa.hackathon.model.UserProfileData
 import app.reiwa.hackathon.serializers.UUIDSerializer
 import kotlinx.serialization.ContextualSerialization
 import kotlinx.serialization.Serializable
@@ -24,6 +25,7 @@ class User(id: EntityID<UUID>) : UUIDEntity(id) {
     var name by Users.name
     var mail by Users.mail
     var verified by Users.verified
+    val profile by UserProfile referencedOn UserProfiles.user
 
     fun asData(): UserData = UserData(id.value, name, mail)
 }
@@ -53,4 +55,22 @@ class UserEmailVerification(id: EntityID<UUID>) : UUIDEntity(id) {
 enum class EmailVerificationType {
     REGISTER,
     LOGIN
+}
+
+object UserProfiles : UUIDTable() {
+    val user = reference("user", Users).uniqueIndex()
+    val bio = varchar("bio", length = 300).default("")
+}
+
+class UserProfile(id: EntityID<UUID>) : UUIDEntity(id) {
+    companion object : UUIDEntityClass<UserProfile>(UserProfiles)
+
+    var user by User referencedOn UserProfiles.user
+    var bio by UserProfiles.bio
+
+    fun asData(): UserProfileData = UserProfileData(
+        user.id.value,
+        user.name,
+        bio
+    )
 }
