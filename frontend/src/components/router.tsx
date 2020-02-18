@@ -22,9 +22,9 @@ export const Router: React.SFC = () => {
           <Route exact path="/dashboard" component={Dashboard} />
           <Route exact path="/user" component={User} />
           <Route exact path="/tournament" component={Tournament} />
-          <Route exact path="/tournament/:id" component={TournamentDetail} />
+          <Route path="/tournament/:id" component={TournamentDetail} />
           <Route exact path="/team" component={Team} />
-          <Route exact path="/team/:id" component={TeamDetail} />
+          <Route path="/team/:id" component={TeamDetail} />
           <Route exact path="/create-tournament" component={CreateTournament} />
           <Route exact path="/create-team" component={CreateTeam} />
         </Switch>

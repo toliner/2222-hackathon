@@ -3,7 +3,7 @@ import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
 import { Button, TextField } from "@material-ui/core";
 import axios from "../common/axios-setup";
 
-const login_url = process.env.REACT_APP_LOGIN_URL;
+const login_url = process.env.REACT_APP_API_URL;
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -65,7 +65,7 @@ export const Login = () => {
 
   const loginWithMail = () => {
     if (mail !== "" && login_url !== undefined) {
-      axios.post(login_url, {
+      axios.post(`${login_url}/user/login`, {
         mail: mail
       })
       .then((res:any) => {
