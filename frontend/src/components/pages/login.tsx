@@ -61,22 +61,23 @@ export const Login = () => {
 
   const handleMailFormChange = (e: any) => {
     setMail(e.target.value);
-  }
+  };
 
   const loginWithMail = () => {
     if (mail !== "" && login_url !== undefined) {
-      axios.post(login_url, {
-        mail: mail
-      })
-      .then((res:any) => {
-        console.log(res);
-      })
-      .catch((e) => {
-        throw e;
-      })
+      axios
+        .post(login_url, {
+          mail: mail
+        })
+        .then((res: any) => {
+          console.log(res);
+        })
+        .catch(e => {
+          throw e;
+        });
       // window.location.href = "dashboard";
     }
-  }
+  };
 
   return (
     <div className={classes.root}>
@@ -89,7 +90,9 @@ export const Login = () => {
             onChange={handleMailFormChange}
           />
           <Button className={classes.btn}>
-            <p className={classes.login} onClick={loginWithMail}>ログイン</p>
+            <p className={classes.login} onClick={loginWithMail}>
+              ログイン
+            </p>
           </Button>
         </form>
       </div>
