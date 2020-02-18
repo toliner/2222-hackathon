@@ -141,7 +141,7 @@ private fun Route.userProfile() {
                 context.respondError("bio length should in range 0..300")
             }
             val newProfile = transaction {
-                val profile = UserProfile.find { UserProfiles.user eq session.id }.single()
+                val profile = User.findById(session.id)!!.profile.single()
                 // update profile
                 profile.apply {
                     bio = req.bio
@@ -156,7 +156,7 @@ private fun Route.userProfile() {
         get("/{useId}") {
             val userId = UUID.fromString(context.parameters["userId"])
             val profile = transaction {
-                UserProfile.find { UserProfiles.user eq userId }.singleOrNull()?.asData()
+                User.findById(userId)?.profile?.singleOrNull()?.asData()
             }
             if (profile == null) {
                 context.respondError("No such user")

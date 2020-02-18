@@ -25,7 +25,7 @@ class User(id: EntityID<UUID>) : UUIDEntity(id) {
     var name by Users.name
     var mail by Users.mail
     var verified by Users.verified
-    val profile by UserProfile referencedOn UserProfiles.user
+    val profile by UserProfile referrersOn UserProfiles.user
 
     fun asData(): UserData = UserData(id.value, name, mail)
 }

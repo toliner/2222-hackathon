@@ -3,6 +3,7 @@ package app.reiwa.hackathon
 import app.reiwa.hackathon.model.SettingFile
 import app.reiwa.hackathon.model.UserLoginSession
 import app.reiwa.hackathon.model.db.UserEmailVerifications
+import app.reiwa.hackathon.model.db.UserProfiles
 import app.reiwa.hackathon.model.db.Users
 import app.reiwa.hackathon.route.userRoute
 import com.zaxxer.hikari.HikariConfig
@@ -103,7 +104,9 @@ fun Application.mainModule() {
 private fun setupDb() {
     Database.connect(hikari())
     transaction {
-        SchemaUtils.create(Users, UserEmailVerifications)
+        SchemaUtils.create(
+            Users, UserEmailVerifications, UserProfiles
+        )
     }
 }
 
