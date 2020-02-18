@@ -124,6 +124,7 @@ private fun Route.registerAndLogin() {
     }
 }
 
+@UseExperimental(UnstableDefault::class)
 private fun Route.userProfile() {
     route("/profile") {
         get {
@@ -136,6 +137,9 @@ private fun Route.userProfile() {
         post {
             val req = context.receive<UpdateUserProfileRequest>()
             val session = getAndUpdateLoginSession() ?: return@post
+            if (req.bio.length !in 0..300) {
+                context.respondError("bio length should in range 0..300")
+            }
             val newProfile = transaction {
                 val profile = UserProfile.find { UserProfiles.user eq session.id }.single()
                 // update profile
