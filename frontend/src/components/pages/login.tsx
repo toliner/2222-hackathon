@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
 import { Button, TextField } from "@material-ui/core";
-import axios from "../common/axios-setup";
+// import fetch from "node-fetch";
 
-const login_url = process.env.REACT_APP_API_URL;
+const fetch = window.fetch;
+
+const api_url = process.env.REACT_APP_API_URL;
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -64,17 +66,37 @@ export const Login = () => {
   }
 
   const loginWithMail = () => {
-    if (mail !== "" && login_url !== undefined) {
-      axios.post(`${login_url}/user/login`, {
+    if (mail !== "" && api_url !== undefined) {
+      console.log(mail)
+      const data = {
         mail: mail
+      };
+      fetch(`${api_url}/user/login`,
+        {
+          mode: "cors",
+          method: "POST",
+          body: JSON.stringify(data),
+          headers: {
+            "Accept": "application/json",
+            "Content-Type": "application/json;charset=UTF-8"
+          }
+        }
+      )
+      .then((res: any) => {
+        console.log({res});
       })
-      .then((res:any) => {
-        console.log(res);
-      })
-      .catch((e) => {
-        throw e;
-      })
-      // window.location.href = "dashboard";
+      .catch(console.error);
+
+      // axios.post(`${login_url}/user/login`, {
+      //   mail: mail
+      // })
+      // .then((res:any) => {
+      //   console.log(res);
+      //   window.location.href = "dashboard";
+      // })
+      // .catch((e) => {
+      //   throw e;
+      // })
     }
   }
 
