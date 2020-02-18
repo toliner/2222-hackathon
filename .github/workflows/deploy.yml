@@ -70,4 +70,4 @@ jobs:
 
       - name: Start Backend Server
         run:
-          ssh deploy-server "nohup sh -c 'cd deploy; backend/bin/backend &'"
+          ssh deploy-server "nohup sh -c 'cd deploy; backend/bin/backend' &"

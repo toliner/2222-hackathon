@@ -59,6 +59,7 @@ fun Application.mainModule() {
     install(CORS) {
         method(HttpMethod.Options)
         anyHost()
+        headers.addAll(listOf("authorization", "crossdomain", "x-csrf-token"))
         allowCredentials = true
         allowNonSimpleContentTypes = true
         exposeHeader("*")
