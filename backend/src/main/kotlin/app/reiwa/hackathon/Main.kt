@@ -40,7 +40,7 @@ lateinit var globalSetting: SettingFile
     private set
 
 val ContentType.Application.Utf8Json: ContentType
-    get() = Json.withParameter("charset", "urf-8")
+    get() = Json.withParameter("charset", Charsets.UTF_8.displayName())
 
 @UseExperimental(KtorExperimentalAPI::class, UnstableDefault::class)
 fun Application.mainModule() {
