@@ -159,7 +159,7 @@ private fun Route.userProfile() {
                 User.findById(userId)?.profile?.singleOrNull()?.asData()
             }
             if (profile == null) {
-                context.respondError("No such user")
+                context.respond(HttpStatusCode.NotFound)
                 return@get
             }
             context.respondJson {
