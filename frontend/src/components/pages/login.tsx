@@ -65,13 +65,15 @@ export const Login = () => {
     setMail(e.target.value);
   }
 
-  const loginWithMail = () => {
+  const loginWithMail = async () => {
     if (mail !== "" && api_url !== undefined) {
       console.log(mail)
       const data = {
         mail: mail
       };
-      fetch(`${api_url}/user/login`,
+
+      console.log(`${api_url}/user/login`);
+      await fetch(`/user/login`,
         {
           mode: "cors",
           method: "POST",
@@ -86,17 +88,6 @@ export const Login = () => {
         console.log({res});
       })
       .catch(console.error);
-
-      // axios.post(`${login_url}/user/login`, {
-      //   mail: mail
-      // })
-      // .then((res:any) => {
-      //   console.log(res);
-      //   window.location.href = "dashboard";
-      // })
-      // .catch((e) => {
-      //   throw e;
-      // })
     }
   }
 
