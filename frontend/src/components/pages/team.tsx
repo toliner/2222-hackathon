@@ -2,6 +2,7 @@ import React from "react";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import { Grid } from "@material-ui/core";
 import { TeamListCard } from "../partials/team-list-card";
+import teamData from "../../data/team-data.json";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -37,27 +38,11 @@ export const Team: React.FC = () => {
         <Grid item xs={6} className={classes.paper}>
           <div className={classes.bottom}>
             <Grid item xs={6} className={classes.space}>
-              <TeamListCard />
+              {teamData.map((data: any) => {
+                <TeamListCard data={data} />;
+              })}
             </Grid>
-            <Grid item xs={6} className={classes.space}>
-              <TeamListCard />
-            </Grid>
-          </div>
-          <div className={classes.bottom}>
-            <Grid item xs={6} className={classes.space}>
-              <TeamListCard />
-            </Grid>
-            <Grid item xs={6} className={classes.space}>
-              <TeamListCard />
-            </Grid>
-          </div>
-          <div className={classes.bottom}>
-            <Grid item xs={6} className={classes.space}>
-              <TeamListCard />
-            </Grid>
-            <Grid item xs={6} className={classes.space}>
-              <TeamListCard />
-            </Grid>
+            <Grid item xs={6} className={classes.space}></Grid>
           </div>
         </Grid>
         <Grid item xs={3} className={classes.bg} />
@@ -65,3 +50,22 @@ export const Team: React.FC = () => {
     </div>
   );
 };
+
+/*
+<div className={classes.bottom}>
+            <Grid item xs={6} className={classes.space}>
+              <TeamListCard />
+            </Grid>
+            <Grid item xs={6} className={classes.space}>
+              <TeamListCard />
+            </Grid>
+          </div>
+          <div className={classes.bottom}>
+            <Grid item xs={6} className={classes.space}>
+              <TeamListCard />
+            </Grid>
+            <Grid item xs={6} className={classes.space}>
+              <TeamListCard />
+            </Grid>
+          </div>
+ */
