@@ -10225,6 +10225,13 @@ react-transition-group@^4.3.0:
     loose-envify "^1.4.0"
     prop-types "^15.6.2"
 
+react-vfx@^0.1.4:
+  version "0.1.4"
+  resolved "https://registry.yarnpkg.com/react-vfx/-/react-vfx-0.1.4.tgz#15a506be791cc548027326905da177dce3d85b7c"
+  integrity sha512-jCVmqRxNzpuBWrPd12eejbD2treFvZwrtADCUqQfznztUKl72cnl7zHif43B3DPnqZY4Xra0+rCAIrL9xVO4tQ==
+  dependencies:
+    three "^0.111.0"
+
 react@^16.12.0:
   version "16.12.0"
   resolved "https://registry.yarnpkg.com/react/-/react-16.12.0.tgz#0c0a9c6a142429e3614834d5a778e18aa78a0b83"
@@ -11679,6 +11686,11 @@ text-table@0.2.0, text-table@^0.2.0:
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/text-table/-/text-table-0.2.0.tgz#7f5ee823ae805207c00af2df4a84ec3fcfa570b4"
   integrity sha1-f17oI66AUgfACvLfSoTsP8+lcLQ=
+
+three@^0.111.0:
+  version "0.111.0"
+  resolved "https://registry.yarnpkg.com/three/-/three-0.111.0.tgz#9cedb73e79b7f6bf2440cb67a273f883faa923b6"
+  integrity sha512-AcTqyGJ3H75AIusOuADy0LsP958QKQwm/YhABHFMzd6RFXPNVay1rlSbbG6WYv7KM72G2THMMwqbjQd4dVHMkQ==
 
 throat@^4.0.0:
   version "4.1.0"
