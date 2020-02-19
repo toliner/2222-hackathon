@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme: Theme) =>
       color: "#FFFFFF",
       textAlign: "center",
       margin: 42,
-      paddingTop: 10,
+      paddingTop: 10
     }
   })
 );
