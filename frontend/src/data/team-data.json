@@ -1,50 +1,32 @@
 [
   {
-    "tournamentId": "1",
-    "tournamentDate": "2020/02/22",
-    "tournamentTitle": "RAGE 2020 Spring",
-    "tournamentUserName": "suzuki",
-    "tournamentDescription": "初心者でやるよ。",
-    "tournamentImage": ""
+    "teamId": "1",
+    "teamName": "tanaka",
+    "teamDescription": "初心者でやるよ。"
   },
   {
-    "tournamentId": "2",
-    "tournamentDate": "2020/02/22",
-    "tournamentTitle": "RAGE 2020 Spring",
-    "tournamentUserName": "tanaka",
-    "tournamentDescription": "初心者でやるよ。",
-    "tournamentImage": ""
+    "teamId": "2",
+    "teamName": "sato",
+    "teamDescription": "初心者でやるよ。"
   },
   {
-    "tournamentId": "3",
-    "tournamentDate": "2020/02/22",
-    "tournamentTitle": "RAGE 2020 Spring",
-    "tournamentUserName": "takano",
-    "tournamentDescription": "初心者でやるよ。",
-    "tournamentImage": ""
+    "teamId": "3",
+    "teamName": "suzuki",
+    "teamDescription": "初心者でやるよ。"
   },
   {
-    "tournamentId": "4",
-    "tournamentDate": "2020/02/22",
-    "tournamentTitle": "RAGE 2020 Spring",
-    "tournamentUserName": "ito",
-    "tournamentDescription": "初心者でやるよ。",
-    "tournamentImage": ""
+    "teamId": "4",
+    "teamName": "inoue",
+    "teamDescription": "初心者でやるよ。"
   },
   {
-    "tournamentId": "5",
-    "tournamentDate": "2020/02/22",
-    "tournamentTitle": "RAGE 2020 Spring",
-    "tournamentUserName": "kato",
-    "tournamentDescription": "初心者でやるよ。",
-    "tournamentImage": ""
+    "teamId": "5",
+    "teamName": "yoshimura",
+    "teamDescription": "初心者でやるよ。"
   },
   {
-    "tournamentId": "6",
-    "tournamentDate": "2020/02/22",
-    "tournamentTitle": "RAGE 2020 Spring",
-    "tournamentUserName": "ando",
-    "tournamentDescription": "初心者でやるよ。",
-    "tournamentImage": ""
+    "teamId": "6",
+    "teamName": "yamazaki",
+    "teamDescription": "初心者でやるよ。"
   }
 ]
