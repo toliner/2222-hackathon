@@ -80,6 +80,53 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     media: {
       padding: 0
+    },
+    vertical: {
+      border: "solid #666666",
+      borderWidth: "1px 1px 1px 0px",
+      position: "absolute"
+    },
+    vertical1: {
+      top: 50,
+      width: 95,
+      height: 50,
+      left: 150
+    },
+    vertical2: {
+      top: 170,
+      width: 95,
+      left: 150,
+      height: 50
+    },
+    vertical3: {
+      top: 285,
+      width: 95,
+      height: 50,
+      left: 150
+    },
+    vertical4: {
+      top: 405,
+      width: 95,
+      height: 50,
+      left: 150
+    },
+    vertical5: {
+      top: 100,
+      width: 100,
+      height: 100,
+      left: 330
+    },
+    vertical6: {
+      top: 310,
+      width: 100,
+      height: 100,
+      left: 330
+    },
+    vertical7: {
+      top: 170,
+      width: 70,
+      height: 170,
+      right: 150
     }
   })
 );
@@ -165,6 +212,18 @@ export const TournamentDetail = () => {
         <Grid item xs={3} className={classes.bg} />
         <Grid xs={6} className={classes.paper}>
           <Grid item xs={12} className={classes.tournament}>
+            <div className={classes.vertical1 + " " + classes.vertical}>
+              <table />
+            </div>
+            <div className={classes.vertical2 + " " + classes.vertical}>
+              <table />
+            </div>
+            <div className={classes.vertical3 + " " + classes.vertical}>
+              <table />
+            </div>
+            <div className={classes.vertical4 + " " + classes.vertical}>
+              <table />
+            </div>
             <div className={classes.btnGroup8}>
               {buttonList8.map((text, index) => (
                 <Button
@@ -178,6 +237,12 @@ export const TournamentDetail = () => {
                 </Button>
               ))}
             </div>
+            <div className={classes.vertical5 + " " + classes.vertical}>
+              <table />
+            </div>
+            <div className={classes.vertical6 + " " + classes.vertical}>
+              <table />
+            </div>
             <div className={classes.btnGroup4}>
               {buttonList4.map((text, index) => (
                 <Button
@@ -190,6 +255,9 @@ export const TournamentDetail = () => {
                   {text.name}
                 </Button>
               ))}
+            </div>
+            <div className={classes.vertical7 + " " + classes.vertical}>
+              <table />
             </div>
             <div className={classes.btnGroup2}>
               {buttonList2.map((text, index) => (
@@ -222,7 +290,7 @@ export const TournamentDetail = () => {
             <CardContent>
               <Typography variant="h6">大会名</Typography>
               <Typography variant="subtitle2" color="textSecondary">
-                2020/02/22 10:00 ~{" "}
+                2020/02/22 10:00 ~
               </Typography>
               <CardMedia className={classes.media} image="icon" />
             </CardContent>
