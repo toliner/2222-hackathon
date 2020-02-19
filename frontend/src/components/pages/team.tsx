@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import { Grid } from "@material-ui/core";
 import { TeamListCard } from "../partials/team-list-card";
 import teamData from "../../data/team-data.json";
+import { TeamData } from "../../data/data";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -28,8 +29,20 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-export const Team: React.FC = () => {
+export const Team: React.FC<undefined> = () => {
   const classes = useStyles();
+
+  const Card = () => {
+    if (teamData !== undefined) {
+      teamData.team?.map((data) => {
+        console.log(data);
+        return (
+          <TeamListCard data={data} />
+        )
+      })
+    }
+    return <div>チームがありません</div>
+  }
 
   return (
     <div className={classes.root}>
@@ -38,9 +51,7 @@ export const Team: React.FC = () => {
         <Grid item xs={6} className={classes.paper}>
           <div className={classes.bottom}>
             <Grid item xs={6} className={classes.space}>
-              {teamData.map((data: any) => {
-                <TeamListCard data={data} />;
-              })}
+              <Card />
             </Grid>
             <Grid item xs={6} className={classes.space}></Grid>
           </div>
