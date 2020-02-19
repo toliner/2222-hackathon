@@ -106,12 +106,12 @@ export const Home = () => {
             </div>
             <div className={classes.wrap}>
               <p className={classes.description}>
-                もっと気軽にe-Sportsを楽しめる！
+                もっとe-Sportsを気軽に楽しめる！
               </p>
               <div className={classes.subDescription}>
-                <p>チーム作成・大会作成</p>
+                <p>チーム作成, 大会作成・参加</p>
                 <p>大会トーナメント機能</p>
-                <p>動向が見やすいタイムライン</p>
+                <p>動向を追いやすいタイムライン</p>
               </div>
             </div>
           </div>
