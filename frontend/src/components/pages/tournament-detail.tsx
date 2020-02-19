@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     bg: {
       background: "#4B4B4B",
-      height: 900,
+      height: 900
     },
     bottom: {
       marginBottom: 10,
@@ -87,27 +87,27 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     vertical1: {
       top: 50,
-        height: 50,
+      height: 50,
       width: 135,
-      left: 110,
+      left: 110
     },
     vertical2: {
       top: 170,
-        width: 135,
-        left: 110,
+      width: 135,
+      left: 110,
       height: 50
     },
     vertical3: {
       top: 285,
       height: 50,
-        width: 135,
-        left: 110,
+      width: 135,
+      left: 110
     },
     vertical4: {
       top: 405,
       height: 50,
-        width: 135,
-        left: 110,
+      width: 135,
+      left: 110
     },
     vertical5: {
       top: 100,
