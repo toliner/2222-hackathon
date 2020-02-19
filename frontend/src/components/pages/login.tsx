@@ -71,8 +71,6 @@ export const Login = () => {
       const data = {
         mail: mail
       };
-
-      console.log(`${api_url}/user/login`);
       await fetch(`${api_url}/user/login`,
         {
           mode: "cors",
