@@ -63,7 +63,7 @@ export const Login = () => {
 
   const handleMailFormChange = (e: any) => {
     setMail(e.target.value);
-  }
+  };
 
   const loginWithMail = async () => {
     if (mail !== "" && api_url !== undefined) {
@@ -90,7 +90,7 @@ export const Login = () => {
       })
       .catch(console.error);
     }
-  }
+  };
 
   return (
     <div className={classes.root}>
@@ -103,7 +103,9 @@ export const Login = () => {
             onChange={handleMailFormChange}
           />
           <Button className={classes.btn}>
-            <p className={classes.login} onClick={loginWithMail}>ログイン</p>
+            <p className={classes.login} onClick={loginWithMail}>
+              ログイン
+            </p>
           </Button>
         </form>
       </div>

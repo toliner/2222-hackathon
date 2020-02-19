@@ -1,8 +1,12 @@
 import React from "react";
 import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
-import { Button, Grid } from "@material-ui/core";
-import { TournamentListCard } from "../partials/tournament-list-card";
-
+import {
+  Button,
+  CardContent,
+  CardMedia,
+  Grid,
+  Typography
+} from "@material-ui/core";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -14,13 +18,12 @@ const useStyles = makeStyles((theme: Theme) =>
       alignContent: "center"
     },
     paper: {
-      textAlign: "center",
       background: "#F3F3F3",
-      marignTop: 128,
       position: "relative"
     },
     bg: {
-      background: "#4B4B4B"
+      background: "#4B4B4B",
+      height: 900,
     },
     bottom: {
       marginBottom: 10,
@@ -30,48 +33,100 @@ const useStyles = makeStyles((theme: Theme) =>
       width: 48,
       height: 24,
       padding: 0,
-      fontSize: 10,
+      fontSize: 10
     },
     tournament: {
-      width: 752,
-      height: 536
+      top: 50,
+      position: "relative"
     },
     btnGroup8: {
       display: "grid",
-        position: "absolute",
-        left: "10%"
+      position: "absolute",
+      left: "10%"
     },
     btnGroup4: {
       display: "grid",
-        position: "absolute",
-        left: "35%",
+      position: "absolute",
+      left: "35%"
     },
     btnGroup2: {
       display: "grid",
-        position: "absolute",
-        left: "60%",
+      position: "absolute",
+      left: "60%"
     },
     btnGroup1: {
       display: "grid",
-        position: "absolute",
-        left: "80%",
+      position: "absolute",
+      left: "80%"
     },
-      btn8:{
-          marginTop: 40,
-      },
-      btn4:{
-          marginTop: 90,
-      },
-      btn2:{
-          marginTop: 170,
-      },
-      btn1:{
-          marginTop: 270,
-      },
-      list: {
-        position: "relative",
-          top:570,
-      },
+    btn8: {
+      marginTop: 35
+    },
+    btn4: {
+      marginTop: 83
+    },
+    btn2: {
+      marginTop: 155
+    },
+    btn1: {
+      marginTop: 250
+    },
+    list: {
+      position: "relative",
+      top: 550,
+      background: "#F3F3F3",
+      height: 232
+    },
+    media: {
+      padding: 0
+    },
+    vertical: {
+      border: "solid #666666",
+      borderWidth: "1px 1px 1px 0px",
+      position: "absolute"
+    },
+    vertical1: {
+      top: 50,
+        height: 50,
+      width: 135,
+      left: 110,
+    },
+    vertical2: {
+      top: 170,
+        width: 135,
+        left: 110,
+      height: 50
+    },
+    vertical3: {
+      top: 285,
+      height: 50,
+        width: 135,
+        left: 110,
+    },
+    vertical4: {
+      top: 405,
+      height: 50,
+        width: 135,
+        left: 110,
+    },
+    vertical5: {
+      top: 100,
+      width: 110,
+      height: 100,
+      left: 311
+    },
+    vertical6: {
+      top: 310,
+      width: 110,
+      height: 100,
+      left: 311
+    },
+    vertical7: {
+      top: 170,
+      width: 75,
+      height: 170,
+      right: 143
+    }
   })
 );
 
@@ -156,6 +211,18 @@ export const TournamentDetail = () => {
         <Grid item xs={3} className={classes.bg} />
         <Grid item xs={6} className={classes.paper}>
           <Grid item xs={12} className={classes.tournament}>
+            <div className={classes.vertical1 + " " + classes.vertical}>
+              <table />
+            </div>
+            <div className={classes.vertical2 + " " + classes.vertical}>
+              <table />
+            </div>
+            <div className={classes.vertical3 + " " + classes.vertical}>
+              <table />
+            </div>
+            <div className={classes.vertical4 + " " + classes.vertical}>
+              <table />
+            </div>
             <div className={classes.btnGroup8}>
               {buttonList8.map((text, index) => (
                 <Button
@@ -169,6 +236,12 @@ export const TournamentDetail = () => {
                 </Button>
               ))}
             </div>
+            <div className={classes.vertical5 + " " + classes.vertical}>
+              <table />
+            </div>
+            <div className={classes.vertical6 + " " + classes.vertical}>
+              <table />
+            </div>
             <div className={classes.btnGroup4}>
               {buttonList4.map((text, index) => (
                 <Button
@@ -181,6 +254,9 @@ export const TournamentDetail = () => {
                   {text.name}
                 </Button>
               ))}
+            </div>
+            <div className={classes.vertical7 + " " + classes.vertical}>
+              <table />
             </div>
             <div className={classes.btnGroup2}>
               {buttonList2.map((text, index) => (
@@ -208,10 +284,16 @@ export const TournamentDetail = () => {
                 </Button>
               ))}
             </div>
-              <div className={classes.list}>
-              <TournamentListCard tournamentType="now"  />
-              </div>
           </Grid>
+          <div className={classes.list}>
+            <CardContent>
+              <Typography variant="h6">大会名</Typography>
+              <Typography variant="subtitle2" color="textSecondary">
+                2020/02/22 10:00 ~
+              </Typography>
+              <CardMedia className={classes.media} image="icon" />
+            </CardContent>
+          </div>
         </Grid>
         <Grid item xs={3} className={classes.bg} />
       </Grid>
