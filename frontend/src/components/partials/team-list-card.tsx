@@ -29,17 +29,19 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-export const TeamListCard: React.FC = () => {
+type teamProps = {
+  data: any;
+};
+
+export const TeamListCard: React.FC<teamProps> = ({ data }) => {
   const classes = useStyles();
 
   return (
     <Card className={classes.root}>
       <CardContent>
-        <Typography variant="h6">チーム名</Typography>
+        <Typography variant="h6">{data.teamName}</Typography>
         <CardMedia className={classes.media} image="icon" />
-        <Typography variant="body2">
-          勧誘等（ゲームの種類・ランク等）
-        </Typography>
+        <Typography variant="body2">{data.teamDescription}</Typography>
         <Typography className={classes.btn}>
           <Button variant="contained" color="primary">
             加入する
