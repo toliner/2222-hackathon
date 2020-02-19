@@ -3,6 +3,7 @@ import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import { Grid } from "@material-ui/core";
 import { LoginModal } from "../partials/login-modal";
 import { ListCard } from "../partials/list-card";
+import { useSelector } from "react-redux";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -30,7 +31,8 @@ export const Dashboard: React.FC = () => {
 
   // とりあえずローカルステート
   // 後でreduxにする
-  const [isLogin, setIsLogin] = useState(true);
+  const isLogin = useSelector(
+    (state: { isLogin: boolean }) => state.isLogin);
 
   return (
     <div className={classes.root}>
