@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     bg: {
       background: "#4B4B4B",
-      height: "100vw"
+      height: 900,
     },
     bottom: {
       marginBottom: 10,
@@ -87,45 +87,45 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     vertical1: {
       top: 50,
-      width: 95,
-      height: 50,
-      left: 150
+        height: 50,
+      width: 135,
+      left: 110,
     },
     vertical2: {
       top: 170,
-      width: 95,
-      left: 150,
+        width: 135,
+        left: 110,
       height: 50
     },
     vertical3: {
       top: 285,
-      width: 95,
       height: 50,
-      left: 150
+        width: 135,
+        left: 110,
     },
     vertical4: {
       top: 405,
-      width: 95,
       height: 50,
-      left: 150
+        width: 135,
+        left: 110,
     },
     vertical5: {
       top: 100,
-      width: 100,
+      width: 110,
       height: 100,
-      left: 330
+      left: 311
     },
     vertical6: {
       top: 310,
-      width: 100,
+      width: 110,
       height: 100,
-      left: 330
+      left: 311
     },
     vertical7: {
       top: 170,
-      width: 70,
+      width: 75,
       height: 170,
-      right: 150
+      right: 143
     }
   })
 );
@@ -209,7 +209,7 @@ export const TournamentDetail = () => {
     <div className={classes.root}>
       <Grid container spacing={3}>
         <Grid item xs={3} className={classes.bg} />
-        <Grid xs={6} className={classes.paper}>
+        <Grid item xs={6} className={classes.paper}>
           <Grid item xs={12} className={classes.tournament}>
             <div className={classes.vertical1 + " " + classes.vertical}>
               <table />
