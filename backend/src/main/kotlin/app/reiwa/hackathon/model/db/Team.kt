@@ -15,7 +15,7 @@ object Teams : UUIDTable() {
 object TeamMembers : UUIDTable() {
     val team = reference("team", Teams)
     val user = reference("user", Users)
-    val role = enumeration("role", MemberRole::class)
+    val role = enumeration("role", MemberRole::class).default(MemberRole.MEMBER)
 }
 
 class Team(id: EntityID<UUID>) : UUIDEntity(id) {
