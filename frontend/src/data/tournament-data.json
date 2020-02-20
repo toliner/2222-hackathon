@@ -1,5 +1,7 @@
-[
-  {
+{
+  "tournament":
+  [
+    {
     "tournamentId": "1",
     "tournamentDate": "2020/02/22",
     "tournamentTitle": "RAGE 2020 Spring",
@@ -47,4 +49,5 @@
     "tournamentDescription": "初心者でやるよ。",
     "tournamentImage": ""
   }
-]
+  ]
+}
