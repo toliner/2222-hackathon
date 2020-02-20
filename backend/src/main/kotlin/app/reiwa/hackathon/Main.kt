@@ -5,6 +5,7 @@ import app.reiwa.hackathon.model.UserLoginSession
 import app.reiwa.hackathon.model.db.UserEmailVerifications
 import app.reiwa.hackathon.model.db.UserProfiles
 import app.reiwa.hackathon.model.db.Users
+import app.reiwa.hackathon.route.teamRoute
 import app.reiwa.hackathon.route.userRoute
 import com.zaxxer.hikari.HikariConfig
 import com.zaxxer.hikari.HikariDataSource
@@ -59,8 +60,10 @@ fun Application.mainModule() {
     }
     install(CORS) {
         method(HttpMethod.Options)
+        method(HttpMethod.Post)
+        method(HttpMethod.Get)
         anyHost()
-        headers.addAll(listOf("authorization", "crossdomain", "x-csrf-token"))
+        headers.addAll(listOf("authorization", "crossdomain", "x-csrf-token", "X-2222AccessToken"))
         allowCredentials = true
         allowNonSimpleContentTypes = true
         exposeHeader("*")
@@ -97,6 +100,7 @@ fun Application.mainModule() {
         }
         route("/api") {
             userRoute()
+            teamRoute()
         }
     }
 }

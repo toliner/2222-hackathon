@@ -90,6 +90,8 @@ private fun Route.registerAndLogin() {
                 appendln("http://2222.reiwa.app/api/user/verification?token=$token")
             }))
             context.respond(HttpStatusCode.OK)
+        } else {
+            context.respondError("Invalid mail address")
         }
     }
 
@@ -159,7 +161,7 @@ private fun Route.userProfile() {
                 User.findById(userId)?.profile?.singleOrNull()?.asData()
             }
             if (profile == null) {
-                context.respondError("No such user")
+                context.respond(HttpStatusCode.NotFound)
                 return@get
             }
             context.respondJson {
@@ -170,8 +172,8 @@ private fun Route.userProfile() {
 }
 
 
-suspend fun ApplicationCall.respondError(message: String) {
-    respondJson(HttpStatusCode.BadRequest) {
+suspend fun ApplicationCall.respondError(message: String, statusCode: HttpStatusCode = HttpStatusCode.BadRequest) {
+    respondJson(statusCode) {
         """{"error":"$message"}"""
     }
 }

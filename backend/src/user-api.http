@@ -3,17 +3,64 @@ GET http://localhost:8080/debug/application/ktor/shutdown
 
 ###
 #Register User
-POST http://api.2222.reiwa.app/api/user/register
+POST https://api.2222.reiwa.app/api/user/register
 Content-Type: application/json
 
 {
   "name": "toliner",
-  "mail": "test+2222@toliner.dev"
+  "mail": "test+2222.0218.1@toliner.dev"
+}
+
+###
+#Register User
+POST http://localhost:8080/api/user/register
+Content-Type: application/json
+
+{
+  "name": "toliner",
+  "mail": "test+2222.0218.1@toliner.dev"
 }
 
 ###
 
+#Login
+POST https://api.2222.reiwa.app/api/user/login
+Content-Type: application/json
+
+{
+  "mail": "test+2222.0218.1@toliner.dev"
+}
+
+###
+
+
 # Verify User
-GET http://api.2222.reiwa.app/api/user/verification?token=410cf04e-535a-4b56-b07d-32943294c696
+GET https://api.2222.reiwa.app/api/user/verification?token=7c50418b-7a24-468f-a223-ae9c21429b3e
+
+###
+
+GET http://localhost:8080/api/user/profile
+X-2222AccessToken: MjI4YmM1MDAtZjk5OS00NjE2LTg3ZjYtZjNkZDI4ZWJkNjRk
+
+###
+
+POST http://localhost:8080/api/user/profile
+X-2222AccessToken: MjI4YmM1MDAtZjk5OS00NjE2LTg3ZjYtZjNkZDI4ZWJkNjRk
+Content-Type: application/json; charset=UTF-8
+
+{
+  "bio": "owner"
+}
+
+###
+OPTIONS http://localhost:8080/api/user/login
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:71.0) Gecko/20100101 Firefox/71.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-us,en;q=0.5
+Accept-Encoding: gzip,deflate
+Connection: keep-alive
+Origin: http://foo.example.com
+Access-Control-Request-Method: POST
+Access-Control-Request-Headers: Content-Type
 
 ###
