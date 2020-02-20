@@ -1,10 +1,10 @@
 import React from "react";
-import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
-import { Grid } from "@material-ui/core";
-import { TournamentListCard } from "../partials/tournament-list-card";
+import { createStyles, makeStyles } from "@material-ui/core/styles";
+import { Button, Card, CardContent, CardMedia, Grid } from "@material-ui/core";
 import Typography from "@material-ui/core/Typography";
+import tournamentData from "../../data/tournament-data.json";
 
-const useStyles = makeStyles((theme: Theme) =>
+const useStyles = makeStyles(() =>
   createStyles({
     root: {
       flexGrow: 1
@@ -28,6 +28,29 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     left: {
       marginLeft: 10
+    },
+    top: {
+      background: "#E1E1E1",
+      textAlign: "left",
+      display: "inline-block",
+      width: 688,
+      height: 424
+    },
+    card: {
+      background: "#E1E1E1",
+      textAlign: "left",
+      margin: 10,
+      display: "inline-block",
+      width: 208,
+      height: 248
+    },
+    media: {
+      width: 496,
+      height: 312
+    },
+    btn: {
+      textAlign: "center",
+      marginTop: 20
     }
   })
 );
@@ -46,35 +69,47 @@ export const Tournament: React.FC = () => {
             </Typography>
           </Grid>
           <Grid item xs={12} className={classes.space}>
-            <TournamentListCard tournamentType="now" />
+            {tournamentData.tournament?.map(data => (
+              <Card className={classes.top}>
+                <CardContent>
+                  <Typography variant="h6">{data.tournamentTitle}</Typography>
+                  <CardMedia
+                    className={classes.media}
+                    image={data.tournamentImage}
+                  />
+                  <Typography variant="subtitle2" color="textSecondary">
+                    {data.tournamentDate}
+                  </Typography>
+                </CardContent>
+              </Card>
+            ))}
           </Grid>
-          <Grid item xs={12} className={classes.left}>
-            <Typography variant="subtitle1" align="left" color="textSecondary">
-              開催前
+          <Grid item xs={12} className={classes.space}>
+            <Typography variant="h5" align="left">
+              開催前の大会
             </Typography>
           </Grid>
-          <div className={classes.bottom}>
-            <Grid item xs={4} className={classes.space}>
-              <TournamentListCard tournamentType="yet" />
-            </Grid>
-            <Grid item xs={4} className={classes.space}>
-              <TournamentListCard tournamentType="yet" />
-            </Grid>
-            <Grid item xs={4} className={classes.space}>
-              <TournamentListCard tournamentType="yet" />
-            </Grid>
-          </div>
-          <div className={classes.bottom}>
-            <Grid item xs={4} className={classes.space}>
-              <TournamentListCard tournamentType="yet" />
-            </Grid>
-            <Grid item xs={4} className={classes.space}>
-              <TournamentListCard tournamentType="yet" />
-            </Grid>
-            <Grid item xs={4} className={classes.space}>
-              <TournamentListCard tournamentType="yet" />
-            </Grid>
-          </div>
+          <Grid item xs={12} className={classes.space}>
+            {tournamentData.tournament?.map(data => (
+              <Card className={classes.card}>
+                <CardContent>
+                  <Typography variant="h6">{data.tournamentTitle}</Typography>
+                  <Typography variant="subtitle2" color="textSecondary">
+                    {data.tournamentDate}
+                  </Typography>
+                  <CardMedia
+                    className={classes.media}
+                    image={data.tournamentImage}
+                  />
+                  <Typography className={classes.btn}>
+                    <Button variant="contained" color="primary">
+                      加入する
+                    </Button>
+                  </Typography>
+                </CardContent>
+              </Card>
+            ))}
+          </Grid>
         </Grid>
         <Grid item xs={3} className={classes.bg} />
       </Grid>

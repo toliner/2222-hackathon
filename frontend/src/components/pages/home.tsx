@@ -118,7 +118,12 @@ export const Home = () => {
           <div className={classes.paper}>
             <div className={classes.imageWrap}>
               <VFXProvider>
-                <VFXImg src={logo} alt="logo" shader="rgbShift" className={classes.logo} />
+                <VFXImg
+                  src={logo}
+                  alt="logo"
+                  shader="rgbShift"
+                  className={classes.logo}
+                />
               </VFXProvider>
             </div>
             <Typography>

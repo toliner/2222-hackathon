@@ -1,0 +1,35 @@
+{
+  "team": 
+  [
+    {
+      "teamId": "1",
+      "teamName": "tanaka",
+      "teamDescription": "初心者でやるよ。"
+    },
+    {
+      "teamId": "2",
+      "teamName": "sato",
+      "teamDescription": "初心者でやるよ。"
+    },
+    {
+      "teamId": "3",
+      "teamName": "suzuki",
+      "teamDescription": "初心者でやるよ。"
+    },
+    {
+      "teamId": "4",
+      "teamName": "inoue",
+      "teamDescription": "初心者でやるよ。"
+    },
+    {
+      "teamId": "5",
+      "teamName": "yoshimura",
+      "teamDescription": "初心者でやるよ。"
+    },
+    {
+      "teamId": "6",
+      "teamName": "yamazaki",
+      "teamDescription": "初心者でやるよ。"
+    }
+  ]
+}
