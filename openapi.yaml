@@ -4,16 +4,17 @@ info:
   description: API description in Markdown.
   version: 1.0.0
 servers:
-  - url: 'https://api.example.com'
+  - url: 'https://api.2222.reiwa.app/api'
 tags:
   - name: user
     description: ユーザー関係
+  - name: team
+    description: チーム関係
 
 paths:
   /user/register:
     post:
-      summary: 新規ユーザーの作成.
-      description: ""
+      summary: 新規ユーザーの作成
       tags:
         - user
       requestBody:
@@ -29,93 +30,291 @@ paths:
                   type: string
                   format: email
       responses:
-        '200':
+        200:
           description: 成功。メール認証を行う。
+        400:
+          description: メールアドレスが不正。
 
-  /user/varification:
+  /user/login:
+    post:
+      summary: ユーザーのログイン
+      tags:
+        - user
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                mail:
+                  type: string
+                  format: email
+      responses:
+        200:
+          description: ログインリクエスト成功。メール認証を行う。
+        400:
+          description: 該当するメールアドレスのアカウントが存在しない。
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /user/verification:
     get:
-      summary: 新規登録ユーザーのe-mail認証
-      description: ""
+      summary: メールによるユーザー認証を完了させる
       tags:
         - user
       parameters:
         - name: token
           in: query
-          description: "サーバーで生成され、メールで送信されたトークン"
           required: true
           schema:
             type: string
             format: uuid
       responses:
         200:
-          description: 成功。
+          description: 認証成功。
+          headers:
+            X-2222-AccessToken:
+              required: true
+              description: アカウントへのアクセストークン。これを用いることで要認証なAPIにアクセスできる。
         400:
-          description:  トークンが不正
+          description: 認証失敗。トークンが不正。
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
 
-  /user/login/oauth/{service}:
+  /user/profile:
     get:
-      summary: OAuthによる連携ログイン
-      operationId: login-oauth
+      summary: ログインしているユーザー自身のプロフィールを取得
       tags:
         - user
       parameters:
-        - name: service
-          in: path
-          description: 連携対象のサービス
+        - name: X-2222AccessToken
+          in: header
           required: true
           schema:
             type: string
       responses:
+        200:
+          description: 取得成功。プロフィールのデータを返す
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserProfile'
         400:
-          description: serviceが不正であった場合
-
-  /user/login/email:
-    get:
-      summary: メールアドレスからのマジックリングによるログイン
-      operationId: login-email
+          description: 認証失敗
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    post:
+      summary: ログインしているユーザーのプロフィールを更新
       tags:
         - user
+      parameters:
+        - $ref: '#/components/parameters/X-2222-AccessToken'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                bio:
+                  type: string
+      responses:
+        200:
+          description: 更新成功。更新後のプロフィールのデータを返す
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserProfile'
+        400:
+          description: 認証失敗。もしくはプロフィールが制約に従っていない。
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /user/profile/{userId}:
+    get:
+      summary: 特定のユーザーのプロフィールを取得
+      tags:
+        - user
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: 取得成功。対象ユーザーのプロフィールデータを返す
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserProfile'
+        404:
+          description: ユーザーが存在しない。
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /team:
+    get:
+      summary: チームを取得
+      tags:
+        - team
       parameters:
         - name: id
           in: query
-          description: ログインするユーザーのID
-          required: true
+          schema:
+            type: string
+        - name: name
+          in: query
           schema:
             type: string
       responses:
         200:
-          description: メールの送信に成功
-
-  /users/{id}:
-    get:
-      summary: ユーザー情報の取得
-      operationId: get-user-info
-      tags:
-        - user
-      parameters:
-        - name: id
-          in: path
-          description: 取得するユーザーのID
-          required: true
-          schema:
-            type: string
-      responses:
-        200:
-          description: ユーザーが存在する
+          description: 取得成功。対象のチームを返す
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TeamData'
         404:
-          description: ユーザーが存在しない
+          description: チームが存在しない。
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /team/create:
+    post:
+      summary: チームを作成
+      tags:
+        - team
+      parameters:
+        - $ref: '#/components/parameters/X-2222-AccessToken'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                bio:
+                  type: string
+      responses:
+        200:
+          description: チーム作成成功。
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TeamData'
+
+  /team/invite:
+    post:
+      summary: メンバーをチームに招待
+      tags:
+        - team
+      parameters:
+        - $ref: '#/components/parameters/X-2222-AccessToken'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                team:
+                  type: string
+                  format: uuid
+                user:
+                  type: string
+                  format: uuid
+      responses:
+        200:
+          description: メンバーの招待に成功
+        400:
+          description: 認証に失敗。もしくは招待者がリーダーではない
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /team/leave:
+    post:
+      summary: チームを脱退
+      tags:
+        - team
+      parameters:
+        - $ref: '#/components/parameters/X-2222-AccessToken'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                team:
+                  type: string
+                  format: uuid
+      responses:
+        200:
+          description: チームの脱退に成功
+        400:
+          description: 認証に失敗。
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
 
 components:
+  headers:
+    X-2222-AccessToken:
+      schema:
+        type: string
+      description: ログインユーザーのアクセストークン
+  parameters:
+    X-2222-AccessToken:
+      schema:
+        type: string
+      in: header
+      required: true
+      name: X-2222-AccessToken
   schemas:
+    ErrorResponse:
+      description: エラーが出たときのレスポンス
+      type: object
+      properties:
+        error:
+          type: string
+          description: エラーの内容
     UserProfile:
       type: object
       properties:
-        uuid:
-          type: string
-          format: uuid
         id:
           type: string
+          format: uuid
         name:
           type: string
         bio:
           type: string
+    TeamMember:
+      type: object
+      properties:
+        user:
+          $ref: '#/components/schemas/UserProfile'
+        role:
+          type: string
+          enum: [MEMBER,SUB_LEADER,LEADER,MANAGER,COACH]
+    TeamData:
+      type: object
+      properties:
+        name:
+          type: string
+        bio:
+          type: string
+        members:
+          type: array
+          items:
+            $ref: '#/components/schemas/TeamMember'
