@@ -172,8 +172,8 @@ private fun Route.userProfile() {
 }
 
 
-suspend fun ApplicationCall.respondError(message: String) {
-    respondJson(HttpStatusCode.BadRequest) {
+suspend fun ApplicationCall.respondError(message: String, statusCode: HttpStatusCode = HttpStatusCode.BadRequest) {
+    respondJson(statusCode) {
         """{"error":"$message"}"""
     }
 }

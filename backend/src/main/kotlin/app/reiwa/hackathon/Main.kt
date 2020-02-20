@@ -5,6 +5,7 @@ import app.reiwa.hackathon.model.UserLoginSession
 import app.reiwa.hackathon.model.db.UserEmailVerifications
 import app.reiwa.hackathon.model.db.UserProfiles
 import app.reiwa.hackathon.model.db.Users
+import app.reiwa.hackathon.route.teamRoute
 import app.reiwa.hackathon.route.userRoute
 import com.zaxxer.hikari.HikariConfig
 import com.zaxxer.hikari.HikariDataSource
@@ -99,6 +100,7 @@ fun Application.mainModule() {
         }
         route("/api") {
             userRoute()
+            teamRoute()
         }
     }
 }
