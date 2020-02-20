@@ -60,20 +60,26 @@ const useStyles = makeStyles((theme: Theme) =>
 export const Login = () => {
   const classes = useStyles();
   const [mail, setMail] = useState("");
+  const [name, setName] = useState("");
 
   const handleMailFormChange = (e: any) => {
     setMail(e.target.value);
   };
 
+  const handleNameFormChange = (e: any) => {
+    setName(e.target.value);
+  }
+
   const loginWithMail = async () => {
     if (mail !== "" && api_url !== undefined) {
       console.log(mail)
       const data = {
-        mail: mail
+        mail: mail,
+        name: name
       };
 
       console.log(`${api_url}/user/login`);
-      await fetch(`${api_url}/user/login`,
+      await fetch(`${api_url}/user/register`,
         {
           mode: "cors",
           method: "POST",
@@ -100,7 +106,15 @@ export const Login = () => {
             InputProps={{
               className: classes.input
             }}
+            defaultValue="Name"
             onChange={handleMailFormChange}
+          />
+          <TextField
+            InputProps={{
+              className: classes.input
+            }}
+            defaultValue="Mail"
+            onChange={handleNameFormChange}
           />
           <Button className={classes.btn}>
             <p className={classes.login} onClick={loginWithMail}>
