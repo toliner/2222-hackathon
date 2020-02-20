@@ -57,7 +57,7 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-export const Login = () => {
+export const Login: React.FC = () => {
   const classes = useStyles();
   const [mail, setMail] = useState("");
   const [name, setName] = useState("");
@@ -72,7 +72,7 @@ export const Login = () => {
 
   const loginWithMail = async () => {
     if (mail !== "" && api_url !== undefined) {
-      console.log(mail)
+      console.log(mail);
       const data = {
         mail: mail,
         name: name
@@ -88,13 +88,12 @@ export const Login = () => {
             "Accept": "application/json",
             "Content-Type": "application/json;charset=UTF-8"
           }
-        }
-      )
-      .then((res: any) => {
-        console.log({res});
-        if (res.status === 200) window.location.href = "confirm";
       })
-      .catch(console.error);
+        .then((res: any) = {
+          console.log({ res });
+          if (res.status === 200) window.location.href = "confirm";
+        })
+        .catch(console.error);
     }
   };
 
