@@ -79,8 +79,7 @@ export const Login: React.FC = () => {
       };
 
       console.log(`${api_url}/user/login`);
-      await fetch(`${api_url}/user/register`,
-        {
+      await fetch(`${api_url}/user/register`, {
           mode: "cors",
           method: "POST",
           body: JSON.stringify(data),
@@ -89,7 +88,7 @@ export const Login: React.FC = () => {
             "Content-Type": "application/json;charset=UTF-8"
           }
       })
-        .then((res: any) = {
+        .then((res: any) => {
           console.log({ res });
           if (res.status === 200) window.location.href = "confirm";
         })
