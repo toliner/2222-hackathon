@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     paper: {
       margin: "auto",
-      height: 168,
+      height: 224,
       width: 366,
       position: "relative",
       backgroundColor: "rgba(58, 58, 58, 1)",

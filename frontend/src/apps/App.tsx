@@ -8,14 +8,10 @@ import { LoginModal } from "../components/partials/login-modal";
 import "./App.css";
 
 const App = () => {
-  // 認証済みかどうかのロジック
-  // 認証されていたら /dashboard にリダイレクト
-  // されていなかったらこのまま
-
-  // ログインされていない場合loginへ
   // use login state
   const isLogin = useSelector(
     (state: { isLogin: boolean }) => state.isLogin);
+
   const RequireLoginModal = () => {
     const location = useLocation();
     const path = location.pathname;
