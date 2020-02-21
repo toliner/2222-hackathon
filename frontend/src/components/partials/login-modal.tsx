@@ -3,7 +3,6 @@ import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
 import Modal from "@material-ui/core/Modal";
 import Fade from "@material-ui/core/Fade";
 import { Button } from "@material-ui/core";
-import { useUpdateIsLogin } from "../../store/Actions";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -42,9 +41,6 @@ export const LoginModal = () => {
   const [open, setOpen] = React.useState(true);
 
   const handleClose = () => setOpen(false);
-
-  // ues reducer
-  const updateIsLogin = useUpdateIsLogin();
 
   const linkToLogin = () => {
     window.location.href = "login";
