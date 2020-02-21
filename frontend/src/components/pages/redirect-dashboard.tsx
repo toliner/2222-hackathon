@@ -31,7 +31,9 @@ export const RedirectDashboard = () => {
           console.log({ res });
           if (res.status === 200) {
             updateIsLogin("login");
-            window.location.href = "dashboard";
+            setTimeout(() => {
+              window.location.href = "dashboard";
+            }, 2000);
           }
         })
         .catch(console.error);
