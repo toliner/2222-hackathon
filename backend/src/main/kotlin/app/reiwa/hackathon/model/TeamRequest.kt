@@ -22,3 +22,8 @@ data class TeamInviteRequest(
 data class TeamLeaveRequest(
     val team: UUID
 )
+
+@Serializable
+data class TeamJoinRequest(
+    val team: UUID
+)
