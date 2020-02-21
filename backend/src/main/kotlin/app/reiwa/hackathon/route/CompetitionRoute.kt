@@ -16,6 +16,7 @@ import kotlinx.serialization.UnstableDefault
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.list
 import org.jetbrains.exposed.sql.transactions.transaction
+import java.util.*
 
 fun Route.competitionRoute() {
     route("/competition") {
@@ -27,6 +28,9 @@ fun Route.competitionRoute() {
         }
         get("/ls") {
             ls()
+        }
+        get {
+            getCompetition()
         }
     }
 }
@@ -104,5 +108,24 @@ private suspend fun PipelineContext<Unit, ApplicationCall>.ls() {
                 Competition.all().map { it.asData() }
             }
         )
+    }
+}
+
+@UseExperimental(UnstableDefault::class)
+private suspend fun PipelineContext<Unit, ApplicationCall>.getCompetition() {
+    val competitionId = context.parameters["id"]
+    if (competitionId == null) {
+        context.respondError("Url parameter \"id\" is required")
+        return
+    }
+    val competition = transaction {
+        Competition.findById(UUID.fromString(competitionId))?.asData()
+    }
+    if (competition == null) {
+        context.respondError("Invalid competition id")
+        return
+    }
+    context.respondJson {
+        Json.stringify(CompetitionData.serializer(), competition)
     }
 }
