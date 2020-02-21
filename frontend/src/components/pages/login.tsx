@@ -1,11 +1,9 @@
 import React, { useState } from "react";
 import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
 import { Button, TextField } from "@material-ui/core";
-// import fetch from "node-fetch";
+import { useSelector } from "react-redux";
 
 const fetch = window.fetch;
-
-const api_url = process.env.REACT_APP_API_URL;
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -18,7 +16,7 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     paper: {
       margin: "auto",
-      height: 168,
+      height: 224,
       width: 366,
       position: "relative",
       backgroundColor: "rgba(58, 58, 58, 1)",
@@ -62,6 +60,9 @@ export const Login: React.FC = () => {
   const [mail, setMail] = useState("");
   const [name, setName] = useState("");
 
+  // ues api_url state
+  const api_url = useSelector((state: { APIURL: string }) => state.APIURL);
+
   const handleMailFormChange = (e: any) => {
     setMail(e.target.value);
   };
@@ -78,7 +79,6 @@ export const Login: React.FC = () => {
         name: name
       };
 
-      console.log(`${api_url}/user/login`);
       await fetch(`${api_url}/user/register`, {
         mode: "cors",
         method: "POST",
@@ -104,15 +104,15 @@ export const Login: React.FC = () => {
             InputProps={{
               className: classes.input
             }}
-            defaultValue="Name"
-            onChange={handleMailFormChange}
+            defaultValue="name"
+            onChange={handleNameFormChange}
           />
           <TextField
             InputProps={{
               className: classes.input
             }}
-            defaultValue="Mail"
-            onChange={handleNameFormChange}
+            defaultValue="mail"
+            onChange={handleMailFormChange}
           />
           <Button className={classes.btn}>
             <p className={classes.login} onClick={loginWithMail}>

@@ -42,6 +42,10 @@ export const LoginModal = () => {
 
   const handleClose = () => setOpen(false);
 
+  const linkToLogin = () => {
+    window.location.href = "login";
+  };
+
   return (
     <div>
       <Modal
@@ -53,7 +57,9 @@ export const LoginModal = () => {
         <Fade in={open}>
           <div className={classes.paper}>
             <Button className={classes.btn}>
-              <p className={classes.login}>メールでログイン</p>
+              <p className={classes.login} onClick={linkToLogin}>
+                メールでログイン
+              </p>
             </Button>
           </div>
         </Fade>

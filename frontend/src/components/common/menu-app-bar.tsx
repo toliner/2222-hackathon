@@ -15,6 +15,7 @@ import ListItemText from "@material-ui/core/ListItemText";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import { BrowserRouter as Router, useHistory } from "react-router-dom";
 import logo from "../../static/logo.png";
+import { useUpdateIsLogin } from "../../store/Actions";
 
 const drawerWidth = 240;
 
@@ -95,6 +96,9 @@ export const MenuAppBar: React.FC = () => {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const open = Boolean(anchorEl);
 
+  // use reducer
+  const updateIsLogin = useUpdateIsLogin();
+
   const handleMenu = (event: React.MouseEvent<HTMLElement>) =>
     setAnchorEl(event.currentTarget);
   const handleClose = () => setAnchorEl(null);
@@ -109,7 +113,7 @@ export const MenuAppBar: React.FC = () => {
     };
     const logout = () => {
       // 状態更新してログアウト扱いにする
-
+      updateIsLogin("logout");
       // ログインページ送り
       linkTo("/login");
     };
