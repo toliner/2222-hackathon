@@ -32,7 +32,7 @@ export const RedirectDashboard = () => {
           if (res.status === 200) {
             updateIsLogin("login");
             setTimeout(() => {
-              window.location.href = "dashboard";
+              window.location.href = "https://2222.reiwa.app/dashboard";
             }, 2000);
           }
         })
