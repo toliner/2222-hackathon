@@ -1,5 +1,6 @@
 package app.reiwa.hackathon.model.db
 
+import app.reiwa.hackathon.model.UserProfileData
 import kotlinx.serialization.Serializable
 import org.jetbrains.exposed.dao.UUIDEntity
 import org.jetbrains.exposed.dao.UUIDEntityClass
@@ -40,7 +41,7 @@ class TeamMember(id: EntityID<UUID>) : UUIDEntity(id) {
     var role by TeamMembers.role
 
     fun asData(): TeamMemberData = TeamMemberData(
-        user.asData(),
+        user.profile.single().asData(),
         role
     )
 }
@@ -54,7 +55,7 @@ data class TeamData(
 
 @Serializable
 data class TeamMemberData(
-    val user: UserData,
+    val user: UserProfileData,
     val role: MemberRole
 )
 
