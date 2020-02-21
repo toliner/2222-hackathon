@@ -7,7 +7,7 @@ import tournamentData from "../../data/tournament-data.json";
 const useStyles = makeStyles(() =>
   createStyles({
     root: {
-      flexGrow: 1
+      flexGrow: 1,
     },
     paper: {
       textAlign: "center",
@@ -46,12 +46,28 @@ const useStyles = makeStyles(() =>
     },
     media: {
       width: 496,
-      height: 312
+      height: 312,
+        margin: "auto",
+        marginTop: 10,
+        marginBottom: 10,
     },
     btn: {
       textAlign: "center",
       marginTop: 20
-    }
+    },
+      cardMedia: {
+          width: 176,
+          height: 120,
+          margin: "auto",
+          marginTop: 10,
+          marginBottom: 10,
+      },
+      title: {
+          fontSize: "0.9rem",
+      },
+      date: {
+        fontSize: 1,
+      }
   })
 );
 
@@ -93,12 +109,12 @@ export const Tournament: React.FC = () => {
             {tournamentData.tournament?.map(data => (
               <Card className={classes.card}>
                 <CardContent>
-                  <Typography variant="h6">{data.tournamentTitle}</Typography>
-                  <Typography variant="subtitle2" color="textSecondary">
+                  <Typography variant="h6" className={classes.title}>{data.tournamentTitle.substr(0, 11)}...</Typography>
+                  <Typography variant="subtitle2" color="textSecondary" className={classes.date}>
                     {data.tournamentDate}
                   </Typography>
                   <CardMedia
-                    className={classes.media}
+                    className={classes.cardMedia}
                     image={data.tournamentImage}
                   />
                   <Typography className={classes.btn}>

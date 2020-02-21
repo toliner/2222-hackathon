@@ -68,7 +68,7 @@ export const Login: React.FC = () => {
 
   const handleNameFormChange = (e: any) => {
     setName(e.target.value);
-  }
+  };
 
   const loginWithMail = async () => {
     if (mail !== "" && api_url !== undefined) {
@@ -80,13 +80,13 @@ export const Login: React.FC = () => {
 
       console.log(`${api_url}/user/login`);
       await fetch(`${api_url}/user/register`, {
-          mode: "cors",
-          method: "POST",
-          body: JSON.stringify(data),
-          headers: {
-            "Accept": "application/json",
-            "Content-Type": "application/json;charset=UTF-8"
-          }
+        mode: "cors",
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json;charset=UTF-8"
+        }
       })
         .then((res: any) => {
           console.log({ res });
