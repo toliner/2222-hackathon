@@ -10,6 +10,8 @@ tags:
     description: ユーザー関係
   - name: team
     description: チーム関係
+  - name: competition
+    description: 大会関係
 
 paths:
   /user/register:
@@ -268,6 +270,136 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
 
+  /team/join:
+    post:
+      summary: チームに加入
+      tags:
+        - team
+      parameters:
+        - $ref: '#/components/parameters/X-2222-AccessToken'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                team:
+                  type: string
+                  format: uuid
+      responses:
+        200:
+          description: チームへの加入に成功
+        400:
+          description: 認証に失敗。
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /competition:
+    get:
+      summary: 大会の情報を取得
+      tags:
+        - competition
+      parameters:
+        - name: id
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        200:
+          description: 取得成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CompetitionData'
+        400:
+          description: リクエストが不正
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /competiton/ls:
+    get:
+      summary: 大会の一覧を取得
+      tags:
+        - competition
+      responses:
+        200:
+          description: 取得成功
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CompetitionData'
+  /competiton/create:
+    post:
+      summary: 大会を作成
+      tags:
+        - competition
+      parameters:
+        - $ref: '#/components/parameters/X-2222-AccessToken'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                description:
+                  type: string
+                game_type:
+                  type: string
+                  enum: [RAINBOW_SIX,FORNITE,PUYOPUYO_TETRIS,SPLATOON]
+                start_date:
+                  type: string
+                  format: 'date-time'
+      responses:
+        200:
+          description: 大会の作成に成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CompetitionData'
+        400:
+          description: リクエストが不正
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /competiton/join:
+    post:
+      summary: 大会に参加
+      tags:
+        - competition
+      parameters:
+        - $ref: '#/components/parameters/X-2222-AccessToken'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                team:
+                  type: string
+                  format: uuid
+                competition:
+                  type: string
+                  format: uuid
+      responses:
+        200:
+          description: 参加に成功
+        400:
+          description: リクエストが不正
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
 components:
   headers:
     X-2222-AccessToken:
@@ -318,3 +450,22 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/TeamMember'
+    CompetitionData:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        owner:
+          type: string
+          format: uuid
+        game_type:
+          type: string
+          enum: [RAINBOW_SIX,FORNITE,PUYOPUYO_TETRIS,SPLATOON]
+        start_date:
+          type: string
+          format: 'date-time'
+        title:
+          type: string
+        description:
+          type: string
