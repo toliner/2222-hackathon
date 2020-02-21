@@ -67,7 +67,7 @@ export const TeamDetail: React.FC = () => {
             <Grid item xs container direction="column">
               <form noValidate className={classes.form}>
                 <TextField
-                  defaultValue="TeamName"
+                  //defaultValue={state.teamName}
                   InputProps={{
                     className: classes.input,
                     readOnly: true
@@ -81,7 +81,7 @@ export const TeamDetail: React.FC = () => {
                   }}
                 />
                 <TextField
-                  defaultValue="TeamProfile"
+                  //defaultValue={state.teamDescription}
                   multiline
                   rows="6"
                   InputProps={{

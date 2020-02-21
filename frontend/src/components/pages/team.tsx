@@ -59,8 +59,8 @@ export const Team: React.FC<undefined> = () => {
   const classes = useStyles();
 
   const history = useHistory();
-  const linkTo = (path: string) => {
-    history.push(path);
+  const linkTo = (path: string, state: any) => {
+    history.push({ pathname: path, state: state });
     window.location.reload();
   };
 
@@ -76,7 +76,7 @@ export const Team: React.FC<undefined> = () => {
                   <CardContent>
                     <Typography
                       variant="h6"
-                      onClick={() => linkTo(`/team/${data.teamId}`)}
+                      onClick={() => linkTo(`/team/${data.teamId}`, data)}
                     >
                       {data.teamName}
                     </Typography>
