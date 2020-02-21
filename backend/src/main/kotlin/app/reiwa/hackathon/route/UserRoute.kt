@@ -178,6 +178,10 @@ suspend fun ApplicationCall.respondError(message: String, statusCode: HttpStatus
     }
 }
 
+suspend fun ApplicationCall.respondJson(statusCode: HttpStatusCode = HttpStatusCode.OK, text: suspend () -> String) {
+    respondText(ContentType.Application.Utf8Json, statusCode, text)
+}
+
 /**
  * @return Headerから得られたSession情報。存在しなければnull。
  */
@@ -191,8 +195,4 @@ suspend fun PipelineContext<Unit, ApplicationCall>.getAndUpdateLoginSession(): U
     val newSession = session.copy(expiredAt = now.plusDays(1))
     context.sessions.set(newSession)
     return newSession
-}
-
-suspend fun ApplicationCall.respondJson(statusCode: HttpStatusCode = HttpStatusCode.OK, text: suspend () -> String) {
-    respondText(ContentType.Application.Utf8Json, statusCode, text)
 }

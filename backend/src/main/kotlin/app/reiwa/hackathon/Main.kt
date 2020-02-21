@@ -2,9 +2,8 @@ package app.reiwa.hackathon
 
 import app.reiwa.hackathon.model.SettingFile
 import app.reiwa.hackathon.model.UserLoginSession
-import app.reiwa.hackathon.model.db.UserEmailVerifications
-import app.reiwa.hackathon.model.db.UserProfiles
-import app.reiwa.hackathon.model.db.Users
+import app.reiwa.hackathon.model.db.*
+import app.reiwa.hackathon.route.competitionRoute
 import app.reiwa.hackathon.route.teamRoute
 import app.reiwa.hackathon.route.userRoute
 import com.zaxxer.hikari.HikariConfig
@@ -60,8 +59,6 @@ fun Application.mainModule() {
     }
     install(CORS) {
         method(HttpMethod.Options)
-        method(HttpMethod.Post)
-        method(HttpMethod.Get)
         anyHost()
         headers.addAll(listOf("authorization", "crossdomain", "x-csrf-token", "X-2222AccessToken"))
         allowCredentials = true
@@ -87,7 +84,11 @@ fun Application.mainModule() {
             shutDownUrl = globalSetting.shutdownUrl!!
             exitCodeSupplier = {
                 transaction {
-                    SchemaUtils.drop(Users, UserEmailVerifications)
+                    SchemaUtils.drop(
+                        Users, UserEmailVerifications, UserProfiles,
+                        Teams, TeamMembers,
+                        Competitions, CompetitionMembers
+                    )
                 }
                 sessions.clear("X-2222AccessToken")
                 0
@@ -101,6 +102,7 @@ fun Application.mainModule() {
         route("/api") {
             userRoute()
             teamRoute()
+            competitionRoute()
         }
     }
 }
@@ -109,7 +111,9 @@ private fun setupDb() {
     Database.connect(hikari())
     transaction {
         SchemaUtils.create(
-            Users, UserEmailVerifications, UserProfiles
+            Users, UserEmailVerifications, UserProfiles,
+            Teams, TeamMembers,
+            Competitions, CompetitionMembers
         )
     }
 }
