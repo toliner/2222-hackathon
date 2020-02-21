@@ -8,11 +8,13 @@ import io.ktor.http.HttpStatusCode
 import io.ktor.request.receive
 import io.ktor.response.respond
 import io.ktor.routing.Route
+import io.ktor.routing.get
 import io.ktor.routing.post
 import io.ktor.routing.route
 import io.ktor.util.pipeline.PipelineContext
 import kotlinx.serialization.UnstableDefault
 import kotlinx.serialization.json.Json
+import kotlinx.serialization.list
 import org.jetbrains.exposed.sql.transactions.transaction
 
 fun Route.competitionRoute() {
@@ -22,6 +24,9 @@ fun Route.competitionRoute() {
         }
         post("/join") {
             joinCompetition()
+        }
+        get("/ls") {
+            ls()
         }
     }
 }
@@ -88,4 +93,16 @@ private suspend fun PipelineContext<Unit, ApplicationCall>.joinCompetition() {
         }
     }
     context.respond(HttpStatusCode.OK)
+}
+
+@UseExperimental(UnstableDefault::class)
+private suspend fun PipelineContext<Unit, ApplicationCall>.ls() {
+    context.respondJson {
+        Json.stringify(
+            CompetitionData.serializer().list,
+            transaction {
+                Competition.all().map { it.asData() }
+            }
+        )
+    }
 }
