@@ -46,8 +46,12 @@ export const LoginModal = () => {
   // ues reducer
   const updateIsLogin = useUpdateIsLogin();
 
+  const linkToLogin = () => {
+    window.location.href = "login";
+  }
+
   return (
-    <div onClick={() => updateIsLogin("login")}>
+    <div>
       <Modal
         className={classes.modal}
         open={open}
@@ -57,7 +61,12 @@ export const LoginModal = () => {
         <Fade in={open}>
           <div className={classes.paper}>
             <Button className={classes.btn}>
-              <p className={classes.login}>メールでログイン</p>
+              <p 
+                className={classes.login}
+                onClick={linkToLogin}
+              >
+                メールでログイン
+              </p>
             </Button>
           </div>
         </Fade>
