@@ -1,11 +1,12 @@
 package app.reiwa.hackathon.route
 
 import app.reiwa.hackathon.model.CompetitionCreateRequest
-import app.reiwa.hackathon.model.db.Competition
-import app.reiwa.hackathon.model.db.CompetitionData
-import app.reiwa.hackathon.model.db.User
+import app.reiwa.hackathon.model.CompetitionJoinRequest
+import app.reiwa.hackathon.model.db.*
 import io.ktor.application.ApplicationCall
+import io.ktor.http.HttpStatusCode
 import io.ktor.request.receive
+import io.ktor.response.respond
 import io.ktor.routing.Route
 import io.ktor.routing.post
 import io.ktor.routing.route
@@ -18,6 +19,9 @@ fun Route.competitionRoute() {
     route("/competition") {
         post("/create") {
             createCompetition()
+        }
+        post("/join") {
+            joinCompetition()
         }
     }
 }
@@ -53,4 +57,35 @@ private suspend fun PipelineContext<Unit, ApplicationCall>.createCompetition() {
     context.respondJson {
         Json.stringify(CompetitionData.serializer(), competition)
     }
+}
+
+@UseExperimental(UnstableDefault::class)
+private suspend fun PipelineContext<Unit, ApplicationCall>.joinCompetition() {
+    val session = getAndUpdateLoginSession() ?: return
+    val request = context.receive<CompetitionJoinRequest>()
+    val team = transaction {
+        Team.findById(request.team)?.asData()
+    }
+    if (team == null) {
+        context.respondError("Invalid team id")
+        return
+    }
+    if (team.members.singleOrNull { it.user.id == session.id }?.role == MemberRole.LEADER) {
+        context.respondError("Requester must be a leader of the team")
+        return
+    }
+    val competition = transaction {
+        Competition.findById(request.competition)
+    }
+    if (competition == null) {
+        context.respondError("Invalid competition id")
+        return
+    }
+    transaction {
+        CompetitionMember.new {
+            this.competition = competition
+            this.member = Team.findById(request.team)!!
+        }
+    }
+    context.respond(HttpStatusCode.OK)
 }

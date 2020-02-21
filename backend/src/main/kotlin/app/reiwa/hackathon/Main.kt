@@ -87,7 +87,7 @@ fun Application.mainModule() {
                     SchemaUtils.drop(
                         Users, UserEmailVerifications, UserProfiles,
                         Teams, TeamMembers,
-                        Competitions
+                        Competitions, CompetitionMembers
                     )
                 }
                 sessions.clear("X-2222AccessToken")
@@ -113,7 +113,7 @@ private fun setupDb() {
         SchemaUtils.create(
             Users, UserEmailVerifications, UserProfiles,
             Teams, TeamMembers,
-            Competitions
+            Competitions, CompetitionMembers
         )
     }
 }

@@ -23,6 +23,11 @@ object Competitions : UUIDTable() {
     val description = varchar("description", 1000)
 }
 
+object CompetitionMembers : UUIDTable() {
+    val competition = reference("competition", Competitions)
+    val member = reference("member", Teams)
+}
+
 class Competition(id: EntityID<UUID>) : UUIDEntity(id) {
     companion object : UUIDEntityClass<Competition>(Competitions)
 
@@ -32,11 +37,20 @@ class Competition(id: EntityID<UUID>) : UUIDEntity(id) {
     var title by Competitions.title
     var description by Competitions.description
 
+    val members by CompetitionMember referrersOn CompetitionMembers.competition
+
     fun asData(): CompetitionData = CompetitionData(
         id.value,
         owner.id.value,
         gameType, startDate, title, description
     )
+}
+
+class CompetitionMember(id: EntityID<UUID>) : UUIDEntity(id) {
+    companion object : UUIDEntityClass<CompetitionMember>(CompetitionMembers)
+
+    var competition by Competition referencedOn CompetitionMembers.competition
+    var member by Team referencedOn CompetitionMembers.member
 }
 
 @Serializable

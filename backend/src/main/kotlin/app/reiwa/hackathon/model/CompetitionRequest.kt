@@ -10,6 +10,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.UseSerializers
 import java.time.ZonedDateTime
+import java.util.*
 
 @Serializable
 data class CompetitionCreateRequest(
@@ -19,4 +20,10 @@ data class CompetitionCreateRequest(
     val startDate: ZonedDateTime,
     val title: String,
     val description: String
+)
+
+@Serializable
+data class CompetitionJoinRequest(
+    val team: UUID,
+    val competition: UUID
 )
