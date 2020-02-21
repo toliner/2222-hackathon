@@ -11,6 +11,7 @@ import { TeamDetail } from "./pages/team-detail";
 import { CreateTeam } from "./pages/create-team";
 import { Home } from "./pages/home";
 import { Confirm } from "./pages/confirm";
+import { RedirectDashboard } from "./pages/redirect-dashboard";
 
 export const Router: React.SFC = () => {
   return (
@@ -28,6 +29,7 @@ export const Router: React.SFC = () => {
           <Route path="/team/:id" component={TeamDetail} />
           <Route exact path="/create-tournament" component={CreateTournament} />
           <Route exact path="/create-team" component={CreateTeam} />
+          <Route exact path="/api/user/verification/:token" component={RedirectDashboard} />
         </Switch>
       </BrowserRouter>
     </div>

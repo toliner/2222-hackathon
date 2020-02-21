@@ -19,7 +19,7 @@ const App = () => {
   const RequireLoginModal = () => {
     const location = useLocation();
     const path = location.pathname;
-    if (!isLogin && ((path !== "/") && (path !== "/login") && (path !== "/confirm"))) {
+    if (!isLogin && ((path !== "/") && (path !== "/login") && (path !== "/confirm") && !path.match("/api/user/verification"))) {
       return <LoginModal />;
     } else {
       return null;
@@ -30,7 +30,7 @@ const App = () => {
   const MenuBar = () => {
     const location = useLocation();
     const path = location.pathname;
-    if (path === "/" || path === "/login" || path === "/confirm") {
+    if (path === "/" || path === "/login" || path === "/confirm" || path.match("/api/user/verification")) {
       return null;
     } else {
       return <MenuAppBar />;
