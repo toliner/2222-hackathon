@@ -17,9 +17,9 @@ const App = () => {
     if (
       !isLogin &&
       path !== "/" &&
-        path !== "/login" &&
-        path !== "/confirm" &&
-        !path.match("/api/user/")
+      path !== "/login" &&
+      path !== "/confirm" &&
+      !path.match("/api/user/")
     ) {
       return <LoginModal />;
     } else {

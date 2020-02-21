@@ -79,7 +79,6 @@ export const Login: React.FC = () => {
         name: name
       };
 
-      console.log(`${api_url}/user/login`);
       await fetch(`${api_url}/user/register`, {
         mode: "cors",
         method: "POST",
@@ -105,14 +104,14 @@ export const Login: React.FC = () => {
             InputProps={{
               className: classes.input
             }}
-            defaultValue="Name"
+            defaultValue="name"
             onChange={handleMailFormChange}
           />
           <TextField
             InputProps={{
               className: classes.input
             }}
-            defaultValue="Mail"
+            defaultValue="mail"
             onChange={handleNameFormChange}
           />
           <Button className={classes.btn}>
