@@ -1,0 +1,35 @@
+{
+  "information":
+  [
+    {
+      "informationId": "1",
+      "informationName": "【大会情報】TOPANGA CHAMPIONSHIP",
+      "informationDescription": "【ゲームタイトル】ストリートファイターV アーケードエディション【日程】2020年2月8日（土）： オンライン予選2020年2月17日（月）～2月23日（日）： オフライン本戦リーグ2020年3月13日（木）～3月15日（日）： オフライン決勝リーグ"
+    },
+    {
+      "informationId": "2",
+      "informationName": "【大会情報】JCG Shadowverse Open 12th Season Vol.31 - 2Pick大会 グループ予選",
+      "informationDescription": "【ゲームタイトル】シャドウバース 【日程】当選者チェックイン：2月21日（金）17:30〜18:00まで"
+    },
+    {
+      "informationId": "3",
+      "informationName": "【大会情報】JCG Shadowverse Open 12th Season Vol.32 - ローテーション大会 グループ予選",
+      "informationDescription": "【ゲームタイトル】シャドウバース【日程】 2020年2月22日（土）12:30〜13:15"
+    },
+    {
+      "informationId": "4",
+      "informationName": "【大会情報】BANPAKU杯2020 “Match of シャドウバース”決勝 2/22",
+      "informationDescription": "【ゲームタイトル】シャドウバース【日程】2020年2月22日（土）16:00〜17:00"
+    },
+    {
+      "informationId": "5",
+      "informationName": "【大会情報】BANPAKU杯2020 “Match of グランブルーファンタジー ヴァーサス”決勝 2/22",
+      "informationDescription": "【ゲームタイトル】グランブルーファンタジー ヴァーサス【日程】2020年2月22日（土）12:30〜13:15"
+    },
+    {
+      "informationId": "6",
+      "informationName": "【大会情報】『ゼノンザード』東西代表選抜戦",
+      "informationDescription": "【ゲームタイトル】ゼノンザード【日程】東西頂上決戦：2月24日（月・祝）"
+    }
+  ]
+}
