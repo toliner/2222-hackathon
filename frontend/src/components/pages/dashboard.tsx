@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
-import {Card, CardContent, Grid, Typography} from "@material-ui/core";
+import { Card, CardContent, Grid, Typography } from "@material-ui/core";
 import { LoginModal } from "../partials/login-modal";
 import information from "../../data/information.json";
 
@@ -22,11 +22,11 @@ const useStyles = makeStyles((theme: Theme) =>
     bottom: {
       marginBottom: 25
     },
-      card: {
-          background: "#E1E1E1",
-          textAlign: "left",
-          margin: 10,
-      },
+    card: {
+      background: "#E1E1E1",
+      textAlign: "left",
+      margin: 10
+    }
   })
 );
 
@@ -43,14 +43,16 @@ export const Dashboard: React.FC = () => {
         <Grid item xs={3} className={classes.timeLineBg} />
         <Grid item xs={6} className={classes.paper}>
           <div className={classes.bottom}>
-              {information.information?.map(data => (
+            {information.information?.map(data => (
               <Card className={classes.card}>
-                  <CardContent>
-                      <Typography variant="h6">{data.informationName}</Typography>
-                      <Typography variant="body2">{data.informationDescription}</Typography>
-                  </CardContent>
+                <CardContent>
+                  <Typography variant="h6">{data.informationName}</Typography>
+                  <Typography variant="body2">
+                    {data.informationDescription}
+                  </Typography>
+                </CardContent>
               </Card>
-              ))}
+            ))}
           </div>
         </Grid>
         <Grid item xs={3} className={classes.timeLineBg} />

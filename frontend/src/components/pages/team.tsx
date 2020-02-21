@@ -39,14 +39,17 @@ const useStyles = makeStyles(() =>
       display: "inline-block"
     },
     media: {
-      height: 140
+      height: 136,
+      width: 136,
+      margin: "auto"
     },
     title: {
       fontSize: 14
     },
     btn: {
       textAlign: "center",
-      marginTop: 20
+      top: 30,
+      position: "relative"
     }
   })
 );
@@ -65,7 +68,10 @@ export const Team: React.FC<undefined> = () => {
                 <Card className={classes.card}>
                   <CardContent>
                     <Typography variant="h6">{data.teamName}</Typography>
-                    <CardMedia className={classes.media} image="icon" />
+                    <CardMedia
+                      className={classes.media}
+                      image={data.teamImage}
+                    />
                     <Typography variant="body2">
                       {data.teamDescription}
                     </Typography>

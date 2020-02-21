@@ -3,33 +3,33 @@
   [
     {
       "teamId": "1",
-      "teamName": "tanaka",
-      "teamDescription": "初心者でやるよ。"
+      "teamName": "レモン",
+      "teamImage": "team1.png",
+      "teamDescription": "同じクラスの友達で集まりました。"
     },
     {
       "teamId": "2",
-      "teamName": "sato",
-      "teamDescription": "初心者でやるよ。"
+      "teamName": "オレンジ",
+      "teamImage": "team2.png",
+      "teamDescription": "初心者ばかりですが、たのしく参加できればと思います。よろしくお願いします。"
     },
     {
       "teamId": "3",
-      "teamName": "suzuki",
-      "teamDescription": "初心者でやるよ。"
+      "teamName": "イチゴ",
+      "teamImage": "team3.png",
+      "teamDescription": "まずは1勝できるように、一生懸命がんばります！"
     },
     {
       "teamId": "4",
-      "teamName": "inoue",
-      "teamDescription": "初心者でやるよ。"
+      "teamName": "さくらんぼ",
+      "teamImage": "team4.png",
+      "teamDescription": "前回の反省を活かしてもっと良い成績を狙います。"
     },
     {
       "teamId": "5",
-      "teamName": "yoshimura",
-      "teamDescription": "初心者でやるよ。"
-    },
-    {
-      "teamId": "6",
-      "teamName": "yamazaki",
-      "teamDescription": "初心者でやるよ。"
+      "teamName": "メロン",
+      "teamImage": "team5.png",
+      "teamDescription": "大会初参加なので自分達がどれくらいいけるか分からないけど、楽しんでいきたいです！頑張るぞー！"
     }
   ]
 }
