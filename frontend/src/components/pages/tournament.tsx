@@ -93,7 +93,6 @@ export const Tournament: React.FC = () => {
                     className={classes.media}
                     image={data.tournamentImage}
                   />
-                  {`/tournament/${data.tournamentId}`}
                   <Typography variant="subtitle2" color="textSecondary">
                     {data.tournamentDate}
                   </Typography>
