@@ -4,7 +4,6 @@ import { Button, TextField } from "@material-ui/core";
 // import fetch from "node-fetch";
 
 const fetch = window.fetch;
-
 const api_url = process.env.REACT_APP_API_URL;
 
 const useStyles = makeStyles((theme: Theme) =>
