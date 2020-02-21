@@ -9,6 +9,7 @@ import {
   Typography
 } from "@material-ui/core";
 import teamData from "../../data/team-data.json";
+import {useHistory} from "react-router";
 
 const useStyles = makeStyles(() =>
   createStyles({
@@ -57,6 +58,12 @@ const useStyles = makeStyles(() =>
 export const Team: React.FC<undefined> = () => {
   const classes = useStyles();
 
+    const history = useHistory();
+    const linkTo = (path: string) => {
+        history.push(path);
+        window.location.reload();
+    };
+
   return (
     <div className={classes.root}>
       <Grid container spacing={3}>
@@ -67,7 +74,7 @@ export const Team: React.FC<undefined> = () => {
               {teamData.team?.map(data => (
                 <Card className={classes.card}>
                   <CardContent>
-                    <Typography variant="h6">{data.teamName}</Typography>
+                    <Typography variant="h6" onClick={() => linkTo(`/team/${data.teamId}`)}>{data.teamName}</Typography>
                     <CardMedia
                       className={classes.media}
                       image={data.teamImage}
