@@ -44,7 +44,7 @@ export const LoginModal = () => {
 
   const linkToLogin = () => {
     window.location.href = "login";
-  }
+  };
 
   return (
     <div>
@@ -57,10 +57,7 @@ export const LoginModal = () => {
         <Fade in={open}>
           <div className={classes.paper}>
             <Button className={classes.btn}>
-              <p 
-                className={classes.login}
-                onClick={linkToLogin}
-              >
+              <p className={classes.login} onClick={linkToLogin}>
                 メールでログイン
               </p>
             </Button>

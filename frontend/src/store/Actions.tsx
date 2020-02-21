@@ -15,7 +15,7 @@ export const useUpdateIsLogin = () => {
         default:
           dispatch({ type: "" });
       }
-    }, 
+    },
     [dispatch]
   );
   return updateIsLogin;

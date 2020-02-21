@@ -35,8 +35,7 @@ export const Dashboard: React.FC = () => {
   const classes = useStyles();
 
   // use login state
-  const isLogin = useSelector(
-    (state: { isLogin: boolean }) => state.isLogin);
+  const isLogin = useSelector((state: { isLogin: boolean }) => state.isLogin);
 
   return (
     <div className={classes.root}>

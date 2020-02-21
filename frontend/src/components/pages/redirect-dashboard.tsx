@@ -3,12 +3,13 @@ import { useSelector } from "react-redux";
 import { useUpdateIsLogin } from "../../store/Actions";
 
 const fetch = window.fetch;
-const api_url = process.env.REACT_APP_API_URL;
 
 export const RedirectDashboard = () => {
   // use login state
-  const isLogin = useSelector(
-    (state: { isLogin: boolean }) => state.isLogin);
+  const isLogin = useSelector((state: { isLogin: boolean }) => state.isLogin);
+
+  // ues api_url state
+  const api_url = useSelector((state: { APIURL: string }) => state.APIURL);
 
   // get token
   const tokenPath = window.location.search.substring(1);
@@ -31,22 +32,22 @@ export const RedirectDashboard = () => {
           if (res.status === 200) {
             updateIsLogin("login");
             window.location.href = "dashboard";
-          };
+          }
         })
         .catch(console.error);
     }
-  }
+  };
   useEffect(() => {
     sendToken();
-  }, [])
+  }, []);
   return (
     <div>
       <p>processing...</p>
       <p>
         画面が切り替わらない場合は
-          <a href="/login">こちら</a>
+        <a href="/login">こちら</a>
         で再度ログインしてください
       </p>
     </div>
   );
-}
+};

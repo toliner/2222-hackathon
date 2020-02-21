@@ -57,7 +57,7 @@ export const TeamDetail: React.FC = () => {
 
   const path = location.pathname;
   const page = path.split("/")[2];
-  const pageNumber = parseInt(page, 10);  
+  const pageNumber = parseInt(page, 10);
 
   const Item = () => {
     let displayTeamImage = "";
@@ -65,11 +65,9 @@ export const TeamDetail: React.FC = () => {
       if (pageNumber === parseInt(data.teamId)) {
         displayTeamImage = data.teamImage;
       }
-    })
-    return (
-      <Avatar className={classes.img} src={displayTeamImage} />
-    );
-  }
+    });
+    return <Avatar className={classes.img} src={displayTeamImage} />;
+  };
 
   return (
     <div className={classes.root}>

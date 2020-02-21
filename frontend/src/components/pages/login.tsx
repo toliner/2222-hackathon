@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
 import { Button, TextField } from "@material-ui/core";
-// import fetch from "node-fetch";
+import { useSelector } from "react-redux";
 
 const fetch = window.fetch;
-const api_url = process.env.REACT_APP_API_URL;
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -60,6 +59,9 @@ export const Login: React.FC = () => {
   const classes = useStyles();
   const [mail, setMail] = useState("");
   const [name, setName] = useState("");
+
+  // ues api_url state
+  const api_url = useSelector((state: { APIURL: string }) => state.APIURL);
 
   const handleMailFormChange = (e: any) => {
     setMail(e.target.value);

@@ -9,24 +9,34 @@ import "./App.css";
 
 const App = () => {
   // use login state
-  const isLogin = useSelector(
-    (state: { isLogin: boolean }) => state.isLogin);
+  const isLogin = useSelector((state: { isLogin: boolean }) => state.isLogin);
 
   const RequireLoginModal = () => {
     const location = useLocation();
     const path = location.pathname;
-    if (!isLogin && ((path !== "/") && (path !== "/login") && (path !== "/confirm") && !path.match("/api/user/"))) {
+    if (
+      !isLogin &&
+      path !== "/" &&
+        path !== "/login" &&
+        path !== "/confirm" &&
+        !path.match("/api/user/")
+    ) {
       return <LoginModal />;
     } else {
       return null;
     }
-  }
+  };
 
   // メニューバー出すかどうか
   const MenuBar = () => {
     const location = useLocation();
     const path = location.pathname;
-    if (path === "/" || path === "/login" || path === "/confirm" || path.match("/api/user/")) {
+    if (
+      path === "/" ||
+      path === "/login" ||
+      path === "/confirm" ||
+      path.match("/api/user/")
+    ) {
       return null;
     } else {
       return <MenuAppBar />;
