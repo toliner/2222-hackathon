@@ -2,6 +2,7 @@ package app.reiwa.hackathon.route
 
 import app.reiwa.hackathon.model.TeamCreateRequest
 import app.reiwa.hackathon.model.TeamInviteRequest
+import app.reiwa.hackathon.model.TeamJoinRequest
 import app.reiwa.hackathon.model.TeamLeaveRequest
 import app.reiwa.hackathon.model.db.*
 import io.ktor.application.ApplicationCall
@@ -32,6 +33,9 @@ fun Route.teamRoute() {
         }
         post("/leave") {
             leaveTeam()
+        }
+        post("/join") {
+
         }
     }
 }
@@ -129,6 +133,28 @@ private suspend fun PipelineContext<Unit, ApplicationCall>.leaveTeam() {
             (TeamMembers.user eq user.id) and (TeamMembers.team eq request.team)
         }.forEach {
             it.delete()
+        }
+    }
+    context.respond(HttpStatusCode.OK)
+}
+
+@UseExperimental(UnstableDefault::class)
+private suspend fun PipelineContext<Unit, ApplicationCall>.joinTeam() {
+    val session = getAndUpdateLoginSession() ?: return
+    val request = context.receive<TeamJoinRequest>()
+    val team = transaction {
+        Team.findById(request.team)
+    }
+    if (team == null) {
+        context.respondError("Invalid team id")
+        return
+    }
+    transaction {
+        val user = User.findById(session.id)!!
+        TeamMember.new {
+            this.team = team
+            this.user = user
+            this.role = MemberRole.MEMBER
         }
     }
     context.respond(HttpStatusCode.OK)
