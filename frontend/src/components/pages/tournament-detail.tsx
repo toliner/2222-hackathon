@@ -7,6 +7,7 @@ import {
   Grid,
   Typography
 } from "@material-ui/core";
+import { useHistory, useLocation } from "react-router";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -204,6 +205,7 @@ const buttonList1 = [
 
 export const TournamentDetail = () => {
   const classes = useStyles();
+  const location = useLocation();
 
   return (
     <div className={classes.root}>
@@ -287,7 +289,7 @@ export const TournamentDetail = () => {
           </Grid>
           <div className={classes.list}>
             <CardContent>
-              <Typography variant="h6">大会名</Typography>
+              <Typography variant="h6">{location.state}</Typography>
               <Typography variant="subtitle2" color="textSecondary">
                 2020/02/22 10:00 ~
               </Typography>

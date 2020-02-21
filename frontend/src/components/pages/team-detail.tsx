@@ -1,6 +1,7 @@
 import React from "react";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import { Avatar, Grid, Paper, TextField } from "@material-ui/core";
+import { useLocation } from "react-router";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -51,33 +52,36 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export const TeamDetail: React.FC = () => {
   const classes = useStyles();
+  const location = useLocation();
+
+  const state = location.state;
 
   return (
     <div className={classes.root}>
       <Paper className={classes.paper}>
         <Grid container spacing={2}>
           <Grid item className={classes.item}>
-            <Avatar className={classes.img} />
+            <Avatar className={classes.img} src={state} />
           </Grid>
           <Grid item xs={12} sm container>
             <Grid item xs container direction="column">
               <form noValidate className={classes.form}>
                 <TextField
-                  defaultValue="TeamName"
+                  //defaultValue={location.state.teamName}
                   InputProps={{
                     className: classes.input,
                     readOnly: true
                   }}
                 />
                 <TextField
-                  defaultValue="TeamUserName"
+                  //defaultValue="TeamUserName"
                   InputProps={{
                     className: classes.input,
                     readOnly: true
                   }}
                 />
                 <TextField
-                  defaultValue="TeamProfile"
+                  //defaultValue={location.state.teamDescription}
                   multiline
                   rows="6"
                   InputProps={{
