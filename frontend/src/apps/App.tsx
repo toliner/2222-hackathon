@@ -14,6 +14,7 @@ const App = () => {
   const RequireLoginModal = () => {
     const location = useLocation();
     const path = location.pathname;
+    console.log(path);
     if (
       !isLogin &&
       path !== "/" &&
@@ -38,6 +39,8 @@ const App = () => {
       path.match("/api/user/")
     ) {
       return null;
+    } else if (path.match("dashboard")) {
+      return <MenuAppBar />;
     } else {
       return <MenuAppBar />;
     }
