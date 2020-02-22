@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import {
   Avatar,
@@ -8,6 +8,10 @@ import {
   TextField,
   Typography
 } from "@material-ui/core";
+import { useSelector } from "react-redux";
+
+const fetch = window.fetch;
+
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -61,24 +65,46 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export const CreateTournament: React.FC = () => {
   const classes = useStyles();
+    const [title, setTitle] = useState("");
+    const [description, setDescription] = useState("");
+    const [gameType, setGameType] = useState("");
+    const [startDate, setStartDate] = useState("");
 
-  /*const onSubmit = async () => {
-        if (name !== "" && api_url !== undefined) {
+    const api_url = useSelector((state: { APIURL: string }) => state.APIURL);
+
+    const handleTitleChange = (e: any) => {
+        setTitle(e.target.value);
+  };
+
+    const handleDateChange = (e: any) => {
+        setStartDate(e.target.value);
+    }
+
+    const handleTypeChange = (e: any) => {
+        setGameType(e.target.value);
+    }
+
+    const handleDescriptionChange= (e: any) => {
+        setDescription(e.target.value);
+    }
+
+  const onSubmit = async () => {
+        if (title !== "" && api_url !== undefined) {
       const data = {
         title: title,
         description:description,
-        game_type:game_type,
-        start_date:start_date
+        game_type:gameType,
+        start_date:startDate,
       };
 
-      await fetch(`${api_url}/competiton/create`, {
+      await fetch(`${api_url}/competition/create`, {
           mode: "cors",
         method: "POST",
         body: JSON.stringify(data),
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json;charset=UTF-8",
-          "X-2222-AccessToken": "X-2222-AccessToken"
+          "X-2222AccessToken": "X-2222AccessToken"
         }
       })
         .then((res: any) => {
@@ -87,8 +113,7 @@ export const CreateTournament: React.FC = () => {
         })
         .catch(console.error);
     }
-    };*/
-
+    };
 
 
   return (
@@ -107,21 +132,21 @@ export const CreateTournament: React.FC = () => {
                     InputProps={{
                       className: classes.input
                     }}
-                    //onChange={handleTitleChange}
+                    onChange={handleTitleChange}
                   />
                   <TextField
                     placeholder="TournamentDate"
                     InputProps={{
                       className: classes.input
                     }}
-                    //onChange={handleDateChange}
+                    onChange={handleDateChange}
                   />
                   <TextField
-                    placeholder="TournamentType"
+                    placeholder="GameType"
                     InputProps={{
                       className: classes.input
                     }}
-                    //onChange={handleTypeChange}
+                    onChange={handleTypeChange}
                   />
                   <TextField
                     placeholder="TournamenProfile"
@@ -130,12 +155,12 @@ export const CreateTournament: React.FC = () => {
                     InputProps={{
                       className: classes.input
                     }}
-                    //onChange={handleDescriptionChange}
+                    onChange={handleDescriptionChange}
                   />
                 </form>
               </Grid>
               <Typography className={classes.btn}>
-                <Button variant="contained" className={classes.btnColor}>
+                <Button variant="contained" className={classes.btnColor} onClick={onSubmit}>
                   作成
                 </Button>
               </Typography>
