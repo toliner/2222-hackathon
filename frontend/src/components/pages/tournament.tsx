@@ -100,8 +100,8 @@ export const Tournament: React.FC = () => {
   const classes = useStyles();
 
   const history = useHistory();
-  const linkTo = (path: string) => {
-    history.push(path);
+  const linkTo = (path: string, state: any) => {
+    history.push({ pathname: path, state: state });
     window.location.reload();
   };
 
@@ -117,14 +117,12 @@ export const Tournament: React.FC = () => {
           </Grid>
           <Grid item xs={12} className={classes.space}>
             {tournamentData.tournament?.map(data => (
-              <Card className={classes.top}>
+              <Card
+                className={classes.top}
+                onClick={() => linkTo(`/tournament/${data.tournamentId}`, data)}
+              >
                 <CardContent>
-                  <Typography
-                    variant="h6"
-                    onClick={() => linkTo(`/tournament/${data.tournamentId}`)}
-                  >
-                    {data.tournamentTitle}
-                  </Typography>
+                  <Typography variant="h6">{data.tournamentTitle}</Typography>
                   <CardMedia
                     className={classes.media}
                     image={data.tournamentImage}

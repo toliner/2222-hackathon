@@ -7,6 +7,8 @@ import {
   Grid,
   Typography
 } from "@material-ui/core";
+import tournamentData from "../../data/tournament-data.json";
+import { useLocation } from "react-router";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -204,6 +206,39 @@ const buttonList1 = [
 
 export const TournamentDetail = () => {
   const classes = useStyles();
+  const location = useLocation();
+
+  const path = location.pathname;
+  const page = path.split("/")[2];
+  const pageNumber = parseInt(page, 10);
+
+  const TournamentCard = () => {
+    let displayTournamentTitle = "";
+    let displayTournamentDate = "";
+    let displayTournamentImage = "";
+    let displayTournamentDescription = "";
+
+    tournamentData.tournament.map((data: any) => {
+      if (pageNumber === parseInt(data.tournamentId)) {
+        displayTournamentTitle = data.tournamentTitle;
+        displayTournamentDate = data.tournamentDate;
+        displayTournamentImage = data.tournamentImage;
+        displayTournamentDescription = data.tournamentDescription;
+      }
+    });
+    return (
+      <CardContent>
+        <Typography variant="h6">{displayTournamentTitle}</Typography>
+        <Typography variant="subtitle2" color="textSecondary">
+          {displayTournamentDate}
+        </Typography>
+        <Typography variant="body1" color="textSecondary">
+          {displayTournamentDescription}
+        </Typography>
+        <CardMedia className={classes.media} image={displayTournamentImage} />
+      </CardContent>
+    );
+  };
 
   return (
     <div className={classes.root}>
@@ -286,13 +321,7 @@ export const TournamentDetail = () => {
             </div>
           </Grid>
           <div className={classes.list}>
-            <CardContent>
-              <Typography variant="h6">大会名</Typography>
-              <Typography variant="subtitle2" color="textSecondary">
-                2020/02/22 10:00 ~
-              </Typography>
-              <CardMedia className={classes.media} image="icon" />
-            </CardContent>
+            <TournamentCard />
           </div>
         </Grid>
         <Grid item xs={3} className={classes.bg} />
