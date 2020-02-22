@@ -3,6 +3,7 @@ import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
 import Modal from "@material-ui/core/Modal";
 import Fade from "@material-ui/core/Fade";
 import { Button } from "@material-ui/core";
+import { useHistory } from "react-router";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -39,11 +40,12 @@ const useStyles = makeStyles((theme: Theme) =>
 export const LoginModal = () => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
+  const history = useHistory();
 
   const handleClose = () => setOpen(false);
 
   const linkToLogin = () => {
-    window.history.pushState({ page: 1 }, "logout", "/login");
+    history.push("/login");
   };
 
   return (

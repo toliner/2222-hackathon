@@ -1,17 +1,6 @@
 import { useCallback } from "react";
 import { useDispatch } from "react-redux";
 
-export const useUpdateToken = () => {
-  const dispatch = useDispatch();
-  const updateToken = useCallback(
-    (param: string) => {
-      dispatch({ type: "UPDATE_TOKEN", payload: param });
-    },
-    [dispatch]
-  );
-  return updateToken;
-};
-
 export const useUpdateIsLogin = () => {
   const dispatch = useDispatch();
   const updateIsLogin = useCallback(

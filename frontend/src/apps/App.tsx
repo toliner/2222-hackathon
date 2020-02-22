@@ -7,13 +7,16 @@ import { LoginModal } from "../components/partials/login-modal";
 
 import "./App.css";
 
+let token: string | null = null;
+
 const RequireLoginModal: React.FC<{ path: string, isLogin: boolean }> = ({ path, isLogin }) => {
   if (
     !isLogin &&
     path !== "/" &&
     path !== "/login" &&
     path !== "/confirm" &&
-    !path.match("/api/user/")
+    !path.match("/api/user/") ||
+    token === null
   ) {
     return <LoginModal />;
   } else {
@@ -44,6 +47,8 @@ const App = () => {
 
   const location = useLocation();
   const path = location.pathname;
+
+  token = useSelector((state: { token: string }) => state.token);
 
   return (
     <div>

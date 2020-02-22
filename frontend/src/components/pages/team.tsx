@@ -10,6 +10,7 @@ import {
 } from "@material-ui/core";
 import teamData from "../../data/team-data.json";
 import { useHistory } from "react-router";
+import { useSelector } from "react-redux";
 
 const useStyles = makeStyles(() =>
   createStyles({
@@ -60,6 +61,9 @@ const useStyles = makeStyles(() =>
 );
 
 export const Team: React.FC<undefined> = () => {
+  const token = useSelector((state: { token: string }) => state.token);
+  console.log(token);
+
   const classes = useStyles();
 
   const history = useHistory();
