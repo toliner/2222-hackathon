@@ -4,6 +4,7 @@ import app.reiwa.hackathon.model.SettingFile
 import app.reiwa.hackathon.model.UserLoginSession
 import app.reiwa.hackathon.model.db.*
 import app.reiwa.hackathon.route.competitionRoute
+import app.reiwa.hackathon.route.respondJson
 import app.reiwa.hackathon.route.teamRoute
 import app.reiwa.hackathon.route.userRoute
 import com.zaxxer.hikari.HikariConfig
@@ -97,7 +98,7 @@ fun Application.mainModule() {
     }
     install(Routing) {
         get("/") {
-            context.respondText(ContentType.Application.Utf8Json) { """{"message": "api server is available now !"}""" }
+            context.respondJson { """{"message": "api server is available now !"}""" }
         }
         route("/api") {
             userRoute()
