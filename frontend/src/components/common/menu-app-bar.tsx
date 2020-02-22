@@ -128,8 +128,7 @@ export const MenuAppBar: React.FC = () => {
   const LinkLists: React.FC = () => {
     const history = useHistory();
     const linkToPath = (path: string) => {
-      history.push(path);
-      window.location.reload();
+      window.location.href = "login";
     };
     return (
       <div>
