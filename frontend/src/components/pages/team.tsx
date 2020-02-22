@@ -20,7 +20,7 @@ const useStyles = makeStyles(() =>
       textAlign: "center",
       background: "#F3F3F3",
       height: "100%",
-      marginTop: 80,
+      marginTop: 70,
       position: "relative"
     },
     bg: {
@@ -34,9 +34,6 @@ const useStyles = makeStyles(() =>
     },
     card: {
       background: "#E1E1E1",
-      height: 328,
-      width: 328,
-      margin: 10,
       display: "inline-block"
     },
     media: {
@@ -49,7 +46,7 @@ const useStyles = makeStyles(() =>
     },
     btn: {
       textAlign: "center",
-      top: 30,
+      top: 10,
       position: "relative"
     }
   })
@@ -72,14 +69,12 @@ export const Team: React.FC<undefined> = () => {
           <div className={classes.bottom}>
             <Grid item xs>
               {teamData.team?.map(data => (
-                <Card className={classes.card}>
+                <Card
+                  className={classes.card}
+                  onClick={() => linkTo(`/team/${data.teamId}`, data)}
+                >
                   <CardContent>
-                    <Typography
-                      variant="h6"
-                      onClick={() => linkTo(`/team/${data.teamId}`, data)}
-                    >
-                      {data.teamName}
-                    </Typography>
+                    <Typography variant="h6">{data.teamName}</Typography>
                     <CardMedia
                       className={classes.media}
                       image={data.teamImage}
