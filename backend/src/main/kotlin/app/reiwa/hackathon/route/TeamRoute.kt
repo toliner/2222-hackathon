@@ -22,11 +22,11 @@ import java.util.*
 
 fun Route.teamRoute() {
     route("/team") {
-        post("/create") {
-            createTeam()
-        }
         get("/") {
             getTeam()
+        }
+        post("/create") {
+            createTeam()
         }
         post("/invite") {
             inviteMember()
@@ -35,7 +35,7 @@ fun Route.teamRoute() {
             leaveTeam()
         }
         post("/join") {
-
+            joinTeam()
         }
     }
 }

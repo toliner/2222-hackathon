@@ -53,7 +53,7 @@ const App = () => {
   return (
     <div>
       <RequireLoginModal path={path} isLogin={isLogin} />
-        <MenuBar path={path} />
+      <MenuBar path={path} />
       <Router />
     </div>
   );
