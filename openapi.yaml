@@ -77,7 +77,7 @@ paths:
         200:
           description: 認証成功。
           headers:
-            X-2222-AccessToken:
+            X-2222AccessToken:
               required: true
               description: アカウントへのアクセストークン。これを用いることで要認証なAPIにアクセスできる。
         400:
@@ -116,7 +116,7 @@ paths:
       tags:
         - user
       parameters:
-        - $ref: '#/components/parameters/X-2222-AccessToken'
+        - $ref: '#/components/parameters/X-2222AccessToken'
       requestBody:
         content:
           application/json:
@@ -197,7 +197,7 @@ paths:
       tags:
         - team
       parameters:
-        - $ref: '#/components/parameters/X-2222-AccessToken'
+        - $ref: '#/components/parameters/X-2222AccessToken'
       requestBody:
         content:
           application/json:
@@ -222,7 +222,7 @@ paths:
       tags:
         - team
       parameters:
-        - $ref: '#/components/parameters/X-2222-AccessToken'
+        - $ref: '#/components/parameters/X-2222AccessToken'
       requestBody:
         content:
           application/json:
@@ -250,7 +250,7 @@ paths:
       tags:
         - team
       parameters:
-        - $ref: '#/components/parameters/X-2222-AccessToken'
+        - $ref: '#/components/parameters/X-2222AccessToken'
       requestBody:
         content:
           application/json:
@@ -276,7 +276,7 @@ paths:
       tags:
         - team
       parameters:
-        - $ref: '#/components/parameters/X-2222-AccessToken'
+        - $ref: '#/components/parameters/X-2222AccessToken'
       requestBody:
         content:
           application/json:
@@ -341,7 +341,7 @@ paths:
       tags:
         - competition
       parameters:
-        - $ref: '#/components/parameters/X-2222-AccessToken'
+        - $ref: '#/components/parameters/X-2222AccessToken'
       requestBody:
         content:
           application/json:
@@ -377,7 +377,7 @@ paths:
       tags:
         - competition
       parameters:
-        - $ref: '#/components/parameters/X-2222-AccessToken'
+        - $ref: '#/components/parameters/X-2222AccessToken'
       requestBody:
         content:
           application/json:
@@ -402,17 +402,17 @@ paths:
 
 components:
   headers:
-    X-2222-AccessToken:
+    X-2222AccessToken:
       schema:
         type: string
       description: ログインユーザーのアクセストークン
   parameters:
-    X-2222-AccessToken:
+    X-2222AccessToken:
       schema:
         type: string
       in: header
       required: true
-      name: X-2222-AccessToken
+      name: X-2222AccessToken
   schemas:
     ErrorResponse:
       description: エラーが出たときのレスポンス
