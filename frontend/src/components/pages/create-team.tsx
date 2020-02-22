@@ -90,7 +90,8 @@ export const CreateTeam: React.FC = () => {
         body: JSON.stringify(data),
         headers: {
           Accept: "application/json",
-          "Content-Type": "application/json;charset=UTF-8"
+          "Content-Type": "application/json;charset=UTF-8",
+          "X-2222-AccessToken": "X-2222-AccessToken"
         }
       })
         .then((res: any) => {

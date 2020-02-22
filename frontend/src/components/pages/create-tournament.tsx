@@ -62,6 +62,36 @@ const useStyles = makeStyles((theme: Theme) =>
 export const CreateTournament: React.FC = () => {
   const classes = useStyles();
 
+  /*const loginWithMail = async () => {
+        if (mail !== "" && api_url !== undefined) {
+            console.log(mail);
+            const data = {
+                mail: mail,
+                name: name
+            };
+
+            await fetch(`${api_url}/user/register`, {
+                mode: "cors",
+                method: "POST",
+                body: JSON.stringify(data),
+                headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json;charset=UTF-8"
+                }
+            })
+                .then((res: any) => {
+                    console.log({ res });
+                    if (res.status === 200) window.location.href = "confirm";
+                })
+                .catch(console.error);
+        }
+    };
+
+    "title": "string",
+        "description": "string",
+        "game_type": "RAINBOW_SIX",
+        "start_date"*/
+
   return (
     <div className={classes.root}>
       <Paper className={classes.paper}>
@@ -74,25 +104,25 @@ export const CreateTournament: React.FC = () => {
               <Grid item xs>
                 <form noValidate className={classes.form}>
                   <TextField
-                    defaultValue="TournamentTitle"
+                    placeholder="TournamentTitle"
                     InputProps={{
                       className: classes.input
                     }}
                   />
                   <TextField
-                    defaultValue="TournamentDate"
+                    placeholder="TournamentDate"
                     InputProps={{
                       className: classes.input
                     }}
                   />
                   <TextField
-                    defaultValue="TournamentUserName"
+                    placeholder="TournamentUserName"
                     InputProps={{
                       className: classes.input
                     }}
                   />
                   <TextField
-                    defaultValue="TournamenProfile"
+                    placeholder="TournamenProfile"
                     multiline
                     rows="6"
                     InputProps={{
