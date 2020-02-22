@@ -142,11 +142,7 @@ export const CreateTournament: React.FC = () => {
                     onChange={handleDateChange}
                   />
                   <TextField
-<<<<<<< HEAD
                     placeholder="GameType"
-=======
-                    placeholder="TournamentUserName"
->>>>>>> origin/master
                     InputProps={{
                       className: classes.input
                     }}

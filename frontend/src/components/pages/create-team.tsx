@@ -114,9 +114,6 @@ export const CreateTeam: React.FC = () => {
               <Grid item xs>
                 <form noValidate className={classes.form}>
                   <TextField
-<<<<<<< HEAD
-                    placeholder="TeamName"
-=======
                       placeholder="TeamName"
                     InputProps={{
                       className: classes.input
@@ -124,18 +121,13 @@ export const CreateTeam: React.FC = () => {
                   />
                   <TextField
                       placeholder="TeamUserName"
->>>>>>> origin/master
                     InputProps={{
                       className: classes.input
                     }}
                     onChange={handleNameFormChange}
                   />
                   <TextField
-<<<<<<< HEAD
-                    placeholder="TeamProfile"
-=======
                       placeholder="TeamProfile"
->>>>>>> origin/master
                     multiline
                     rows="6"
                     InputProps={{
