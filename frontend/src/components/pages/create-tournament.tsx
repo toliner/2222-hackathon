@@ -74,25 +74,25 @@ export const CreateTournament: React.FC = () => {
               <Grid item xs>
                 <form noValidate className={classes.form}>
                   <TextField
-                    defaultValue="TournamentTitle"
+                    placeholder="TournamentTitle"
                     InputProps={{
                       className: classes.input
                     }}
                   />
                   <TextField
-                    defaultValue="TournamentDate"
+                    placeholder="TournamentDate"
                     InputProps={{
                       className: classes.input
                     }}
                   />
                   <TextField
-                    defaultValue="TournamentUserName"
+                    placeholder="TournamentUserName"
                     InputProps={{
                       className: classes.input
                     }}
                   />
                   <TextField
-                    defaultValue="TournamenProfile"
+                    placeholder="TournamenProfile"
                     multiline
                     rows="6"
                     InputProps={{

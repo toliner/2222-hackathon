@@ -74,19 +74,19 @@ export const CreateTeam: React.FC = () => {
               <Grid item xs>
                 <form noValidate className={classes.form}>
                   <TextField
-                    defaultValue="TeamName"
+                      placeholder="TeamName"
                     InputProps={{
                       className: classes.input
                     }}
                   />
                   <TextField
-                    defaultValue="TeamUserName"
+                      placeholder="TeamUserName"
                     InputProps={{
                       className: classes.input
                     }}
                   />
                   <TextField
-                    defaultValue="TeamProfile"
+                      placeholder="TeamProfile"
                     multiline
                     rows="6"
                     InputProps={{
