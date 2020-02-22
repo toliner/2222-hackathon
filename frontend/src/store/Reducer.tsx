@@ -5,16 +5,13 @@ const initState = {
 };
 
 const reducer = (state = initState, action: { type: string, payload: string }) => {
-
-  if (action.payload !== "") {
-    return { ...state, token: state.token = action.payload };
-  }
-
   switch (action.type) {
     case "LOGIN":
       return { ...state, isLogin: state.isLogin = true };
     case "LOGOUT":
       return { ...state, isLogin: state.isLogin = false };
+    case "UPDATE_TOKEN":
+      return { ...state, token: state.token = action.payload };
     default:
       return state;
   }

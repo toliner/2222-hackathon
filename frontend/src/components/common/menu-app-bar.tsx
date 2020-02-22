@@ -129,7 +129,7 @@ export const MenuAppBar: React.FC = () => {
     const history = useHistory();
     const linkToPath = (path: string) => {
       history.push(path);
-      // window.location.reload();
+      window.location.reload();
     };
     return (
       <div>

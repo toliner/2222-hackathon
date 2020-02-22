@@ -5,7 +5,7 @@ export const useUpdateToken = () => {
   const dispatch = useDispatch();
   const updateToken = useCallback(
     (param: string) => {
-      dispatch({ type: `${param}` });
+      dispatch({ type: "UPDATE_TOKEN", payload: param });
     },
     [dispatch]
   );
