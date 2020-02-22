@@ -21,7 +21,9 @@ const useStyles = makeStyles(() =>
       background: "#F3F3F3",
       height: "100%",
       marginTop: 70,
-      position: "relative"
+      position: "relative",
+        minWidth: 300,
+        margin: "auto",
     },
     bg: {
       background: "#4B4B4B"
