@@ -15,23 +15,19 @@ import { RedirectDashboard } from "./pages/redirect-dashboard";
 
 export const Router: React.SFC = () => {
   return (
-    <div>
-      <BrowserRouter>
-        <Switch>
-          <Route exact path="/" component={Home} />
-          <Route exact path="/login" component={Login} />
-          <Route exact path="/confirm" component={Confirm} />
-          <Route exact path="/dashboard" component={Dashboard} />
-          <Route exact path="/user" component={User} />
-          <Route exact path="/tournament" component={Tournament} />
-          <Route path="/tournament/:id" component={TournamentDetail} />
-          <Route exact path="/team" component={Team} />
-          <Route path="/team/:id" component={TeamDetail} />
-          <Route exact path="/create-tournament" component={CreateTournament} />
-          <Route exact path="/create-team" component={CreateTeam} />
-          <Route exact path="/api/user/:token" component={RedirectDashboard} />
-        </Switch>
-      </BrowserRouter>
-    </div>
+    <Switch>
+      <Route exact path="/" component={Home} />
+      <Route exact path="/login" component={Login} />
+      <Route exact path="/confirm" component={Confirm} />
+      <Route exact path="/dashboard" component={Dashboard} />
+      <Route exact path="/user" component={User} />
+      <Route exact path="/tournament" component={Tournament} />
+      <Route path="/tournament/:id" component={TournamentDetail} />
+      <Route exact path="/team" component={Team} />
+      <Route path="/team/:id" component={TeamDetail} />
+      <Route exact path="/create-tournament" component={CreateTournament} />
+      <Route exact path="/create-team" component={CreateTeam} />
+      <Route exact path="/api/user/:token" component={RedirectDashboard} />
+    </Switch>
   );
 };
