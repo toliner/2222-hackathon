@@ -4,6 +4,8 @@ import { Card, CardContent, Grid, Typography } from "@material-ui/core";
 import { LoginModal } from "../partials/login-modal";
 import information from "../../data/information.json";
 import { useSelector } from "react-redux";
+import { useLocation } from "react-router";
+import { useUpdateToken } from "../../store/Actions";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -36,6 +38,17 @@ export const Dashboard: React.FC = () => {
 
   // use login state
   const isLogin = useSelector((state: { isLogin: boolean }) => state.isLogin);
+
+  const storeToken = useSelector((state: { token: string }) => state.token);
+
+  const updateToken = useUpdateToken();
+  const tokenPath = window.location.search.substring(1);
+  const token = tokenPath.split("=")[1];
+  console.log(token);
+  if (token !== undefined) {
+    updateToken(`${token}`);
+    console.log(storeToken);
+  }
 
   return (
     <div className={classes.root}>
