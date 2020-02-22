@@ -48,6 +48,11 @@ const useStyles = makeStyles(() =>
       textAlign: "center",
       top: 10,
       position: "relative"
+    },
+    teamCard: {
+      width: "24vw",
+      minWidth: 200,
+      overflow: "hidden"
     }
   })
 );
@@ -67,13 +72,13 @@ export const Team: React.FC<undefined> = () => {
         <Grid item xs={3} className={classes.bg} />
         <Grid item xs={6} className={classes.paper}>
           <div className={classes.bottom}>
-            <Grid item xs>
+            <Grid item xs >
               {teamData.team?.map(data => (
                 <Card
                   className={classes.card}
                   onClick={() => linkTo(`/team/${data.teamId}`, data)}
                 >
-                  <CardContent>
+                  <CardContent className={classes.teamCard}>
                     <Typography variant="h6">{data.teamName}</Typography>
                     <CardMedia
                       className={classes.media}
