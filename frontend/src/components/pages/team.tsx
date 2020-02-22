@@ -21,7 +21,9 @@ const useStyles = makeStyles(() =>
       background: "#F3F3F3",
       height: "100%",
       marginTop: 70,
-      position: "relative"
+      position: "relative",
+      minWidth: 300,
+      margin: "auto"
     },
     bg: {
       background: "#4B4B4B"
@@ -72,7 +74,7 @@ export const Team: React.FC<undefined> = () => {
         <Grid item xs={3} className={classes.bg} />
         <Grid item xs={6} className={classes.paper}>
           <div className={classes.bottom}>
-            <Grid item xs >
+            <Grid item xs>
               {teamData.team?.map(data => (
                 <Card
                   className={classes.card}
