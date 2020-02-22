@@ -15,7 +15,7 @@ const RequireLoginModal: React.FC<{ path: string, isLogin: boolean }> = ({ path,
     path !== "/" &&
     path !== "/login" &&
     path !== "/confirm" &&
-    !path.match("/api/user/") ||
+    !path.match("/api/user/") &&
     token === null
   ) {
     return <LoginModal />;
