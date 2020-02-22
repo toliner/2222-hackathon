@@ -186,7 +186,11 @@ suspend fun ApplicationCall.respondJson(statusCode: HttpStatusCode = HttpStatusC
  * @return Headerから得られたSession情報。存在しなければnull。
  */
 suspend fun PipelineContext<Unit, ApplicationCall>.getAndUpdateLoginSession(): UserLoginSession? {
-    val session = context.sessions.get<UserLoginSession>() ?: throw IllegalStateException("No session")
+    val session = context.sessions.get<UserLoginSession>()
+    if (session == null) {
+        context.respondError("No session")
+        return null
+    }
     val now = LocalDateTime.now(ZoneOffset.UTC)
     if (session.expiredAt < now) {
         context.respondError("header ${context.sessions.findName(UserLoginSession::class)} is not set or valid")
