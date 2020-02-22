@@ -42,8 +42,22 @@ const App = () => {
   // use login state
   const isLogin = useSelector((state: { isLogin: boolean }) => state.isLogin);
 
-  const location = useLocation();
-  const path = location.pathname;
+  const RequireLoginModal = () => {
+    const location = useLocation();
+    const path = location.pathname;
+    console.log(path);
+    if (
+      !isLogin &&
+      path !== "/" &&
+      path !== "/login" &&
+      path !== "/confirm" &&
+      !path.match("/api/user/")
+    ) {
+      return <LoginModal />;
+    } else {
+      return null;
+    }
+  };
 
   return (
     <div>
