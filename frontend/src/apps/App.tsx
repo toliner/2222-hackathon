@@ -7,49 +7,50 @@ import { LoginModal } from "../components/partials/login-modal";
 
 import "./App.css";
 
+const RequireLoginModal: React.FC<{ path: string, isLogin: boolean }> = ({ path, isLogin }) => {
+  if (
+    !isLogin &&
+    path !== "/" &&
+    path !== "/login" &&
+    path !== "/confirm" &&
+    !path.match("/api/user/")
+  ) {
+    return <LoginModal />;
+  } else {
+    return null;
+  }
+};
+
+// メニューバー出すかどうか
+const MenuBar: React.FC<{ path: string }> = ({ path }) => {
+  console.log(path);
+  if (
+    path === "/" ||
+    path === "/login" ||
+    path === "/confirm" ||
+    path.match("/api/user/")
+  ) {
+    return null;
+  } else if (path.match("dashboard")) {
+    return <MenuAppBar />;
+  } else {
+    return <MenuAppBar />;
+  }
+};
+
 const App = () => {
   // use login state
   const isLogin = useSelector((state: { isLogin: boolean }) => state.isLogin);
 
-  const RequireLoginModal = () => {
-    const location = useLocation();
-    const path = location.pathname;
-    if (
-      !isLogin &&
-      path !== "/" &&
-      path !== "/login" &&
-      path !== "/confirm" &&
-      !path.match("/api/user/")
-    ) {
-      return <LoginModal />;
-    } else {
-      return null;
-    }
-  };
+  const location = useLocation();
+  const path = location.pathname;
 
-  // メニューバー出すかどうか
-  const MenuBar = () => {
-    const location = useLocation();
-    const path = location.pathname;
-    if (
-      path === "/" ||
-      path === "/login" ||
-      path === "/confirm" ||
-      path.match("/api/user/")
-    ) {
-      return null;
-    } else if (path.match("dashboard")) {
-      return <MenuAppBar />;
-    } else {
-      return <MenuAppBar />;
-    }
-  };
   return (
-    <BrowserRouter>
-      <RequireLoginModal />
-      <MenuBar />
+    <div>
+      <RequireLoginModal path={path} isLogin={isLogin} />
+        <MenuBar path={path} />
       <Router />
-    </BrowserRouter>
+    </div>
   );
 };
 

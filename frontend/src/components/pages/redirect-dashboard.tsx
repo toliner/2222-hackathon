@@ -33,16 +33,6 @@ export const RedirectDashboard = () => {
             updateIsLogin("login");
 
             history.push(`/dashboard?token=${token}`);
-
-            window.location.reload();
-
-            // setTimeout(() => {
-            //   window.history.pushState(
-            //     { token: `${token}` },
-            //     "dashboard",
-            //     `dashboard?token=${token}`
-            //   )
-            // }, 2000);
           }
         })
         .catch(console.error);
