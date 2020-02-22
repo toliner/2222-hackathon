@@ -43,11 +43,7 @@ export const LoginModal = () => {
   const handleClose = () => setOpen(false);
 
   const linkToLogin = () => {
-    window.history.pushState(
-      { page: 1 },
-      "logout",
-      "/login"
-    );
+    window.history.pushState({ page: 1 }, "logout", "/login");
   };
 
   return (
