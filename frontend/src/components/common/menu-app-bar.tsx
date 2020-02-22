@@ -16,6 +16,7 @@ import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import { BrowserRouter as Router, useHistory } from "react-router-dom";
 import logo from "../../static/logo.png";
 import { useUpdateIsLogin } from "../../store/Actions";
+import { useSelector } from "react-redux";
 
 const drawerWidth = 240;
 
@@ -90,11 +91,32 @@ const navListBottom = [
   }
 ];
 
+const PopupMenu: React.FC<{ history: any }> = ({ history }) => {
+  const linkTo = (path: string) => {
+    history.push(path);
+  };
+  const logout = () => {
+    // 状態更新してログアウト扱いにする
+    // updateIsLogin("logout");
+    // ログインページ送り
+    linkTo("/login");
+  };
+  return (
+    <div>
+      <MenuItem onClick={() => linkTo("/user")}>Setting</MenuItem>
+      <MenuItem onClick={logout}>Logout</MenuItem>
+    </div>
+  );
+};
+
 export const MenuAppBar: React.FC = () => {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const open = Boolean(anchorEl);
+  const token = useSelector((state: { token: string }) => state.token);
+
+  const history = useHistory();
 
   // use reducer
   const updateIsLogin = useUpdateIsLogin();
@@ -105,31 +127,9 @@ export const MenuAppBar: React.FC = () => {
   const handleDrawerOpen = () => setDrawerOpen(true);
   const handleDrawerClose = () => setDrawerOpen(false);
 
-  const PopupMenu: React.FC = () => {
-    const history = useHistory();
-    const linkTo = (path: string) => {
-      history.push(path);
-      window.location.reload();
-    };
-    const logout = () => {
-      // 状態更新してログアウト扱いにする
-      updateIsLogin("logout");
-      // ログインページ送り
-      linkTo("/login");
-    };
-    return (
-      <div>
-        <MenuItem onClick={() => linkTo("/user")}>Setting</MenuItem>
-        <MenuItem onClick={logout}>Logout</MenuItem>
-      </div>
-    );
-  };
-
   const LinkLists: React.FC = () => {
-    const history = useHistory();
     const linkToPath = (path: string) => {
-      history.push(path);
-      window.location.reload();
+      history.push(`${path}`);
     };
     return (
       <div>
@@ -209,7 +209,7 @@ export const MenuAppBar: React.FC = () => {
               onClose={handleClose}
             >
               <Router>
-                <PopupMenu />
+                <PopupMenu history={history} />
               </Router>
             </Menu>
           </div>
