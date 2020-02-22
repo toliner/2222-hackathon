@@ -34,6 +34,8 @@ export const RedirectDashboard = () => {
 
             history.push(`/dashboard?token=${token}`);
 
+            window.location.reload();
+
             // setTimeout(() => {
             //   window.history.pushState(
             //     { token: `${token}` },
