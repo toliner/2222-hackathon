@@ -7,7 +7,10 @@ import { LoginModal } from "../components/partials/login-modal";
 
 import "./App.css";
 
-const RequireLoginModal: React.FC<{ path: string, isLogin: boolean }> = ({ path, isLogin }) => {
+const RequireLoginModal: React.FC<{ path: string; isLogin: boolean }> = ({
+  path,
+  isLogin
+}) => {
   if (
     !isLogin &&
     path !== "/" &&
@@ -48,7 +51,7 @@ const App = () => {
   return (
     <div>
       <RequireLoginModal path={path} isLogin={isLogin} />
-        <MenuBar path={path} />
+      <MenuBar path={path} />
       <Router />
     </div>
   );
