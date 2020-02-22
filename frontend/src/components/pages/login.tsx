@@ -114,8 +114,8 @@ export const Login: React.FC = () => {
             defaultValue="mail"
             onChange={handleMailFormChange}
           />
-          <Button className={classes.btn}>
-            <p className={classes.login} onClick={loginWithMail}>
+          <Button className={classes.btn} onClick={loginWithMail}>
+            <p className={classes.login}>
               ログイン
             </p>
           </Button>

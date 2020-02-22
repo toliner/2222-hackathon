@@ -56,10 +56,8 @@ export const LoginModal = () => {
       >
         <Fade in={open}>
           <div className={classes.paper}>
-            <Button className={classes.btn}>
-              <p className={classes.login} onClick={linkToLogin}>
-                メールでログイン
-              </p>
+            <Button className={classes.btn} onClick={linkToLogin}>
+              <p className={classes.login}>メールでログイン</p>
             </Button>
           </div>
         </Fade>
