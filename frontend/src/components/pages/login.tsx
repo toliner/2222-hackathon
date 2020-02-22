@@ -104,14 +104,14 @@ export const Login: React.FC = () => {
             InputProps={{
               className: classes.input
             }}
-            defaultValue="name"
+            placeholder="name"
             onChange={handleNameFormChange}
           />
           <TextField
             InputProps={{
               className: classes.input
             }}
-            defaultValue="mail"
+            placeholder="mail"
             onChange={handleMailFormChange}
           />
           <Button className={classes.btn} onClick={loginWithMail}>

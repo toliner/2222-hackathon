@@ -62,35 +62,34 @@ const useStyles = makeStyles((theme: Theme) =>
 export const CreateTournament: React.FC = () => {
   const classes = useStyles();
 
-  /*const loginWithMail = async () => {
-        if (mail !== "" && api_url !== undefined) {
-            console.log(mail);
-            const data = {
-                mail: mail,
-                name: name
-            };
+  /*const onSubmit = async () => {
+        if (name !== "" && api_url !== undefined) {
+      const data = {
+        title: title,
+        description:description,
+        game_type:game_type,
+        start_date:start_date
+      };
 
-            await fetch(`${api_url}/user/register`, {
-                mode: "cors",
-                method: "POST",
-                body: JSON.stringify(data),
-                headers: {
-                    Accept: "application/json",
-                    "Content-Type": "application/json;charset=UTF-8"
-                }
-            })
-                .then((res: any) => {
-                    console.log({ res });
-                    if (res.status === 200) window.location.href = "confirm";
-                })
-                .catch(console.error);
+      await fetch(`${api_url}/competiton/create`, {
+          mode: "cors",
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json;charset=UTF-8",
+          "X-2222-AccessToken": "X-2222-AccessToken"
         }
-    };
+      })
+        .then((res: any) => {
+          console.log({ res });
+          if (res.status === 200) window.location.href = "tournament";
+        })
+        .catch(console.error);
+    }
+    };*/
 
-    "title": "string",
-        "description": "string",
-        "game_type": "RAINBOW_SIX",
-        "start_date"*/
+
 
   return (
     <div className={classes.root}>
@@ -108,18 +107,21 @@ export const CreateTournament: React.FC = () => {
                     InputProps={{
                       className: classes.input
                     }}
+                    //onChange={handleTitleChange}
                   />
                   <TextField
                     placeholder="TournamentDate"
                     InputProps={{
                       className: classes.input
                     }}
+                    //onChange={handleDateChange}
                   />
                   <TextField
-                    placeholder="TournamentUserName"
+                    placeholder="TournamentType"
                     InputProps={{
                       className: classes.input
                     }}
+                    //onChange={handleTypeChange}
                   />
                   <TextField
                     placeholder="TournamenProfile"
@@ -128,6 +130,7 @@ export const CreateTournament: React.FC = () => {
                     InputProps={{
                       className: classes.input
                     }}
+                    //onChange={handleDescriptionChange}
                   />
                 </form>
               </Grid>
