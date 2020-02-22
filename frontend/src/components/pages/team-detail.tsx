@@ -61,12 +61,53 @@ export const TeamDetail: React.FC = () => {
 
   const Item = () => {
     let displayTeamImage = "";
+
     teamData.team.map((data: any) => {
       if (pageNumber === parseInt(data.teamId)) {
         displayTeamImage = data.teamImage;
       }
     });
     return <Avatar className={classes.img} src={displayTeamImage} />;
+  };
+
+  const TeamName = () => {
+    let displayTeamName = "";
+
+    teamData.team.map((data: any) => {
+      if (pageNumber === parseInt(data.teamId)) {
+        displayTeamName = data.teamName;
+      }
+    });
+    return (
+      <TextField
+        defaultValue={displayTeamName}
+        InputProps={{
+          className: classes.input,
+          readOnly: true
+        }}
+      />
+    );
+  };
+
+  const TeamDescription = () => {
+    let displayTeamDescription = "";
+
+    teamData.team.map((data: any) => {
+      if (pageNumber === parseInt(data.teamId)) {
+        displayTeamDescription = data.teamDescription;
+      }
+    });
+    return (
+      <TextField
+        defaultValue={displayTeamDescription}
+        multiline
+        rows="6"
+        InputProps={{
+          className: classes.input,
+          readOnly: true
+        }}
+      />
+    );
   };
 
   return (
@@ -79,29 +120,8 @@ export const TeamDetail: React.FC = () => {
           <Grid item xs={12} sm container>
             <Grid item xs container direction="column">
               <form noValidate className={classes.form}>
-                <TextField
-                  //defaultValue={state.teamName}
-                  InputProps={{
-                    className: classes.input,
-                    readOnly: true
-                  }}
-                />
-                <TextField
-                  defaultValue="TeamUserName"
-                  InputProps={{
-                    className: classes.input,
-                    readOnly: true
-                  }}
-                />
-                <TextField
-                  //defaultValue={state.teamDescription}
-                  multiline
-                  rows="6"
-                  InputProps={{
-                    className: classes.input,
-                    readOnly: true
-                  }}
-                />
+                <TeamName />
+                <TeamDescription />
               </form>
             </Grid>
           </Grid>

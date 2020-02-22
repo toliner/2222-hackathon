@@ -127,10 +127,12 @@ export const Home = () => {
               </VFXProvider>
             </div>
             <Typography>
-              <Button variant="contained" className={classes.btn} href="./login">
-                <a className={classes.link}>
-                  新規登録
-                </a>
+              <Button
+                variant="contained"
+                className={classes.btn}
+                href="./login"
+              >
+                <a className={classes.link}>新規登録</a>
               </Button>
             </Typography>
           </div>
