@@ -1,11 +1,11 @@
 import React from "react";
-import { createStyles, makeStyles } from "@material-ui/core/styles";
+import {createStyles, makeStyles, Theme} from "@material-ui/core/styles";
 import { Button, Card, CardContent, CardMedia, Grid } from "@material-ui/core";
 import Typography from "@material-ui/core/Typography";
 import tournamentData from "../../data/tournament-data.json";
 import { useHistory } from "react-router";
 
-const useStyles = makeStyles(() =>
+const useStyles = makeStyles((theme:Theme) =>
   createStyles({
     root: {
       flexGrow: 1
@@ -18,7 +18,10 @@ const useStyles = makeStyles(() =>
       position: "relative"
     },
     bg: {
-      background: "#4B4B4B"
+      background: "#4B4B4B",
+        [theme.breakpoints.up('md')]: {
+            //background: "#F3F3F3",
+        },
     },
     bottom: {
       marginBottom: 10,
@@ -35,7 +38,12 @@ const useStyles = makeStyles(() =>
       textAlign: "left",
       display: "inline-block",
       width: 688,
-      height: 424
+      height: 424,
+        [theme.breakpoints.up('md')]: {
+            background: "#E1E1E1",
+            textAlign: "left",
+            display: "inline-block",
+        },
     },
     card: {
       background: "#E1E1E1",
@@ -43,14 +51,25 @@ const useStyles = makeStyles(() =>
       margin: 10,
       display: "inline-block",
       width: 208,
-      height: 248
+      height: 248,
+        [theme.breakpoints.up('md')]: {
+            background: "#E1E1E1",
+            textAlign: "left",
+            margin: 10,
+            display: "inline-block",
+        },
     },
     media: {
       width: 496,
       height: 312,
       margin: "auto",
       marginTop: 10,
-      marginBottom: 10
+      marginBottom: 10,
+        [theme.breakpoints.up('md')]: {
+            margin: "auto",
+            marginTop: 10,
+            marginBottom: 10,
+        },
     },
     btn: {
       textAlign: "center",
@@ -61,7 +80,12 @@ const useStyles = makeStyles(() =>
       height: 120,
       margin: "auto",
       marginTop: 10,
-      marginBottom: 10
+      marginBottom: 10,
+        [theme.breakpoints.up('md')]: {
+            margin: "auto",
+            marginTop: 10,
+            marginBottom: 10,
+        },
     },
     title: {
       fontSize: "0.9rem"
