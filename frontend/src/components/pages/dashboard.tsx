@@ -5,7 +5,7 @@ import { LoginModal } from "../partials/login-modal";
 import information from "../../data/information.json";
 import { useSelector } from "react-redux";
 import { useLocation } from "react-router";
-import { useUpdateToken, useUpdateIsLogin } from "../../store/Actions";
+import { useUpdateIsLogin } from "../../store/Actions";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -42,16 +42,21 @@ export const Dashboard: React.FC = () => {
   // use token state
   const storeToken = useSelector((state: { token: string }) => state.token);
 
-  const updateToken = useUpdateToken();
   const updateIsLogin = useUpdateIsLogin();
   const tokenPath = window.location.search.substring(1);
   const token = tokenPath.split("=")[1];
+<<<<<<< HEAD
   if (token !== undefined) {
     updateToken(`${token}`);
     if (storeToken !== "") {
       updateIsLogin("login");
     }
   }
+=======
+  if (storeToken !== null) {
+    updateIsLogin("login");
+  };
+>>>>>>> origin/master
   return (
     <div className={classes.root}>
       <Grid container spacing={3}>
