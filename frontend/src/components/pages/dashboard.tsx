@@ -43,8 +43,7 @@ export const Dashboard: React.FC = () => {
   const storeToken = useSelector((state: { token: string }) => state.token);
 
   const updateIsLogin = useUpdateIsLogin();
-  const tokenPath = window.location.search.substring(1);
-  const token = tokenPath.split("=")[1];
+
   if (storeToken !== null) {
     updateIsLogin("login");
   };
