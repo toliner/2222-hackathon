@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useUpdateIsLogin } from "../../store/Actions";
+import { useHistory } from "react-router-dom";
 
 const fetch = window.fetch;
 
@@ -18,12 +19,11 @@ export const RedirectDashboard = () => {
   // use reducer
   const updateIsLogin = useUpdateIsLogin();
 
+  const history = useHistory();
+
   const sendToken = async () => {
     // login
     // send token
-    const data = {
-      name: token
-    };
     if (!isLogin) {
       console.log(token);
       await fetch(`${api_url}/user/verification?token=${token}`)
@@ -31,13 +31,16 @@ export const RedirectDashboard = () => {
           console.log({ res });
           if (res.status === 200) {
             updateIsLogin("login");
-            setTimeout(() => {
-              window.history.pushState(
-                { token: `${token}` },
-                "dashboard",
-                `dashboard?token=${token}`
-              )
-            }, 2000);
+
+            history.push(`/dashboard?token=${token}`);
+
+            // setTimeout(() => {
+            //   window.history.pushState(
+            //     { token: `${token}` },
+            //     "dashboard",
+            //     `dashboard?token=${token}`
+            //   )
+            // }, 2000);
           }
         })
         .catch(console.error);
