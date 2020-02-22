@@ -38,6 +38,8 @@ const App = () => {
       path.match("/api/user/")
     ) {
       return null;
+    } else if (path.match("dashboard")) {
+      return <MenuAppBar />;
     } else {
       return <MenuAppBar />;
     }
