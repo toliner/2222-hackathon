@@ -14,6 +14,7 @@ const App = () => {
   const RequireLoginModal = () => {
     const location = useLocation();
     const path = location.pathname;
+    console.log(path);
     if (
       !isLogin &&
       path !== "/" &&
