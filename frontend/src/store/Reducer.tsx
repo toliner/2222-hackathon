@@ -4,7 +4,10 @@ const initState = {
   token: ""
 };
 
-const reducer = (state = initState, action: { type: string, payload: string }) => {
+const reducer = (
+  state = initState,
+  action: { type: string; payload: string }
+) => {
   switch (action.type) {
     case "LOGIN":
       return { ...state, isLogin: state.isLogin = true };

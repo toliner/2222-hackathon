@@ -50,8 +50,8 @@ export const Dashboard: React.FC = () => {
     updateToken(`${token}`);
     if (storeToken !== "") {
       updateIsLogin("login");
-    };
-  };
+    }
+  }
   return (
     <div className={classes.root}>
       <Grid container spacing={3}>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import {
   Avatar,
@@ -8,6 +8,9 @@ import {
   TextField,
   Typography
 } from "@material-ui/core";
+import { useSelector } from "react-redux";
+
+const fetch = window.fetch;
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -61,6 +64,42 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export const CreateTeam: React.FC = () => {
   const classes = useStyles();
+  const [name, setName] = useState("");
+  const [bio, setBio] = useState("");
+
+  const handleNameFormChange = (e: any) => {
+    setName(e.target.value);
+  };
+
+  const handleTeamProfileChange = (e: any) => {
+    setBio(e.target.value);
+  };
+
+  const api_url = useSelector((state: { APIURL: string }) => state.APIURL);
+
+  const onSubmit = async () => {
+    if (name !== "" && api_url !== undefined) {
+      const data = {
+        name: name,
+        bio: bio
+      };
+
+      await fetch(`${api_url}/team/create`, {
+        mode: "cors",
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json;charset=UTF-8"
+        }
+      })
+        .then((res: any) => {
+          console.log({ res });
+          if (res.status === 200) window.location.href = "team";
+        })
+        .catch(console.error);
+    }
+  };
 
   return (
     <div className={classes.root}>
@@ -74,29 +113,29 @@ export const CreateTeam: React.FC = () => {
               <Grid item xs>
                 <form noValidate className={classes.form}>
                   <TextField
-                    defaultValue="TeamName"
+                    placeholder="TeamName"
                     InputProps={{
                       className: classes.input
                     }}
+                    onChange={handleNameFormChange}
                   />
                   <TextField
-                    defaultValue="TeamUserName"
-                    InputProps={{
-                      className: classes.input
-                    }}
-                  />
-                  <TextField
-                    defaultValue="TeamProfile"
+                    placeholder="TeamProfile"
                     multiline
                     rows="6"
                     InputProps={{
                       className: classes.input
                     }}
+                    onChange={handleTeamProfileChange}
                   />
                 </form>
               </Grid>
               <Typography className={classes.btn}>
-                <Button variant="contained" className={classes.btnColor}>
+                <Button
+                  variant="contained"
+                  className={classes.btnColor}
+                  onClick={() => onSubmit()}
+                >
                   作成
                 </Button>
               </Typography>
